@@ -1,0 +1,102 @@
+<?php
+
+namespace App\Http\Controllers;
+use App\Models\Profile;
+use App\Models\Post;
+use Illuminate\Http\Request;
+
+class LandingController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        // berita
+        $hot_news = Post::where('konten_id', function ($q) {
+            $q->select('id')
+              ->from('kontens')
+              ->where('konten_slug', 'LIKE', '%berita%');
+        })->orderBy('id','desc')->limit(3)->get();
+
+        $profile = Profile::with('image')->first();
+
+        // prestasi
+        $prestasi = Post::where('konten_id', function($q) {
+            $q->select('id')
+            ->from('kontens')
+            ->where('konten_slug', 'LIKE', '%prestasi%');
+        })->latest()->first();
+
+        // ebook
+        $ebook    = Post::where('konten_id',function($q){
+            $q->select('id')
+            ->from('kontens')
+            ->where('konten_slug','LIKE', '%e-book%');
+        }) ->orderBy('id','desc')->limit(2)->get();
+        
+        // guru
+        $guru     = Post::where('konten_id', function($q){
+            $q->select('id')
+            ->from('kontens')
+            ->where('konten_slug','LIKE','%daftar-guru%');
+        })->orderBy('id','desc')->limit(6)->get();
+
+        // artikel
+        $artikel = Post::where('konten_id', function($q){
+            $q->select('id')
+            ->from('kontens')
+            ->where('konten_slug','LIKE', '%artikel%');
+        })->orderBy('id','desc')->limit(4)->get();
+
+        return view('frontend.landing',compact('hot_news','profile','prestasi','ebook','guru','artikel'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
+}
