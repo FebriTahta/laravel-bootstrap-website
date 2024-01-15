@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Submenu;
 use App\Models\Menu;
+use App\Models\Konten;
 use Illuminate\Support\Str;
 use Validator;
 use Illuminate\Http\Request;
@@ -134,8 +135,29 @@ class SubmenuController extends Controller
     public function destroy(Submenu $submenu, $id)
     {
         $submenu = Submenu::findOrFail($id);
-        $submenu->konten()->delete();
-        $submenu->delete();
+        if (isset($submenu->konten)) {
+            # cek konten code...
+            $konten  = Konten::where('kontentable_type', Submenu::class)
+                        ->where(function ($query) {
+                            $query->where('konten_name', 'LIKE', '%berita%')
+                            ->orWhere('konten_name', 'LIKE', '%artikel%')
+                            ->orWhere('konten_name', 'LIKE', '%guru%')
+                            ->orWhere('konten_name', 'LIKE', '%prestasi%')
+                            ->orWhere('konten_name', 'LIKE', '%e-book%');
+                        })
+                        ->where('kontentable_id', $submenu->id)->get();
+            if ($konten->count() > 0) {
+                # ada konten terkait code...
+                return response()->json([
+                    'status'=>400,
+                    'message'=>'Submenu tersebut tidak dapat dihapus'
+                ]);
+            }else {
+                # tidak ada konten terkait code...
+                // $submenu->konten()->delete();
+            }
+        }
+        // $submenu->delete();
         return response()->json([
             'status'=>200,
             'message'=>'Submenu, Konten, serta Post Telah dihapus'

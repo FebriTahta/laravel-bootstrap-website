@@ -254,9 +254,7 @@
                             <a class="rbt-btn-link" href="#">
                                 Unduh <i class="feather-arrow-down"></i>
                             </a>                            
-                            <a class="rbt-btn-link" href="#">
-                                Baca <i class="feather-arrow-right"></i>
-                            </a>
+                            
                         </div>
                     </div>
                 </div>

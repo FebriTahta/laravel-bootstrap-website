@@ -127,16 +127,54 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu, $id)
     {
-        $menu = Menu::findOrFail($id);
-        $menu->konten()->delete();
+        $menu   = Menu::findOrFail($id);
+        // cek konten yang berelasi dengan menu
+        $konten = Konten::where(function ($query) {
+                $query->where('konten_name', 'LIKE', '%berita%')
+                ->orWhere('konten_name', 'LIKE', '%artikel%')
+                ->orWhere('konten_name', 'LIKE', '%guru%')
+                ->orWhere('konten_name', 'LIKE', '%prestasi%')
+                ->orWhere('konten_name', 'LIKE', '%e-book%');
+        })
+        ->get();
+
+        if ($konten->count() > 0) {
+            # menu punya konten code...
+            return response()->json([
+                'status'=>400,
+                'message'=>'Menu tersebut tidak dapat dihapus'
+            ]);
+        }
+
         if (isset($menu->submenu)) {
-            $submenu = Submenu::where('menu_id')->get();
+            # menu punya submenu code...
+            $submenu = Submenu::where('menu_id', $id)->get();
             $submenu_id = [];
             foreach ($submenu as $key => $value) {
                 $submenu_id[] = $value->id;
             }
-            Konten::where('kontentable_type', Submenu::class)
-            ->whereIn('kontentable_id', $submenu_id)->delete();
+
+            $konten2 = Konten::where('kontentable_type', Submenu::class)
+                                ->where(function ($query) {
+                                    $query->where('konten_name', 'LIKE', '%berita%')
+                                    ->orWhere('konten_name', 'LIKE', '%artikel%')
+                                    ->orWhere('konten_name', 'LIKE', '%guru%')
+                                    ->orWhere('konten_name', 'LIKE', '%prestasi%')
+                                    ->orWhere('konten_name', 'LIKE', '%e-book%');
+                                })
+                                ->whereIn('kontentable_id', $submenu_id)->get();
+            if ($konten2->count() > 0) {
+                # ada konten terkait pada submenu code...
+                return response()->json([
+                    'status'=>400,
+                    'message'=>'Menu tersebut tidak dapat dihapus'
+                ]);
+            }else {
+                # tidak ada konten terkait code...
+                Konten::where('kontentable_type', Submenu::class)
+                        ->whereIn('kontentable_id', $submenu_id)->delete();
+                Submenu::where('menu_id',$id)->delete();
+            }
         }
         $menu->delete();
         return response()->json([

@@ -383,8 +383,12 @@ function deleteData(id) {
       url: `/admin-menu-destroy/${id}`,
       method: 'GET',
       success: function (response) {
+        if (response.status == 200) {
           Swal.fire(response.message, '', 'success');
           reload_table();
+        }else{
+          Swal.fire(response.message, '', 'error');
+        }
       },
       error: function (error) {
           Swal.fire('Error!', 'Gagal menghapus data.', 'error');
@@ -400,8 +404,12 @@ function deleteData2(id) {
       url: `/admin-submenu-destroy/${id}`,
       method: 'GET',
       success: function (response) {
+        if (response.status == 200) {
           Swal.fire(response.message, '', 'success');
           reload_table();
+        }else{
+          Swal.fire(response.message, '', 'error');
+        }
       },
       error: function (error) {
           Swal.fire('Error!', 'Gagal menghapus data.', 'error');

@@ -67,7 +67,9 @@
                             <div class="rbt-short-item switch-layout-container">
                                 <ul class="course-switch-layout">
                                     <li class="course-switch-item"><button class="rbt-grid-view active" title="Grid Layout"><i class="feather-grid"></i> <span class="text">Grid</span></button></li>
-                                    <li class="course-switch-item"><button class="rbt-list-view" title="List Layout"><i class="feather-list"></i> <span class="text">List</span></button></li>
+                                    @if ($data->konten_model != 4)
+                                        <li class="course-switch-item"><button class="rbt-list-view" title="List Layout"><i class="feather-list"></i> <span class="text">List</span></button></li>
+                                    @endif
                                 </ul>
                             </div>
                             <div class="rbt-short-item">
@@ -108,7 +110,7 @@
                                                 <h4 class="rbt-widget-title-2">Categories</h4>
                                                 <div class="row">
                                                     @foreach ($kategori as $key => $item)
-                                                    <div class="col-lg-1 col-md-2 col-sm-6 col-6">
+                                                    <div class="col-lg-2 col-md-2 col-sm-6 col-6">
                                                         <input id="cat-list-{{$key}}" type="checkbox" name="cat-list{{$key}}">
                                                         <label for="cat-list-{{$key}}">{{$item->kategori_name}} &nbsp; <span class="badge badge-secondary">{{$item->post_count}}</span></label>
                                                     </div>
@@ -131,6 +133,14 @@
 
 @if ($data->konten_model == 2)
     @include('frontend.component.konten_model2',['post' => $post])
+@endif
+
+@if ($data->konten_model == 4)
+    @include('frontend.component.konten_model4',['post'=>$post])
+@endif
+
+@if ($data->konten_model == 5)
+    @include('frontend.component.konten_model5',['post'=>$post])
 @endif
 
 @endsection
