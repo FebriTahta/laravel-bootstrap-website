@@ -2,31 +2,7 @@
 
 @section('content')
 
-<style>
-    .badge {
-        display: inline-block;
-        padding: 1em 1.5em;
-        font-size: 10px;
-        font-weight: bold;
-        line-height: 1;
-        color: #fff;
-        text-align: center;
-        white-space: nowrap;
-        vertical-align: baseline;
-        border-radius: 25px;
-        margin-bottom: 10px;
-        margin-right: 5px;
-    }
-
-    .badge-sm {
-        font-size: 75%;
-        padding: 0.3em 0.9em;
-    }
-
-    .badge-info {
-        background-color: #5bc0de;
-    }
-</style>
+@include('frontend.component.css')
 
 <div class="rbt-page-banner-wrapper">
     <div class="rbt-banner-image"></div>
@@ -48,12 +24,9 @@
                                 <div class="image">🎉</div> {{$data->post_count ?? '...'}} {{$data->konten_name ?? '...'}}
                             </a>
                         </div>
-
                         @if ($search)
                             <p class="description">{{'Menampilkan Pencarian : '.$search ?? null}}</p>
                         @endif
-                        
-                        
                     </div>
                 </div>
             </div>
@@ -132,7 +105,7 @@
 
 
 @if ($data->konten_model == 2)
-    @include('frontend.component.konten_model2',['post' => $post])
+    @include('frontend.component.konten_model2',['post' => $post,'konten'=>$data])
 @endif
 
 @if ($data->konten_model == 4)

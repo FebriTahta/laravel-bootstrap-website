@@ -97,4 +97,5 @@ Route::controller(LandingController::class)->group(function(){
 Route::controller(PageController::class)->group(function(){
     Route::get('/post/{konten_slug}','datalist');
     Route::get('/post/{konten_slug}/search','search')->name('post.search');
+    Route::get('/post/{konten_slug}/{post_slug}','detaildata')->name('post.detaildata');
 });

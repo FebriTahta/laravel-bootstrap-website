@@ -46,4 +46,23 @@ class PageController extends Controller
 
         return view('frontend.datalist',compact('data','post','kategori','search'));
     }
+
+    public function detaildata($konten_slug, $post_slug)
+    {
+        $konten = Konten::where('konten_slug', $konten_slug)->first();
+        $post = Post::where('post_slug', $post_slug)->with(['kategori','image','file'])
+        ->withCount(['image','file'])->first();
+        $next = Post::where('id', '<', $post->id)
+        ->whereHas('konten', function($q) use ($konten_slug){
+            $q->where('konten_slug', $konten_slug);
+        })
+        ->orderBy('id', 'desc')->first();
+        if ($post->post_view < 5) {
+            $post->update(['post_view'=> $post->post_view + 1]);
+        }else {
+            $post->update(['post_view'=> mt_rand(200,300)]);
+        }
+        
+        return view('frontend.detaildata',compact('konten','post'));
+    }
 }

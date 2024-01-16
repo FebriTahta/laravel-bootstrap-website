@@ -7,7 +7,7 @@
                     <div class="course-grid-3">
                         <div class="rbt-card variation-01 rbt-hover">
                             <div class="rbt-card-img">
-                                <a href="#">
+                                <a href="{{ route('post.detaildata', ['konten_slug' => $konten->konten_slug, 'post_slug' => $item->post_slug]) }}">
                                     <img src="{{asset('images_thumbnail/'.$item->post_thumb)}}" alt="{{$item->id}}">
                                 </a>
                             </div>
@@ -17,7 +17,7 @@
                                 @endforeach
                                 
                                 <h4 class="rbt-card-title">
-                                    <a href="#">
+                                    <a href="{{ route('post.detaildata', ['konten_slug' => $konten->konten_slug, 'post_slug' => $item->post_slug]) }}">
                                         {{substr($item->post_title, 0, 45)}}
                                         @if (strlen($item->post_title) > 45)
                                             ...
@@ -37,7 +37,7 @@
                                 </p>
                                 
                                 <div class="rbt-card-bottom">
-                                    <a class="rbt-btn-link" href="#">
+                                    <a class="rbt-btn-link" href="{{ route('post.detaildata', ['konten_slug' => $konten->konten_slug, 'post_slug' => $item->post_slug]) }}">
                                         Baca Selengkapnya
                                         <i class="feather-arrow-right"></i>
                                     </a>
