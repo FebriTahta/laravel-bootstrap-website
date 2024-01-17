@@ -136,7 +136,7 @@
                                 </a>
                             </li>
                             <li class="account-access rbt-user-wrapper d-none d-xl-block">
-                                <a href="/admin-post"><i class="feather-lock"></i>Login</a>
+                                <a href="{{route('login')}}"><i class="feather-lock"></i>Login</a>
                                 
                             </li>
                         </ul>
@@ -346,15 +346,13 @@
                                         <h3 class="rbt-short-title">Sub Menu</h3>
                                         <ul class="mega-menu-item">
                                             @foreach ($menu->submenu as $item)
-                                                <li>
-                                                    <a 
-                                                    @if ($menu->konten)
-                                                        href="/post/{{$item->konten->konten_slug}}" 
+                                                <li><a
+                                                    @if ($item->konten)
+                                                        href="/post/{{$item->konten->konten_slug}}"
                                                     @else
-                                                        href="#"     
-                                                    @endif
-                                                        class="text-capitalize">{{$item->submenu_name}}</a>
-                                                </li>
+                                                        href="#"
+                                                    @endif 
+                                                    class="text-capitalize">{{$item->submenu_name}}</a></li>
                                             @endforeach
                                         </ul>
                                     </div>
@@ -466,6 +464,10 @@
     <script src="{{asset('assets_fe/js/vendor/plyr.js')}}"></script>
     <!-- Main JS -->
     <script src="{{asset('assets_fe/js/main.js')}}"></script>
+
+    @section('script')
+        
+    @endsection
 </body>
 
 

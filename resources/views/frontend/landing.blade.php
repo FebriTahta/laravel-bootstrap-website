@@ -82,7 +82,7 @@
                                 <div class="swiper-slide">
                                     <div class="rbt-card variation-01 rbt-hover">
                                         <div class="rbt-card-img">
-                                            <a href="#">
+                                            <a href="/post/{{$item->konten->konten_slug}}/{{$item->post_slug}}">
                                                 <img src="{{asset('images_thumbnail/'.$item->post_thumb)}}" alt="Card image">
                                                 <div class="rbt-badge-3 bg-white">
                                                     <span>Hot</span>
@@ -94,7 +94,7 @@
                                             <ul class="rbt-meta">
                                                 <li><i class="feather-users"></i>{{$item->post_view}} Dibaca</li>
                                             </ul>
-                                            <h4 class="rbt-card-title"><a href="#" class="text-capitalize">{{substr($item->post_title,0,45)}}
+                                            <h4 class="rbt-card-title"><a href="/post/{{$item->konten->konten_slug}}/{{$item->post_slug}}" class="text-capitalize">{{substr($item->post_title,0,45)}}
                                                 @if (strlen($item->post_title) > 45)
                                                 ...        
                                                 @endif
@@ -107,7 +107,7 @@
                                                 @endif
                                             </p>
                                             <div class="rbt-card-bottom">
-                                                <a class="rbt-btn-link" href="#">Read More<i
+                                                <a class="rbt-btn-link" href="/post/{{$item->konten->konten_slug}}">Read More<i
                                                         class="feather-arrow-right"></i></a>
                                             </div>
                                         </div>
@@ -123,7 +123,7 @@
     </div>
 </div>
 
-<div class="home-demo-area rbt-section-gapBottom splash-masonary-wrapper-activation" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
+<div class="home-demo-area splash-masonary-wrapper-activation" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
     <div class="wrapper plr--120 plr_lg--30 plr_md--30 plr_sm--30 plr_mobile--15">
         <div class="row">
             <div class="col-lg-10 offset-lg-1 col-xl-6 offset-xl-3">
@@ -144,63 +144,171 @@
     </div>
 </div>
 
-<div class="rbt-feature-area rbt-single-course-features rbt-section-gapBottom rbt-feature-box">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 offset-lg-1">
-                <div class="row row--30 gy-5 align-items-center">
-                    <div class="col-lg-6 col-xl-5" data-sal-delay="150" data-sal="slide-right" data-sal-duration="800">
-                        <div class="banner-card pb--60 mb--50 swiper rbt-dot-bottom-center banner-swiper-active">
+<div class="rbt-inner-page-layout-area bg-color-extra2 rbt-section-gap rbt-shape-bg-area top-circle-shape-top">
+    <div class="wrapper position-relative overflow-hidden">
+        <div class="rbt-splite-style">
+            <div class="split-wrapper">
+                <div class="row g-0 align-items-center">
+                    <div class="col-lg-12 col-xl-5 col-12" data-sal-delay="150" data-sal="slide-right" data-sal-duration="800">
+                        <div class="swiper banner-splash-inner-layout-active rbt-arrow-between rbt-dot-bottom-center icon-bg-primary">
                             <div class="swiper-wrapper">
-
+                                <!-- Start Single Slider  -->
                                 <div class="swiper-slide">
-                                    <div class="rbt-card variation-01 rbt-hover">
-                                        <div class="rbt-card-img">
-                                            <a href="#">
-                                                <img class="w-100 radius-10" src="{{asset('images_thumbnail/'.$prestasi->post_thumb)}}" style="height: 500px;" alt="Card image">
-                                                <div class="rbt-badge-3 bg-white">
-                                                    <span>Documentation</span>
-                                                    <span>Photo</span>
-                                                </div>
-                                            </a>
+                                    <div class="single-slide">
+                                        <div class="rbt-splash-inner-layout-inner">
+                                            <div class="thumbnail image-left-content">
+                                                <img src="{{asset('images_thumbnail/'.$prestasi->post_thumb)}}" style="height: 420px; object-fit: cover" alt="split Images">
+                                            </div>
+                                            <div class="content text-center">
+                                                <h4 class="title">Dokumentasi</h4>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-
                                 @foreach ($prestasi->image as $item)
                                 <div class="swiper-slide">
-                                    <div class="rbt-card variation-01 rbt-hover">
-                                        <div class="rbt-card-img">
-                                            <a href="course-details.html">
-                                                <img class="w-100 radius-10" src="{{asset('images_another/'.$item->image_name)}}" style="height: 500px;" alt="Card image">
-                                                <div class="rbt-badge-3 bg-white">
-                                                    <span>Documentation</span>
-                                                    <span>Photo</span>
-                                                </div>
-                                            </a>
+                                    <div class="single-slide">
+                                        <div class="rbt-splash-inner-layout-inner">
+                                            <div class="thumbnail image-left-content">
+                                                <img src="{{asset('images_another/'.$item->image_name)}}" style="height: 420px; object-fit: cover" alt="split Images">
+                                            </div>
+                                            <div class="content text-center">
+                                                <h4 class="title">Dokumentasi</h4>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 @endforeach
-
+                                <!-- End Single Slider  -->
                             </div>
                             <div class="rbt-swiper-pagination"></div>
+                            <div class="rbt-swiper-arrow rbt-arrow-left">
+                                <div class="custom-overfolow">
+                                    <i class="rbt-icon feather-arrow-left"></i>
+                                    <i class="rbt-icon-top feather-arrow-left"></i>
+                                </div>
+                            </div>
+                            <div class="rbt-swiper-arrow rbt-arrow-right">
+                                <div class="custom-overfolow">
+                                    <i class="rbt-icon feather-arrow-right"></i>
+                                    <i class="rbt-icon-top feather-arrow-right"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-6 col-xl-7" data-sal-delay="200" data-sal="slide-down" data-sal-duration="1000">
-                        <div class="section-title">
-                            <h2 class="title text-capitalize">{{$prestasi->post_title ?? 'Peraih Medali Emas Kanca International'}}</h2>
-                            <p class="b1 mt--15"> 
-                                {!! substr(strip_tags($prestasi->post_desc), 0, 250) ?? 'Ali udin Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.'!!}..
+                    <div class="col-lg-12 col-xl-6 col-12"  data-sal-delay="200" data-sal="slide-right" data-sal-duration="800">
+                        <div class="split-inner">
+                            <span class="rbt-badge-6 bg-primary-opacity">Prestasi Terbaru</span>
+                            <h4 class="title">{{$prestasi->post_title ?? 'Peraih Medali Emas Kanca International'}}.</h4>
+                            <p class="description">
+                                {!! substr(strip_tags($prestasi->post_desc), 0, 250) ?? 'Ali udin Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.'!!}
+                                ...
                             </p>
+                            <div class="veiw-more-btn mt--20">
+                                <a class="rbt-btn btn-gradient rbt-marquee-btn marquee-text-y" href="/post/{{$prestasi->konten->konten_slug}}">
+                                    <span data-text="Prestasi Kami">
+                                        Lihat Daftar Prestasi Lainnya
+                                    </span>
+                                </a>
+                            </div>
                         </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="top-circle-shape"></div>
+    </div>
+    <div class="rbt-shape-bg">
+        <img src="assets_fe/images/splash/bg/left-right-line-small.svg" alt="Shape Images">
+    </div>
+</div>
 
-                        <div class="read-more-btn mt--40">
-                            <a class="rbt-moderbt-btn" href="#">
-                                <span class="moderbt-btn-text">Baca Selengkapnya</span>
-                                <i class="feather-arrow-right"></i>
-                            </a>
+<div class="rbt-counterup-area rbt-section-gap">
+    <div class="conter-style-2">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+
+                <div class="col-lg-6 order-2 order-lg-1">
+                    <div class="row row--30">
+                        <!-- Start Single Counter  -->
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-12" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
+                            <div class="rbt-counterup rbt-hover-03">
+                                <div class="inner">
+                                    <div class="icon">
+                                        <img src="{{asset('assets_fe/images/icons/counter-01.png')}}" alt="Icons Images">
+                                    </div>
+                                    <div class="content">
+                                        <h3 class="counter"><span class="odometer" data-count="500">00</span>
+                                        </h3>
+                                        <span class="subtitle">Alumni Berkompetensi</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single Counter  -->
+
+                        <!-- Start Single Counter  -->
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-12 mt--60" data-sal-delay="200" data-sal="slide-up" data-sal-duration="800">
+                            <div class="rbt-counterup rbt-hover-03">
+                                <div class="inner">
+                                    <div class="icon">
+                                        <img src="assets_fe/images/icons/counter-02.png" alt="Icons Images">
+                                    </div>
+                                    <div class="content">
+                                        <h3 class="counter"><span class="odometer" data-count="800">00</span>
+                                        </h3>
+                                        <span class="subtitle">Jurusan & Ekstra Kulikuler</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single Counter  -->
+
+                        <!-- Start Single Counter  -->
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-12 mt_mobile--40" data-sal-delay="250" data-sal="slide-up" data-sal-duration="800">
+                            <div class="rbt-counterup rbt-hover-03 transform-sm-none" data-parallax='{"x": 0, "y": -60}'>
+                                <div class="inner">
+                                    <div class="icon">
+                                        <img src="assets_fe/images/icons/counter-03.png" alt="Icons Images">
+                                    </div>
+                                    <div class="content">
+                                        <h3 class="counter"><span class="odometer" data-count="1000">00</span>
+                                        </h3>
+                                        <span class="subtitle">Peraih Prestasi</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single Counter  -->
+
+                        <!-- Start Single Counter  -->
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-12 mt--60 mt_mobile--40" data-sal-delay="300" data-sal="slide-up" data-sal-duration="800">
+                            <div class="rbt-counterup rbt-hover-03 transform-sm-none" data-parallax='{"x": 0, "y": 60}'>
+                                <div class="inner">
+                                    <div class="icon">
+                                        <img src="assets_fe/images/icons/counter-04.png" alt="Icons Images">
+                                    </div>
+                                    <div class="content">
+                                        <h3 class="counter"><span class="odometer" data-count="100">00</span>
+                                        </h3>
+                                        <span class="subtitle">Siswa Aktif</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single Counter  -->
+                    </div>
+                </div>
+                <div class="col-lg-6 order-1 order-lg-2" data-sal-delay="250" data-sal="slide-up" data-sal-duration="800">
+                    <div class="inner pl--50 pl_sm--0 pl_md--0">
+                        <div class="section-title text-start">
+                            <span class="subtitle bg-pink-opacity">Why Choose Us</span>
+                            <h2 class="title">{{$profile->profile_featuretitle}}</h2>
+                            <p class="description has-medium-font-size mt--20 mb--0">
+                                {!!$profile->profile_featuredesc!!}
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -231,30 +339,24 @@
                     </div>
                     <div class="rbt-card-body">
                         <div class="rbt-card-top">
-                           
                             <div class="rbt-bookmark-btn">
-                                <a class="rbt-round-btn" title="Bookmark" href="#"><i class="feather-bookmark"></i></a>
+                                <a class="rbt-round-btn" title="Bookmark" href="{{asset('file_ebook/'.$item->file[0]->file_name)}}"><i class="feather-bookmark"></i></a>
                             </div>
                         </div>
-
-                        <h4 class="rbt-card-title text-capitalize"><a href="#">{{$item->post_title}}</a>
+                        <h4 class="rbt-card-title text-capitalize"><a href="{{asset('file_ebook/'.$item->file[0]->file_name)}}">{{$item->post_title}}</a>
                         </h4>
-
                         <ul class="rbt-meta">
                             @if (count($item->file) > 0)
                                 <li><i class="feather-download"></i>{{$item->file[0]->file_download ?? '0'}} diunduh</li>    
                             @endif
                             
-                            <li><i class="feather-users"></i>{{$item->post_view}} dibaca</li>
                         </ul>
-
                         <p class="rbt-card-text">{!! substr(strip_tags($item->post_desc), 0, 100) !!}</p>
-                        
                         <div class="rbt-card-bottom">
-                            <a class="rbt-btn-link" href="#">
+                            <a class="rbt-btn-link" href="{{asset('file_ebook/'.$item->file[0]->file_name)}}">
                                 Unduh <i class="feather-arrow-down"></i>
-                            </a>                            
-                            
+                            </a>
+                          
                         </div>
                     </div>
                 </div>
@@ -265,7 +367,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="load-more-btn mt--60 text-center">
-                    <a class="rbt-btn btn-gradient btn-lg hover-icon-reverse" href="#">
+                    <a class="rbt-btn btn-gradient btn-lg hover-icon-reverse" href="/post/{{$ebook[0]->konten->konten_slug}}">
                         <span class="icon-reverse-wrapper">
                             <span class="btn-text">Lihat koleksi E-Book</span>
                         <span class="btn-icon"><i class="feather-arrow-right"></i></span>
@@ -361,7 +463,7 @@
             </div>
             <div class="col-lg-6 col-md-6 col-12">
                 <div class="read-more-btn text-start text-md-end">
-                    <a class="rbt-btn btn-gradient hover-icon-reverse" href="blog.html">
+                    <a class="rbt-btn btn-gradient hover-icon-reverse" href="#">
                         <div class="icon-reverse-wrapper">
                             <span class="btn-text">See All Articles</span>
                             <span class="btn-icon"><i class="feather-arrow-right"></i></span>
@@ -386,7 +488,7 @@
                             <h3 class="rbt-card-title"><a href="#">{{$item->post_title}}</a></h3>
                             <p class="rbt-card-text">{!! substr(strip_tags($item->post_desc), 0, 100) !!}</p>
                             <div class="rbt-card-bottom">
-                                <a class="transparent-button" href="#">Learn More<i><svg width="17" height="12" xmlns="http://www.w3.org/2000/svg"><g stroke="#27374D" fill="none" fill-rule="evenodd"><path d="M10.614 0l5.629 5.629-5.63 5.629"/><path stroke-linecap="square" d="M.663 5.572h14.594"/></g></svg></i></a>
+                                <a class="transparent-button" href="/post/{{$item->konten->konten_slug}}/{{$item->post_slug}}">Learn More<i><svg width="17" height="12" xmlns="http://www.w3.org/2000/svg"><g stroke="#27374D" fill="none" fill-rule="evenodd"><path d="M10.614 0l5.629 5.629-5.63 5.629"/><path stroke-linecap="square" d="M.663 5.572h14.594"/></g></svg></i></a>
                             </div>
                         </div>
                     </div>
@@ -405,12 +507,12 @@
                         @endif
                         >
                             <div class="rbt-card-img">
-                                <a href="#">
+                                <a href="/post/{{$item->konten->konten_slug}}/{{$item->post_slug}}">
                                     <img src="{{asset('images_thumbnail/'.$item->post_thumb)}}" alt="{{$item->post_title}}"> </a>
                             </div>
                             <div class="rbt-card-body">
                                 <h5 class="rbt-card-title">
-                                    <a href="#">
+                                    <a href="/post/{{$item->konten->konten_slug}}/{{$item->post_slug}}"">
                                         {{substr($item->post_title,0,50)}}
                                         @if (strlen($item->post_title) > 50)
                                             ...
@@ -418,7 +520,7 @@
                                     </a>
                                 </h5>
                                 <div class="rbt-card-bottom">
-                                    <a class="transparent-button" href="#">Read Article<i><svg width="17" height="12" xmlns="http://www.w3.org/2000/svg"><g stroke="#27374D" fill="none" fill-rule="evenodd"><path d="M10.614 0l5.629 5.629-5.63 5.629"/><path stroke-linecap="square" d="M.663 5.572h14.594"/></g></svg></i></a>
+                                    <a class="transparent-button" href="/post/{{$item->konten->konten_slug}}/{{$item->post_slug}}"">Read Article<i><svg width="17" height="12" xmlns="http://www.w3.org/2000/svg"><g stroke="#27374D" fill="none" fill-rule="evenodd"><path d="M10.614 0l5.629 5.629-5.63 5.629"/><path stroke-linecap="square" d="M.663 5.572h14.594"/></g></svg></i></a>
                                 </div>
                             </div>
                         </div>
@@ -439,14 +541,16 @@
                 <div class="col-xxl-3 col-xl-3 col-lg-6">
                     <div class="inner">
                         <div class="content text-start">
-                            <h2 class="title color-white mb--0">{{$profile->profile_featuretitle}}</h2>
+                            <h2 class="title color-white mb--0">Anda bagian dari kami ?</h2>
                         </div>
                     </div>
                 </div>
                 <div class="col-xxl-6 col-xl-6 col-lg-6">
                     <div class="inner-content text-start">
                         <p class="color-white">
-                            {{$profile->profile_featuredesc}}
+                            Anda bisa membantu kami dengan mendaftarkan diri anda, 
+                            serta anda juga bisa melakukan ulasan atas segala kinerja maupun kegiatan kami sehingga 
+                            kami mampu untuk terus berkembang semakin baik
                         </p>
                     </div>
                 </div>
@@ -561,4 +665,11 @@
         </div>
     </div>
 </div>
+@endsection
+
+
+@section('script')
+<script>
+//    
+</script>
 @endsection

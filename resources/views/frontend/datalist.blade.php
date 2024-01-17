@@ -19,7 +19,7 @@
                             <li class="rbt-breadcrumb-item active text-capitalize">{{$data->konten_name ?? '...'}}</li>
                         </ul>
                         <div class=" title-wrapper">
-                            <h1 class="title mb--0 text-capitalize">{{'All '.$data->konten_name ?? '...'}}</h1>
+                            <h1 class="title mb--0 text-capitalize">{{'Daftar '.$data->konten_name ?? '...'}}</h1>
                             <a href="{{'/post/'.$data->konten_slug ?? '#'}}" class="rbt-badge-2">
                                 <div class="image">🎉</div> {{$data->post_count ?? '...'}} {{$data->konten_name ?? '...'}}
                             </a>
@@ -109,11 +109,11 @@
 @endif
 
 @if ($data->konten_model == 4)
-    @include('frontend.component.konten_model4',['post'=>$post])
+    @include('frontend.component.konten_model4',['post' => $post,'konten'=>$data])
 @endif
 
 @if ($data->konten_model == 5)
-    @include('frontend.component.konten_model5',['post'=>$post])
+    @include('frontend.component.konten_model5',['post' => $post,'konten'=>$data])
 @endif
 
 @endsection

@@ -1,4 +1,4 @@
-<div class="rbt-section-overlayping-top rbt-section-gapBottom masonary-wrapper-activation">
+<div class="rbt-section-overlayping-top rbt-section-gapBottom">
     <div class="container">
         <!-- Start Card Area -->
         <div class="row row--15">

@@ -2,34 +2,34 @@
     <div class="container">
         <!-- Start Card Area -->
         <div class="row g-5">
+            <!-- Start Single artikel  -->
             @foreach ($post as $item)
-                <!-- Start Single Card  -->
-                <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
-                    <div class="rbt-card variation-03 rbt-hover">
-                        <div class="rbt-card-img">
-                            <a class="#" href="#">
-                                <img src="{{asset('images_thumbnail/'.$item->post_thumb)}}" alt="{{$item->post_title}}">
-                                <span class="rbt-btn btn-white icon-hover">
-                                    <span class="btn-text">Read More</span>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                <div class="rbt-card card-list-2 event-list-card variation-01 rbt-hover">
+                    <div class="rbt-card-img">
+                        <a href="{{ route('post.detaildata', ['konten_slug' => $konten->konten_slug, 'post_slug' => $item->post_slug]) }}">
+                            <img src="{{asset('images_thumbnail/'.$item->post_thumb)}}" alt="Card image">
+                        </a>
+                    </div>
+                    <div class="rbt-card-body">
+                        <ul class="rbt-meta">
+                            <li><i class="feather-calendar"></i>{{Carbon\Carbon::parse($item->created_at)->format('l / d F Y')}}</li>
+                        </ul>
+                        <h4 class="rbt-card-title"><a href="{{ route('post.detaildata', ['konten_slug' => $konten->konten_slug, 'post_slug' => $item->post_slug]) }}">{{$item->post_title}}</a></h4>
+                        <div class="read-more-btn">
+                            <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round" href="{{ route('post.detaildata', ['konten_slug' => $konten->konten_slug, 'post_slug' => $item->post_slug]) }}">
+                                <span class="icon-reverse-wrapper">
+                        <span class="btn-text">Get Ticket</span>
+                                <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                 <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                 </span>
                             </a>
                         </div>
-                        <div class="rbt-card-body">
-                            <h5 class="rbt-card-title"><a href="#">{{substr($item->post_title,0,40)}}
-                                @if (strlen($item->post_title) > 40)
-                                    ...
-                                @endif</a>
-                            </h5>
-                            <div class="rbt-card-bottom">
-                                <a class="transparent-button" href="#"><i><svg width="17" height="12" xmlns="http://www.w3.org/2000/svg"><g stroke="#27374D" fill="none" fill-rule="evenodd"><path d="M10.614 0l5.629 5.629-5.63 5.629"/><path stroke-linecap="square" d="M.663 5.572h14.594"/></g></svg></i></a>
-                            </div>
-                        </div>
                     </div>
                 </div>
-                <!-- End Single Card  -->
+            </div>
             @endforeach
-            
+            <!-- End Single artikel  -->
         </div>
         <!-- End Card Area -->
         @include('frontend.component.pagination',['post'=>$post])

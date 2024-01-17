@@ -32,27 +32,29 @@
                     </figure>
                 </div>
                 <p>{!!$post->post_desc!!}</p>
+
+                
                 @if ($post->image_count > 0)
                     @if ($post->image_count % 3 == 0)
                         <div class="row">
                             @foreach ($post->image as $img)
                                 <div class="col-md-4">
-                                    <img src="{{asset('images_another/'.$img->image_name)}}" alt="">
+                                    <img src="{{asset('images_another/'.$img->image_name)}}" style="height: 350px;max-width: 100%; object-fit: contain"  alt="{{$img->img_name}}">
                                 </div>
                             @endforeach
                         </div>
-                    @elseif($post->image_count % 2 == 6)
+                    @elseif($post->image_count % 2 == 0)
                     <div class="row">
                         @foreach ($post->image as $img)
                             <div class="col-md-6">
-                                <img src="{{asset('images_another/'.$img->image_name)}}" alt="">
+                                <img src="{{asset('images_another/'.$img->image_name)}}" style="height: 250px;max-width: 100%; object-fit: contain" alt="{{$img->img_name}}">
                             </div>
                         @endforeach
                     </div>
                     @else
                         @foreach ($post->image as $img)
                             <div class="col-md-12">
-                                <img src="{{asset('images_another/'.$img->image_name)}}" alt="">
+                                <img src="{{asset('images_another/'.$img->image_name)}}" style="max-width: 100%" alt="{{$img->img_name}}">
                             </div>
                         @endforeach
                     @endif
