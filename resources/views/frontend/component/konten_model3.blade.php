@@ -7,6 +7,7 @@
                     <div class="rbt-team-modal-thumb nav nav-tabs">
                         <a class="rbt-team-thumbnail" href="javascript:void(0)" 
                         data-post_title = "{{$item->post_title}}"
+                        data-post_desc="{{ $item->post_desc }}"
                         data-bs-toggle="modal" data-bs-target="#exampleModal">
                             <div class="thumb">
                                 <img src="{{asset('images_thumbnail/'.$item->post_thumb)}}" alt="{{$item->post_thumb}}">
@@ -44,44 +45,10 @@
                         <div class="col-lg-8">
                             <div class="rbt-team-details">
                                 <div class="author-info">
-                                    <h4 class="title">Mames Mary</h4>
-                                    <span class="designation theme-gradient">English Teacher</span>
-                                    <span class="team-form">
-                            <i class="feather-map-pin"></i>
-                            <span class="location">CO Miego, AD,USA</span>
-                                    </span>
-                                </div>
-                                <p class="mb--15">You can run Histudy easily. Any School, University, College can be use this histudy education template for their educational purpose. A university can be success you.</p>
+                                    <h4 class="title" id="nama_guru">_nama_guru_</h4>
+                                    <p id="informasi_guru">
 
-                                <p>Run their online leaning management system by histudy education template any where and time.</p>
-                                <ul class="social-icon social-default mt--20 justify-content-start">
-                                    <li><a href="https://www.facebook.com/">
-                                            <i class="feather-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li><a href="https://www.twitter.com/">
-                                            <i class="feather-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li><a href="https://www.instagram.com/">
-                                            <i class="feather-instagram"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.linkdin.com/">
-                                            <i class="feather-linkedin"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <ul class="rbt-information-list mt--25">
-                                    <li>
-                                        <a href="#"><i class="feather-phone"></i>+1-202-555-0174</a>
-                                    </li>
-                                    <li>
-                                        <a href="mailto:hello@example.com"><i
-                                    class="feather-mail"></i>example@gmail.com</a>
-                                    </li>
-                                </ul>
+                                    </p>
                             </div>
                         </div>
                     </div>
@@ -98,9 +65,11 @@
          $('#exampleModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var post_title = button.data('post_title')
+            var post_desc = button.data('post_desc')
            
             var modal = $(this)
-            // modal.find('.modal-body #id').val(id);
+            modal.find('.modal-body #nama_guru').html(post_title);
+            modal.find('.modal-body #informasi_guru').html(post_desc);
             // modal.find('.modal-body #mapel_name').val(mapel_name);
             // var preview = document.getElementById("inputGroupFile01-preview2");
             // if (image !== null && image !== "") {
@@ -109,7 +78,6 @@
             //     $('#label_img2').html(image);
             // } else {}
             console.log(post_title);
-
         })
     </script>
 @endsection
