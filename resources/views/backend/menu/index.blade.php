@@ -164,10 +164,10 @@ function load_submenu(data) {
       <span class="text-xs font-weight-bold">${submenu_status}</span>
     </td>
     <td class="text-center">
-      <a href="/admin-submenu-edit/${item.id}" style="margin-right:5px" class="btn btn-xs btn-info font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+      <a href="/admin-submenu-edit/${encryptBase64(item.id)}" style="margin-right:5px" class="btn btn-xs btn-info font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
           <i class="fa fa-pencil"></i>
         </a>
-        <a href="javascript:;" onclick="deleteSubmenuConfirmation(${item.id})" style="margin-right:5px" class="btn btn-xs btn-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+        <a href="javascript:;" onclick="deleteSubmenuConfirmation(${encryptBase64(item.id)})" style="margin-right:5px" class="btn btn-xs btn-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
           <i class="fa fa-trash"></i>
         </a>
     </td>
@@ -207,10 +207,10 @@ function load_menu(data) {
         <span class="text-secondary text-xs font-weight-bold">${moment(item.created_at).format('YYYY-MM-DD HH:mm:ss')}</span>
       </td>
       <td class="text-center">
-        <a href="/admin-menu-edit/${item.id}" style="margin-right:5px" class="btn btn-xs btn-info font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+        <a href="/admin-menu-edit/${encryptBase64(item.id)}" style="margin-right:5px" class="btn btn-xs btn-info font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
           <i class="fa fa-pencil"></i>
         </a>
-        <a href="javascript:;" onclick="deleteMenuConfirmation(${item.id})" style="margin-right:5px" class="btn btn-xs btn-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+        <a href="javascript:;" onclick="deleteMenuConfirmation(${encryptBase64(item.id)})" style="margin-right:5px" class="btn btn-xs btn-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
           <i class="fa fa-trash"></i>
         </a>
       </td>
@@ -462,6 +462,10 @@ function reload_table() {
           console.error('Error fetching data:', error);
       }
   });
+}
+
+function encryptBase64(value) {
+    return btoa(value); // Menggunakan btoa() untuk melakukan enkripsi Base64
 }
 </script>
 @endsection

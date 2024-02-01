@@ -36,6 +36,7 @@ class PostController extends Controller
      */
     public function create($konten_id)
     {
+        $konten_id = base64_decode($konten_id);
         $title = 'CREATE POSTING';
         $konten = Konten::findOrFail($konten_id);
         $kategori = Kategori::where('kategori_status', 1)->orderBy('id','desc')->get();
@@ -172,6 +173,7 @@ class PostController extends Controller
      */
     public function edit(Post $post, $id)
     {
+        $id = base64_decode($id);
         $data = Post::where('id',$id)->with(['kategori','konten','image','file'])->first();
         $title = 'EDIT POSTING';
         $konten = Konten::findOrFail($data->konten_id);
@@ -332,6 +334,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post, $id)
     {
+        $id = base64_decode($id);
         $data = Post::where('id',$id)->with(['kategori','konten','image'])->first();
         DB::beginTransaction();
         try {

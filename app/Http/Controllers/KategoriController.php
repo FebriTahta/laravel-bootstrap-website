@@ -70,6 +70,7 @@ class KategoriController extends Controller
      */
     public function edit(Kategori $kategori, $id)
     {
+        $id = base64_decode($id);
         $data = Kategori::find($id);
         $title = 'EDIT KATEGORI';
         return view('backend.kategori.edit',compact('data','title'));
@@ -119,6 +120,7 @@ class KategoriController extends Controller
      */
     public function destroy(Kategori $kategori, $id)
     {
+        $id = base64_decode($id);
         $kategori = Kategori::findOrFail($id);
         if ($kategori->post()) {
             $kategori->post()->detach();

@@ -81,6 +81,8 @@ class MenuController extends Controller
      */
     public function edit(Menu $menu, $id)
     {
+        // $id = decrypt($id);
+        $id = base64_decode($id);
         $menu = Menu::findOrFail($id);
         return view('backend.menu.edit',compact('menu'));
     }
@@ -127,6 +129,7 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu, $id)
     {
+        $id = base64_decode($id);
         $menu   = Menu::findOrFail($id);
         // cek konten yang berelasi dengan menu
         $konten = Konten::where(function ($query) {

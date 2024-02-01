@@ -85,6 +85,7 @@ class SubmenuController extends Controller
      */
     public function edit(Submenu $submenu, $id)
     {
+        $id = base64_decode($id);
         $submenu = Submenu::findOrFail($id);
         $menu = Menu::where('menu_status', 1)->whereDoesntHave('konten')->get();
         return view('backend.menu.edit2',compact('submenu','menu'));
@@ -134,6 +135,7 @@ class SubmenuController extends Controller
      */
     public function destroy(Submenu $submenu, $id)
     {
+        $id = base64_decode($id);
         $submenu = Submenu::findOrFail($id);
         if (isset($submenu->konten)) {
             # cek konten code...

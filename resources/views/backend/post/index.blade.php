@@ -122,7 +122,7 @@
     // Mendapatkan elemen dengan ID 'myLink'
     var myLink = document.getElementById('create_post');
     // Menambahkan atribut href ke elemen
-    myLink.href = baseUrl + '/admin-post-create/' +konten_id;
+    myLink.href = baseUrl + '/admin-post-create/' +encryptBase64(konten_id);
   })
 
 
@@ -161,10 +161,10 @@
           <span class="text-secondary text-xs font-weight-bold">${moment(item.created_at).format('YYYY-MM-DD HH:mm:ss')}</span>
         </td>
         <td class="text-center">
-          <a href="/admin-post-edit/${item.id}" style="margin-right:5px" class="btn btn-xs btn-info font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+          <a href="/admin-post-edit/${encryptBase64(item.id)}" style="margin-right:5px" class="btn btn-xs btn-info font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
             <i class="fa fa-pencil"></i>
           </a>
-          <a href="javascript:;" onclick="deletepostConfirmation(${item.id})" style="margin-right:5px" class="btn btn-xs btn-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+          <a href="javascript:;" onclick="deletepostConfirmation(${encryptBase64(item.id)})" style="margin-right:5px" class="btn btn-xs btn-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
             <i class="fa fa-trash"></i>
           </a>
         </td>
@@ -297,6 +297,10 @@ function reload_table() {
           console.error('Error fetching data:', error);
       }
   });
+}
+
+function encryptBase64(value) {
+    return btoa(value); // Menggunakan btoa() untuk melakukan enkripsi Base64
 }
 </script>
 @endsection
