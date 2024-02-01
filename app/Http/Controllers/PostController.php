@@ -52,6 +52,7 @@ class PostController extends Controller
         $messages = [
             'konten_id.required' => 'Field Konten Id harus diisi',
             'post_title.required' => 'Field  post title  harus diisi',
+            'post_title.regex' => 'Field post title cannot contain html tag!',
             'post_status.required' => 'Field  post status  harus diisi',
             'post_desc.required' => 'Field  post deskripsi  harus diisi',
             'images.*.max' => 'Field another image harus kurang dari 2mb',
