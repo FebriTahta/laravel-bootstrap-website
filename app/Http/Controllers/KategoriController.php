@@ -120,7 +120,7 @@ class KategoriController extends Controller
      */
     public function destroy(Kategori $kategori, $id)
     {
-        $id = base64_decode($id);
+        // $id = base64_decode($id);
         $kategori = Kategori::findOrFail($id);
         if ($kategori->post()) {
             $kategori->post()->detach();

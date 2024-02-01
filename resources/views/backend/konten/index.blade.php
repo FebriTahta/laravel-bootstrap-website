@@ -138,7 +138,7 @@
             <a href="/admin-konten-edit/${encryptBase64(item.id)}" style="margin-right:5px" class="btn btn-xs btn-info font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
               <i class="fa fa-pencil"></i>
             </a>
-            <a href="javascript:;" onclick="deleteKontenConfirmation(${encryptBase64(item.id)})" style="margin-right:5px" class="btn btn-xs btn-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+            <a href="javascript:;" onclick="deleteKontenConfirmation(${item.id})" style="margin-right:5px" class="btn btn-xs btn-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
               <i class="fa fa-trash"></i>
             </a>
           </td>

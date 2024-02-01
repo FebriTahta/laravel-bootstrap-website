@@ -135,19 +135,17 @@ class SubmenuController extends Controller
      */
     public function destroy(Submenu $submenu, $id)
     {
-        $id = base64_decode($id);
+        // $id = base64_decode($id);
         $submenu = Submenu::findOrFail($id);
         if (isset($submenu->konten)) {
             # cek konten code...
-            $konten  = Konten::where('kontentable_type', Submenu::class)
-                        ->where(function ($query) {
-                            $query->where('konten_name', 'LIKE', '%berita%')
-                            ->orWhere('konten_name', 'LIKE', '%artikel%')
-                            ->orWhere('konten_name', 'LIKE', '%guru%')
-                            ->orWhere('konten_name', 'LIKE', '%prestasi%')
-                            ->orWhere('konten_name', 'LIKE', '%e-book%');
-                        })
-                        ->where('kontentable_id', $submenu->id)->get();
+            $konten = Submenu::where('id', $id)->whereHas('konten', function($q){
+                $q->where('konten_name', 'LIKE', '%berita%')
+                ->orWhere('konten_name', 'LIKE', '%artikel%')
+                ->orWhere('konten_name', 'LIKE', '%guru%')
+                ->orWhere('konten_name', 'LIKE', '%prestasi%')
+                ->orWhere('konten_name', 'LIKE', '%e-book%');
+            })->get();
             if ($konten->count() > 0) {
                 # ada konten terkait code...
                 return response()->json([
@@ -156,10 +154,10 @@ class SubmenuController extends Controller
                 ]);
             }else {
                 # tidak ada konten terkait code...
-                // $submenu->konten()->delete();
+                $submenu->konten()->delete();
             }
         }
-        // $submenu->delete();
+        $submenu->delete();
         return response()->json([
             'status'=>200,
             'message'=>'Submenu, Konten, serta Post Telah dihapus'

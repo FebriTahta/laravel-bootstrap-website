@@ -160,7 +160,7 @@ class KontenController extends Controller
      */
     public function destroy(Konten $konten, $id)
     {
-        $id = base64_decode($id);
+        // $id = base64_decode($id);
         $konten = Konten::where('id',$id)->first(); // belum dihapus
         $datas = Post::where('konten_id',$id)->with(['kategori','konten','image'])->get(); // belum dihapus
         foreach ($datas as $key => $data) {

@@ -129,23 +129,23 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu, $id)
     {
-        $id = base64_decode($id);
+        // $id = base64_decode($id);
         $menu   = Menu::findOrFail($id);
         // cek konten yang berelasi dengan menu
-        $konten = Konten::where(function ($query) {
-                $query->where('konten_name', 'LIKE', '%berita%')
-                ->orWhere('konten_name', 'LIKE', '%artikel%')
-                ->orWhere('konten_name', 'LIKE', '%guru%')
-                ->orWhere('konten_name', 'LIKE', '%prestasi%')
-                ->orWhere('konten_name', 'LIKE', '%e-book%');
-        })
-        ->get();
+       
+        $konten = Menu::where('id', $id)->whereHas('konten', function($q){
+            $q->where('konten_name', 'LIKE', '%berita%')
+            ->orWhere('konten_name', 'LIKE', '%artikel%')
+            ->orWhere('konten_name', 'LIKE', '%guru%')
+            ->orWhere('konten_name', 'LIKE', '%prestasi%')
+            ->orWhere('konten_name', 'LIKE', '%e-book%');
+        })->get();
 
         if ($konten->count() > 0) {
             # menu punya konten code...
             return response()->json([
                 'status'=>400,
-                'message'=>'Menu tersebut tidak dapat dihapus'
+                'message'=>'Menu tersebut tidak dapat dihapus'. $konten->count()
             ]);
         }
 
@@ -180,6 +180,7 @@ class MenuController extends Controller
             }
         }
         $menu->delete();
+        $menu->konten()->delete();
         return response()->json([
             'status'=>200,
             'message'=>'Menu, Submenu, Konten, serta Post Telah dihapus'

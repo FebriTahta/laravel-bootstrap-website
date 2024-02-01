@@ -167,7 +167,7 @@ function load_submenu(data) {
       <a href="/admin-submenu-edit/${encryptBase64(item.id)}" style="margin-right:5px" class="btn btn-xs btn-info font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
           <i class="fa fa-pencil"></i>
         </a>
-        <a href="javascript:;" onclick="deleteSubmenuConfirmation(${encryptBase64(item.id)})" style="margin-right:5px" class="btn btn-xs btn-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+        <a href="javascript:;" onclick="deleteSubmenuConfirmation(${item.id})" style="margin-right:5px" class="btn btn-xs btn-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
           <i class="fa fa-trash"></i>
         </a>
     </td>
@@ -210,7 +210,7 @@ function load_menu(data) {
         <a href="/admin-menu-edit/${encryptBase64(item.id)}" style="margin-right:5px" class="btn btn-xs btn-info font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
           <i class="fa fa-pencil"></i>
         </a>
-        <a href="javascript:;" onclick="deleteMenuConfirmation(${encryptBase64(item.id)})" style="margin-right:5px" class="btn btn-xs btn-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+        <a href="javascript:;" onclick="deleteMenuConfirmation(${item.id})" style="margin-right:5px" class="btn btn-xs btn-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
           <i class="fa fa-trash"></i>
         </a>
       </td>

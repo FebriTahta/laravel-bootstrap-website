@@ -62,10 +62,11 @@ class PostController extends Controller
             'kategori_id.required' => 'Pilih minimal 1 kategori / maksimal 3 kategori',
             'file.max' => 'Field file harus kurang dari 2mb',
             'file.mimes' => 'Field File harus berupa file',
+            
         ];
         $validator = Validator::make($request->all(), [
             'konten_id' => 'required',
-            'post_title' => 'required',
+            'post_title' => 'required|regex:/^[^<>]+$/',
             'post_status' => 'required',
             'post_desc' => 'required',
             'post_thumb' => 'required|mimes:jpeg,jpg,png,webp,svg,ico,gif,bmp,tiff,tif|max:2000',
@@ -334,7 +335,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post, $id)
     {
-        $id = base64_decode($id);
+        // $id = base64_decode($id);
         $data = Post::where('id',$id)->with(['kategori','konten','image'])->first();
         DB::beginTransaction();
         try {
