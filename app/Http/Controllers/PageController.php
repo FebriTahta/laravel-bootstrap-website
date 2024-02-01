@@ -13,8 +13,8 @@ class PageController extends Controller
         $search = null;
         $data = Konten::where('konten_slug', $konten_slug)->withCount('post')->first();
         $post = Post::where('konten_id', $data->id)
-                ->with(['kategori'])
-                ->paginate(6);
+                ->with(['kategori'])->orderBy('id','desc')
+                ->paginate(12);
         $kategori = Kategori::whereHas('post', function ($q) use ($data) {
             $q->where('konten_id', $data->id);
         })->withCount('post')->get();
@@ -31,8 +31,8 @@ class PageController extends Controller
                 $query->where('post_title', 'like', '%' . $search . '%')
                     ->orWhere('post_desc', 'like', '%' . $search . '%');
             })
-            ->with(['kategori'])
-            ->paginate(6);
+            ->with(['kategori'])->orderBy('id','desc')
+            ->paginate(12);
 
         $kategori = Kategori::whereHas('post', function ($q) use ($data, $search) {
             $q->where('konten_id', $data->id)
@@ -64,5 +64,17 @@ class PageController extends Controller
         }
         
         return view('frontend.detaildata',compact('konten','post'));
+    }
+
+    public function global_search(Request $request)
+    {
+        $search = $request->get('search');
+        $post = Post::where('post_slug','LIKE','%'.$search.'%')->paginate(10);
+        $kategori = Kategori::whereHas('post', function($q) use ($search) {
+            $q->where('post_title','LIKE','%'.$search.'%');
+        })->withCount('post')
+        ->get();
+        return view('frontend.searchdata',compact('search','kategori','post'));
+        // return $post;
     }
 }

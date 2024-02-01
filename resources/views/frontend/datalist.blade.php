@@ -19,7 +19,7 @@
                             <li class="rbt-breadcrumb-item active text-capitalize">{{$data->konten_name ?? '...'}}</li>
                         </ul>
                         <div class=" title-wrapper">
-                            <h1 class="title mb--0 text-capitalize">{{'Daftar '.$data->konten_name ?? '...'}}</h1>
+                            <h1 class="title mb--0 text-capitalize">{{$data->konten_name ?? '...'}}</h1>
                             <a href="{{'/post/'.$data->konten_slug ?? '#'}}" class="rbt-badge-2">
                                 <div class="image">🎉</div> {{$data->post_count ?? '...'}} {{$data->konten_name ?? '...'}}
                             </a>
@@ -46,7 +46,7 @@
                                 </ul>
                             </div>
                             <div class="rbt-short-item">
-                                <span class="course-index">Showing 1-6 of {{$post->total()}} results</span>
+                                <span class="course-index">Showing 1-12 of {{$post->total()}} results</span>
                             </div>
                         </div>
                     </div>
@@ -106,6 +106,10 @@
 
 @if ($data->konten_model == 2)
     @include('frontend.component.konten_model2',['post' => $post,'konten'=>$data])
+@endif
+
+@if ($data->konten_model == 3)
+    @include('frontend.component.konten_model3',['post' => $post,'konten'=>$data])
 @endif
 
 @if ($data->konten_model == 4)

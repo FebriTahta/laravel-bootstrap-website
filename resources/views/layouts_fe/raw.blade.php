@@ -161,10 +161,11 @@
                 <div class="wrapper">
                     <div class="row">
                         <div class="col-lg-12">
-                            <form action="#">
-                                <input type="text" placeholder="What are you looking for?">
+                            <form action="{{route('global_post.search')}}" method="GET">
+                                <input type="text" name="search" placeholder="What are you looking for?">
                                 <div class="submit-btn">
-                                    <a class="rbt-btn btn-gradient btn-md" href="#">Search</a>
+                                    <a class="rbt-btn btn-gradient btn-md" type="submit" href="javascript:void(0);">Search</a>
+                                  
                                 </div>
                             </form>
                         </div>
@@ -464,10 +465,8 @@
     <script src="{{asset('assets_fe/js/vendor/plyr.js')}}"></script>
     <!-- Main JS -->
     <script src="{{asset('assets_fe/js/main.js')}}"></script>
-
-    @section('script')
-        
-    @endsection
+    
+    @yield('script')
 </body>
 
 

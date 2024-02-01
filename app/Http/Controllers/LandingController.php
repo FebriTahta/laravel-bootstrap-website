@@ -39,7 +39,7 @@ class LandingController extends Controller
         $guru     = Post::where('konten_id', function($q){
             $q->select('id')
             ->from('kontens')
-            ->where('konten_slug','LIKE','%daftar-guru%');
+            ->where('konten_slug','LIKE','%guru%');
         })->orderBy('id','desc')->limit(6)->get();
 
         // artikel
