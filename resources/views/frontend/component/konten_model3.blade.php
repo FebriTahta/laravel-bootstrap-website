@@ -8,6 +8,7 @@
                         <a class="rbt-team-thumbnail" href="javascript:void(0)" 
                         data-post_title = "{{$item->post_title}}"
                         data-post_desc="{{ $item->post_desc }}"
+                        data-post_img="{{asset('images_thumbnail/'.$item->post_thumb)}}"
                         data-bs-toggle="modal" data-bs-target="#exampleModal">
                             <div class="thumb">
                                 <img src="{{asset('images_thumbnail/'.$item->post_thumb)}}" alt="{{$item->post_thumb}}">
@@ -38,7 +39,7 @@
                         <div class="col-lg-4">
                             <div class="rbt-team-thumbnail">
                                 <div class="thumb">
-                                    {{-- <img class="w-100" src="assets_fe/images/team/team-09.jpg" alt="Testimonial Images"> --}}
+                                    <img class="w-100" src="" id="img" alt="Images">
                                 </div>
                             </div>
                         </div>
@@ -66,10 +67,12 @@
             var button = $(event.relatedTarget)
             var post_title = button.data('post_title')
             var post_desc = button.data('post_desc')
+            var post_img = button.data('post_img')
            
             var modal = $(this)
             modal.find('.modal-body #nama_guru').html(post_title);
             modal.find('.modal-body #informasi_guru').html(post_desc);
+            modal.find('.modal-body #img').attr('src',post_img);
             // modal.find('.modal-body #mapel_name').val(mapel_name);
             // var preview = document.getElementById("inputGroupFile01-preview2");
             // if (image !== null && image !== "") {

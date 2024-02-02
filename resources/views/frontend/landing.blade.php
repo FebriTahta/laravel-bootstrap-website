@@ -240,7 +240,7 @@
                                         <img src="{{asset('assets_fe/images/icons/counter-01.png')}}" alt="Icons Images">
                                     </div>
                                     <div class="content">
-                                        <h3 class="counter"><span class="odometer" data-count="500">00</span>
+                                        <h3 class="counter"><span class="odometer" data-count="25000">00</span>
                                         </h3>
                                         <span class="subtitle">Alumni Berkompetensi</span>
                                     </div>
@@ -257,7 +257,7 @@
                                         <img src="assets_fe/images/icons/counter-02.png" alt="Icons Images">
                                     </div>
                                     <div class="content">
-                                        <h3 class="counter"><span class="odometer" data-count="800">00</span>
+                                        <h3 class="counter"><span class="odometer" data-count="5">00</span>
                                         </h3>
                                         <span class="subtitle">Jurusan & Ekstra Kulikuler</span>
                                     </div>
@@ -274,7 +274,7 @@
                                         <img src="assets_fe/images/icons/counter-03.png" alt="Icons Images">
                                     </div>
                                     <div class="content">
-                                        <h3 class="counter"><span class="odometer" data-count="1000">00</span>
+                                        <h3 class="counter"><span class="odometer" data-count="520">00</span>
                                         </h3>
                                         <span class="subtitle">Peraih Prestasi</span>
                                     </div>
@@ -291,7 +291,7 @@
                                         <img src="assets_fe/images/icons/counter-04.png" alt="Icons Images">
                                     </div>
                                     <div class="content">
-                                        <h3 class="counter"><span class="odometer" data-count="100">00</span>
+                                        <h3 class="counter"><span class="odometer" data-count="2501">00</span>
                                         </h3>
                                         <span class="subtitle">Siswa Aktif</span>
                                     </div>

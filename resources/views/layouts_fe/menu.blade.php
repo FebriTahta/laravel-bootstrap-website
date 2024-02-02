@@ -16,6 +16,8 @@
                         <i class="feather-chevron-down"></i>
                     @endif
                 </a>
+
+                
                 @if ($menu->submenu_count > 0)
                     <ul class="submenu">
                         @foreach ($menu->submenu as $item)

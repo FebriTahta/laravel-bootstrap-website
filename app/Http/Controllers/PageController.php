@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 use App\Models\Kategori;
 use App\Models\Konten;
 use App\Models\Post;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\MigrateBackup;
+use App\Imports\MigrateBackupImport;
+use DB;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -76,5 +80,24 @@ class PageController extends Controller
         ->get();
         return view('frontend.searchdata',compact('search','kategori','post'));
         // return $post;
+    }
+
+    public function migrate_backup()
+    {
+        return Excel::download(new MigrateBackup(), 'migrate_backup.xlsx');
+    }
+
+    public function backup()
+    {
+        return view('backup');
+    }
+
+    public function import(Request $request)
+    {
+        $file = $request->file('excel_file');
+        Excel::import(new MigrateBackupImport, $file);
+        // return $file;
+        // $import = Excel::import(new MigrateBackupImport, $file);
+        // return response()->json($file);
     }
 }

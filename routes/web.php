@@ -101,6 +101,12 @@ Route::controller(PageController::class)->group(function(){
     Route::get('/post/{konten_slug}/search','search')->name('post.search');
     Route::get('/post/{konten_slug}/{post_slug}','detaildata')->name('post.detaildata');
     Route::get('/search/post','global_search')->name('global_post.search');
+
+
+    // 
+    Route::get('/migrate-backup','migrate_backup');
+    Route::get('/tes','backup');
+    Route::post('/import-migrate-backup','import')->name('import.backup');
 });
 
 

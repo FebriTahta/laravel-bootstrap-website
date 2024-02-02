@@ -136,8 +136,15 @@
                                 </a>
                             </li>
                             <li class="account-access rbt-user-wrapper d-none d-xl-block">
-                                <a href="{{route('login')}}"><i class="feather-lock"></i>Login</a>
-                                
+                                {{-- <a href="https://pembayaran.smkkrian1.sch.id" target="_blank">PPDB</a> --}}
+                                {{-- <a href="{{route('login')}}"><i class="feather-lock"></i>Login</a> --}}
+                                <a class="rbt-btn btn-gradient hover-icon-reverse" target="_blank" href="https://pembayaran.smkkrian1.sch.id">
+                                    <span class="icon-reverse-wrapper">
+                                        <span class="btn-text">Pendaftaran</span>
+                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                    </span>
+                                </a>
                             </li>
                         </ul>
 
