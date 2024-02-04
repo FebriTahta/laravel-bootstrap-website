@@ -61,10 +61,10 @@ class PageController extends Controller
             $q->where('konten_slug', $konten_slug);
         })
         ->orderBy('id', 'desc')->first();
-        if ($post->post_view < 5) {
-            $post->update(['post_view'=> $post->post_view + 1]);
-        }else {
+        if ($post->post_view == 5) {
             $post->update(['post_view'=> mt_rand(200,300)]);
+        }else {
+            $post->update(['post_view'=> $post->post_view + 1]);
         }
         
         return view('frontend.detaildata',compact('konten','post'));
@@ -73,7 +73,7 @@ class PageController extends Controller
     public function global_search(Request $request)
     {
         $search = $request->get('search');
-        $post = Post::where('post_slug','LIKE','%'.$search.'%')->paginate(10);
+        $post = Post::where('post_slug','LIKE','%'.$search.'%')->paginate(12);
         $kategori = Kategori::whereHas('post', function($q) use ($search) {
             $q->where('post_title','LIKE','%'.$search.'%');
         })->withCount('post')

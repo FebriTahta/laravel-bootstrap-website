@@ -10,13 +10,7 @@
 @include('backend.component.button-back',['link'=>'/admin-konten','text'=>'BACK'])
 
 <div class="row"> 
-    {{-- @if ($konten->konten_model == 2) --}}
-        @include('backend.post.component.form2',['konten'=>$konten])
-    {{-- @endif --}}
-
-    {{-- @if ($konten->konten_model == 4)
-        @include('backend.post.component.form4')
-    @endif --}}
+    @include('backend.post.component.form2',['konten'=>$konten])
 </div>
 
 @endsection

@@ -36,12 +36,21 @@
 
     var maxField    = 10; //Input fields increment limitation
     var addButton   = $('.add_images'); //Add button selector
+    var addButtonFile   = $('.add_file'); //Add button selector
     var wrapper     = $('.images_wrapp'); //Input field wrapper
+    var wrapperFile     = $('.file_wrapp'); //Input field wrapper
     var fieldHTML   =   '<div class="col-md-10" style="margin-bottom:5px">'
                             +'<input type="file" name="images[]" accept="image/*" class="form-control">'
                         +'</div>'
                         +'<div class="col-md-2 text-center" style="margin-bottom:5px">'
                             +'<button class="btn btn-md btn-danger dell_images w-100" type="button"><i class="fa fa-minus"></i></button>'
+                        +'</div>';
+
+    var fieldHTMLFile   =   '<div class="col-md-10" style="margin-bottom:5px">'
+                            +'<input type="file" name="file[]" accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="form-control">'
+                        +'</div>'
+                        +'<div class="col-md-2 text-center" style="margin-bottom:5px">'
+                            +'<button class="btn btn-md btn-danger dell_file w-100" type="button"><i class="fa fa-minus"></i></button>'
                         +'</div>';
 
     var x = 1; //Initial field counter is 1
@@ -54,8 +63,22 @@
         }
     });
 
+    $(addButtonFile).click(function(){
+        //Check maximum number of input fields
+        if(x < maxField){ 
+            x++; //Increment field counter
+            $(wrapperFile).append(fieldHTMLFile); //Add field html
+        }
+    });
+
     //Once remove button is clicked
     $(wrapper).on('click', '.dell_images', function () {
+        $(this).parent('div').prev('div').remove(); //Remove field html
+        $(this).parent('div').remove(); //Remove field html
+        x--; //Decrement field counter
+    });
+
+    $(wrapperFile).on('click', '.dell_file', function () {
         $(this).parent('div').prev('div').remove(); //Remove field html
         $(this).parent('div').remove(); //Remove field html
         x--; //Decrement field counter
@@ -153,6 +176,56 @@
                         Swal.fire({
                             title: 'Error!',
                             text: 'Failed to deleting the image',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            }
+        });
+    });
+
+    $('.remove-file').on('click', function() {
+        var key = $(this).data('key');
+        
+        Swal.fire({
+            title: 'Konfirmasi',
+            text: 'Apakah Anda yakin ingin menghapus file ini?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Hapus elemen gambar dan tombol minus
+                $.ajax({
+                    method: 'GET',
+                    url: "/admin-file-destroy/" + key,
+                    success: function(response) {
+                        if (response.status == 200) {
+                            // Tampilkan SweetAlert setelah sukses
+                            $('#fileContainer_' + key).remove();
+                            Swal.fire(
+                                'Berhasil!',
+                                'File telah dihapus.',
+                                'success'
+                            );
+                        }else{
+                            Swal.fire({
+                                title: 'Error!',
+                                text: response.message,
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    },
+                    error: function(error) {
+                        
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Failed to deleting the file',
                             icon: 'error',
                             confirmButtonText: 'OK'
                         });

@@ -58,8 +58,32 @@ class FileController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(File $file)
+    public function destroy(Request $request, File $file, $id)
     {
-        //
+        if ($request->ajax()) {
+            # code...
+            try {
+                $file = File::findOrFail($id);
+                $filePath = public_path('file_ebook/' . $file->file_name);
+            
+                if (file_exists($filePath)) {
+                    unlink($filePath);
+                }
+            
+                $file->delete();
+            
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Gambar berhasil dihapus'
+                ]);
+            } catch (\Exception $e) {
+                return response()->json([
+                    'status' => 500,
+                    'message' => 'Terjadi kesalahan: ' . $e->getMessage()
+                ]);
+            }        
+        }else {
+            return 'ok';
+        }
     }
 }

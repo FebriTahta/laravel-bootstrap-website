@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
@@ -84,6 +85,10 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin,super_admin']], function
 
     Route::controller(ImageController::class)->group(function(){
         Route::get('/admin-image-destroy/{id}','destroy');
+    });
+
+    Route::controller(FileController::class)->group(function(){
+        Route::get('/admin-file-destroy/{id}','destroy');
     });
 
     Route::controller(ProfileController::class)->group(function(){

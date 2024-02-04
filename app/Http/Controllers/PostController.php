@@ -62,7 +62,7 @@ class PostController extends Controller
             'post_thumb.required' => 'Field  post thumbnail  harus diisi',
             'kategori_id.required' => 'Pilih minimal 1 kategori / maksimal 3 kategori',
             'file.max' => 'Field file harus kurang dari 2mb',
-            'file.mimes' => 'Field File harus berupa file',
+            'file.*.mimes' => 'Field File harus berupa file',
             
         ];
         $validator = Validator::make($request->all(), [
@@ -73,7 +73,7 @@ class PostController extends Controller
             'post_thumb' => 'required|mimes:jpeg,jpg,png,webp,svg,ico,gif,bmp,tiff,tif|max:2000',
             'images.*' => 'mimes:jpeg,jpg,png,webp,svg,ico,gif,bmp,tiff,tif|max:2000',
             'kategori_id' => 'required',
-            'file' => 'mimes:pdf,doc,docx,xls,csv|max:2000'
+            'file.*' => 'mimes:pdf,doc,docx,xls,csv|max:2000'
         ], $messages);
 
         if ($validator->fails()) {
@@ -130,20 +130,49 @@ class PostController extends Controller
                     Image::insert($data_img);
                 }
 
-                if ($request->file) {
-                    if ($request->file->isValid()) {
-                        $size = $request->file->getSize();
-                        $file_name = time() . '_' .$request->file->getClientOriginalName();
-                        $request->file->move(public_path('file_ebook'), $file_name);
-                        $fileable_type = Post::class;
-                        $fileable_id = $posting->id;
-                        File::create([
-                            'file_name' => $file_name,
-                            'file_size' => $size,
-                            'fileable_type' => $fileable_type,
-                            'fileable_id' => $fileable_id
-                        ]);
+               
+
+
+                if ($request->konten_model == 4) {
+                    if ($request->file) {
+                        if ($request->file->isValid()) {
+                            $size = $request->file->getSize();
+                            $file_name = time() . '_' .$request->file->getClientOriginalName();
+                            $request->file->move(public_path('file_ebook'), $file_name);
+                            $fileable_type = Post::class;
+                            $fileable_id = $posting->id;
+                            File::create([
+                                'file_name' => $file_name,
+                                'file_size' => $size,
+                                'fileable_type' => $fileable_type,
+                                'fileable_id' => $fileable_id
+                            ]);
+                        }
                     }
+                }else {
+                    if ($request->file) {
+                        foreach ($request->file as $key => $value) {
+                            $size = $value->getSize();
+                            $file_name = time() . '_' . $key . '.' . $value->getClientOriginalName();
+                            $value->move(public_path('file_ebook'), $file_name);
+                    
+                            if ($value->getError()) {
+                                // Tampilkan pesan kesalahan
+                                dd($value->getErrorMessage());
+                            }
+                            
+                            $fileable_type = Post::class;
+                            $fileable_id = $posting->id;
+                            $data_file[] = [
+                                'file_name' => $file_name,
+                                'file_size' => $size,
+                                'fileable_type' => $fileable_type,
+                                'fileable_id' => $fileable_id
+                            ];
+                        }   
+                        File::insert($data_file);
+                    }
+                    
                 }
                 
                 DB::commit();

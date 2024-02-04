@@ -12,6 +12,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <input type="hidden" class="form-control" value="{{$konten->id}}" name="konten_id" required>
+                        <input type="hidden" class="form-control" value="{{$konten->konten_model}}" name="konten_model" required>
                     </div>
                     <div class="col-md-6">
                         <label>Post Thumbnail <span class="text-danger">Max : 1MB</span> </label>
@@ -74,6 +75,19 @@
                                 </div>
                             </div>
                         </div>
+                    @else
+                    <div class="col-md-6">
+                        <label>Another File </label>
+                        <div class="row">
+                            <div class="col-md-10" style="margin-bottom:5px">
+                                <input type="file" name="file[]" id="file"  accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="form-control">
+                            </div>
+                            <div class="col-md-2 text-center" style="margin-bottom:5px">
+                                <button class="btn btn-md btn-primary add_file w-100" type="button"><i class="fa fa-plus"></i></button>
+                            </div>
+                        </div>
+                        <div class="row file_wrapp"></div>
+                    </div>
                     @endif
                 </div>
               </div>
@@ -92,6 +106,7 @@
                         <div class="col-md-12">
                             <input type="hidden" class="form-control" value="{{$data->id}}" name="id" required>
                             <input type="hidden" class="form-control" value="{{$konten->id}}" name="konten_id" required>
+                            <input type="hidden" class="form-control" value="{{$konten->konten_model}}" name="konten_model" required>
                         </div>
                         <div class="col-md-6">
                             <label>Post Thumbnail <span class="text-danger">Max : 1MB</span> </label>
@@ -167,6 +182,21 @@
                                     </div>
                                 </div>
                             </div>
+                        @else
+                        <div class="col-md-6">
+                            <label>Another File <span class="text-danger"> </span> </label>
+                            <div class="row">
+                                <div class="col-md-10" style="margin-bottom:5px">
+                                    <input type="file" name="file[]" id="file" accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="form-control">
+                                </div>
+                                <div class="col-md-2 text-center" style="margin-bottom:5px">
+                                    <button class="btn btn-md btn-primary add_file w-100" type="button"><i class="fa fa-plus"></i></button>
+                                </div>
+                            </div>
+                            <div class="row file_wrapp">
+                                {{-- multi image --}}
+                            </div>
+                        </div>
                         @endif
                     
                     </div>
@@ -195,6 +225,23 @@
                 </div>
             @endif
        
+            @if ($konten->konten_model !== 4)
+            <div class="card-body border-top">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>List File yang sudah ditambahkan sebelumnya...</p>
+                    </div>
+                    @foreach ($data->file as $key => $item)
+                        <div class="col-md-4 file-container" id="fileContainer_{{ $item->id }}">
+                            <label>{{$item->file_name}}</label>
+                            <button type="button" class="btn btn-md btn-danger remove-file" data-key="{{ $item->id }}" style="max-width:100%;width: 100%">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            @endif
         @endif
     </div>
 </div>

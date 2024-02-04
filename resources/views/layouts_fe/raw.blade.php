@@ -73,25 +73,28 @@
                         </div>
                         <div class="rbt-header-sec-col rbt-header-right mt_md--10 mt_sm--10">
                             <div class="rbt-header-content justify-content-start justify-content-lg-end">
+                                
+
+                                <div class="rbt-separator d-none d-xl-block"></div>
                                 <div class="header-info d-none d-xl-block">
                                     <ul class="social-share-transparent">
                                         <li>
-                                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fab fa-twitter"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fab fa-instagram"></i></a>
+                                            @auth
+                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                            document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
+
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                @csrf
+                                            </form>
+                                            @else
+                                            <a href="/login"> Login</a>
+                                            @endauth
                                         </li>
                                     </ul>
                                 </div>
-
-                                <div class="rbt-separator d-none d-xl-block"></div>
-
                                 
                             </div>
                         </div>
