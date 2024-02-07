@@ -73,7 +73,7 @@ class PostController extends Controller
             'post_thumb' => 'required|mimes:jpeg,jpg,png,webp,svg,ico,gif,bmp,tiff,tif|max:2000',
             'images.*' => 'mimes:jpeg,jpg,png,webp,svg,ico,gif,bmp,tiff,tif|max:2000',
             'kategori_id' => 'required',
-            'file.*' => 'mimes:pdf,doc,docx,xls,csv|max:2000'
+            'file.*' => 'mimes:pdf,doc,docx,xls,csv,xlsx|max:2000'
         ], $messages);
 
         if ($validator->fails()) {
