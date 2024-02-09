@@ -178,7 +178,7 @@
                                 </label>
                                 <div class="row">
                                     <div class="col-md-6" style="margin-bottom: 5px">
-                                        <input type="file" name="file" class="form-control" accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                                        <input type="file" name="file[]" class="form-control" accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.xls,.xlsx,.pdf">
                                     </div>
                                 </div>
                             </div>
@@ -187,7 +187,7 @@
                             <label>Another File <span class="text-danger"> </span> </label>
                             <div class="row">
                                 <div class="col-md-10" style="margin-bottom:5px">
-                                    <input type="file" name="file[]" id="file" accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="form-control">
+                                    <input type="file" name="file[]" id="file" accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.xls,.xlsx,.pdf" class="form-control">
                                 </div>
                                 <div class="col-md-2 text-center" style="margin-bottom:5px">
                                     <button class="btn btn-md btn-primary add_file w-100" type="button"><i class="fa fa-plus"></i></button>
