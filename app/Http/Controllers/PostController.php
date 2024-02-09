@@ -102,8 +102,7 @@ class PostController extends Controller
 
                     foreach ($request->images as $key => $value) {
                         if ($value->isValid()) {
-                            // $size = $value->getSize();
-                            $size = 0;
+                            $size = $value->getSize();
                             $imageName = time() . '_' . $key . '.' . $value->extension();
                             $value->move(public_path('images_another'), $imageName);
                     
@@ -137,8 +136,7 @@ class PostController extends Controller
                 if ($request->konten_model == 4) {
                     if ($request->file) {
                         if ($request->file->isValid()) {
-                            // $size = $request->file->getSize();
-                            $size = 0;
+                            $size = $request->file->getSize();
                             $file_name = time() . '_' .$request->file->getClientOriginalName();
                             $request->file->move(public_path('file_ebook'), $file_name);
                             $fileable_type = Post::class;
@@ -154,8 +152,7 @@ class PostController extends Controller
                 }else {
                     if ($request->file) {
                         foreach ($request->file as $key => $value) {
-                            // $size = $value->getSize();
-                            $size = 0;
+                            $size = $value->getSize();
                             $file_name = time() . '_' . $key . '.' . $value->getClientOriginalName();
                             $value->move(public_path('file_ebook'), $file_name);
                     
@@ -292,8 +289,7 @@ class PostController extends Controller
                     # code...
                     foreach ($request->images as $key => $value) {
                         if ($value->isValid()) {
-                            // $size = $value->getSize();
-                            $size = 0;
+                            $size = $value->getSize();
                             $imageName = time() . '_' . $key . '.' . $value->extension();
                             $value->move(public_path('images_another'), $imageName);
                     
@@ -304,7 +300,7 @@ class PostController extends Controller
                             
                             // Dapatkan tipe dan ukuran gambar
                             $imagePath = public_path('images_another') . '/' . $imageName;
-                            // list($width, $height, $imageType) = getimagesize($imagePath);
+                            list($width, $height, $imageType) = getimagesize($imagePath);
                     
                             // Simpan data gambar ke dalam array
                             $data_img[] = [
@@ -321,34 +317,75 @@ class PostController extends Controller
                     Image::insert($data_img);
                 }
 
-                if ($request->file) {
-                    // $size = $request->file->getSize();
-                    $size = 0;
-                    $file_name = time() . '_' .$request->file->getClientOriginalName();
-                    $request->file->move(public_path('file_ebook'), $file_name);
-
-                    if ($posting->file->count() > 0) {
-                        # edit code...
-                        $filepath = public_path('file_ebook/' . $posting->file[0]->file_name);
-                        if (file_exists($filepath)) {
-                            unlink($filepath);
+                if ($request->konten_model == 4) {
+                    if ($request->file) {
+                        if ($request->file->isValid()) {
+                            $size = $request->file->getSize();
+                            $file_name = time() . '_' .$request->file->getClientOriginalName();
+                            $request->file->move(public_path('file_ebook'), $file_name);
+                            $fileable_type = Post::class;
+                            $fileable_id = $posting->id;
+                            File::create([
+                                'file_name' => $file_name,
+                                'file_size' => $size,
+                                'fileable_type' => $fileable_type,
+                                'fileable_id' => $fileable_id
+                            ]);
                         }
-                        File::where('id', $posting->file[0]->id)->update([
-                            'file_name' => $file_name,
-                            'file_size' => $size,
-                        ]);
-                    }else {
-                        # create code...
-                        $fileable_type = Post::class;
-                        $fileable_id = $posting->id;
-                        File::create([
-                            'file_name' => $file_name,
-                            'file_size' => $size,
-                            'fileable_type' => $fileable_type,
-                            'fileable_id' => $fileable_id
-                        ]);
-                    } 
+                    }
+                }else {
+                    if ($request->file) {
+                        foreach ($request->file as $key => $value) {
+                            $size = $value->getSize();
+                            $file_name = time() . '_' . $key . '.' . $value->getClientOriginalName();
+                            $value->move(public_path('file_ebook'), $file_name);
+                    
+                            if ($value->getError()) {
+                                // Tampilkan pesan kesalahan
+                                dd($value->getErrorMessage());
+                            }
+                            
+                            $fileable_type = Post::class;
+                            $fileable_id = $posting->id;
+                            $data_file[] = [
+                                'file_name' => $file_name,
+                                'file_size' => $size,
+                                'fileable_type' => $fileable_type,
+                                'fileable_id' => $fileable_id
+                            ];
+                        }   
+                        File::insert($data_file);
+                    }
+                    
                 }
+
+                // if ($request->file) {
+                //     $size = $request->file->getSize();
+                //     $file_name = time() . '_' .$request->file->getClientOriginalName();
+                //     $request->file->move(public_path('file_ebook'), $file_name);
+
+                //     if ($posting->file->count() > 0) {
+                //         # edit code...
+                //         $filepath = public_path('file_ebook/' . $posting->file[0]->file_name);
+                //         if (file_exists($filepath)) {
+                //             unlink($filepath);
+                //         }
+                //         File::where('id', $posting->file[0]->id)->update([
+                //             'file_name' => $file_name,
+                //             'file_size' => $size,
+                //         ]);
+                //     }else {
+                //         # create code...
+                //         $fileable_type = Post::class;
+                //         $fileable_id = $posting->id;
+                //         File::create([
+                //             'file_name' => $file_name,
+                //             'file_size' => $size,
+                //             'fileable_type' => $fileable_type,
+                //             'fileable_id' => $fileable_id
+                //         ]);
+                //     } 
+                // }
                 
                 DB::commit();
                 return Response()->json([
