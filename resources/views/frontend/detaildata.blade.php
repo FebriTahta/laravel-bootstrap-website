@@ -28,7 +28,7 @@
                 <div class="post-thumbnail mb--30 position-relative wp-block-image alignwide">
                     <figure>
                         <img src="{{asset('images_thumbnail/'.$post->post_thumb)}}" alt="Blog Images">
-                        <figcaption>Business and core management app are for enterprise.</figcaption>
+                       
                     </figure>
                 </div>
                 <p>{!!$post->post_desc!!}</p>

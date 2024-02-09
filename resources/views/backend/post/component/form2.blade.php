@@ -71,7 +71,7 @@
                             <label>Source File</label>
                             <div class="row">
                                 <div class="col-md-6" style="margin-bottom: 5px">
-                                    <input type="file" name="file" class="form-control" accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.xls,.xlsx,.pdf">
+                                    <input type="file" name="file[]" class="form-control" accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.xls,.xlsx,.pdf">
                                 </div>
                             </div>
                         </div>

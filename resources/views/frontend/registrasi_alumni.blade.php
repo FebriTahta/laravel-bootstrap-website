@@ -20,8 +20,7 @@
                     </div>
                     <div class="inner">
                         <h4 class="title">Contact Phone Number</h4>
-                        <p><a href="tel:+444555666777">+444 555 666 777</a></p>
-                        <p><a href="tel:+222222222333">+222 222 222 333</a></p>
+                        <p><a href="tel:{{$profile->profile_contactnumber}}">{{$profile->profile_contactnumber}}</a></p>
                     </div>
                 </div>
             </div>
@@ -32,8 +31,7 @@
                     </div>
                     <div class="inner">
                         <h4 class="title">Our Email Address</h4>
-                        <p><a href="mailto:admin@gmail.com">admin@gmail.com</a></p>
-                        <p><a href="mailto:example@gmail.com">example@gmail.com</a></p>
+                        <p><a href="{{$profile_contactnumber}}">{{$profile->profile_email}}</a></p>
                     </div>
                 </div>
             </div>
