@@ -47,7 +47,7 @@
                         +'</div>';
 
     var fieldHTMLFile   =   '<div class="col-md-10" style="margin-bottom:5px">'
-                            +'<input type="file" name="file[]" accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="form-control">'
+                            +'<input type="file" name="file[]" accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.xls,.xlsx,.pdf" class="form-control">'
                         +'</div>'
                         +'<div class="col-md-2 text-center" style="margin-bottom:5px">'
                             +'<button class="btn btn-md btn-danger dell_file w-100" type="button"><i class="fa fa-minus"></i></button>'

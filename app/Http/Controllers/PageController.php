@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Kategori;
 use App\Models\Konten;
+use App\Models\Profile;
 use App\Models\Post;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\MigrateBackup;
@@ -82,6 +83,25 @@ class PageController extends Controller
         // return $post;
     }
 
+    public function registrasi_alumni(Request $request)
+    {
+        $profile = Profile::first();
+        return view('frontend.registrasi_alumni',compact('profile'));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // PROSES BACKUP
     public function migrate_backup()
     {
         return Excel::download(new MigrateBackup(), 'migrate_backup.xlsx');
@@ -96,8 +116,5 @@ class PageController extends Controller
     {
         $file = $request->file('excel_file');
         Excel::import(new MigrateBackupImport, $file);
-        // return $file;
-        // $import = Excel::import(new MigrateBackupImport, $file);
-        // return response()->json($file);
     }
 }
