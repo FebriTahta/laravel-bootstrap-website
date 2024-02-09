@@ -225,6 +225,87 @@
     </div>
 </div>
 
+
+<div class="rbt-event-area rbt-section-gap bg-gradient-3">
+    <div class="container">
+        <div class="row mb--55">
+            <div class="section-title text-center">
+                <span class="subtitle bg-white-opacity">SMK KRIAN 1 SIDOARJO</span>
+                <h2 class="title color-white">Berita Terkini</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="swiper event-activation-1 rbt-arrow-between rbt-dot-bottom-center pb--60 icon-bg-primary">
+
+                    <div class="swiper-wrapper">
+                        @foreach ($hot_news as $item)
+                            <!-- Start Single Slide  -->
+                            <div class="swiper-slide">
+                                <div class="single-slide">
+                                    <div class="rbt-card event-grid-card variation-01 rbt-hover">
+                                        <div class="rbt-card-img">
+                                            <a href="/post/{{$item->konten->konten_slug}}/{{$item->post_slug}}">
+                                                <img src="{{asset('images_thumbnail/'.$item->post_thumb)}}" style="min-height: 220px; max-height:220px" alt="Card image">
+                                                <div class="rbt-badge-3 bg-white">
+                                                    <span>{{\Carbon\Carbon::parse($item->created_at)->format('d M')}}</span>
+                                                    <span>{{\Carbon\Carbon::parse($item->created_at)->format('Y')}}</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="rbt-card-body">
+                                            <ul class="rbt-meta">
+                                                <li><i class="feather-map-pin"></i>Smk Krian</li>
+                                                <li><i class="feather-clock"></i>{{\Carbon\Carbon::parse($item->created_at)->format('H:i:s')}}</li>
+                                                <li><i class="feather-eye"></i>{{$item->post_view}} Dibaca</li>
+                                            </ul>
+                                            <h4 class="rbt-card-title">
+                                                <a href="/post/{{$item->konten->konten_slug}}/{{$item->post_slug}}">
+                                                    @if (strlen($item->post_title) > 50)
+                                                        {{substr($item->post_title, 0,50)}} ...
+                                                        @else
+                                                        {{substr($item->post_title, 0,50)}}
+                                                    @endif
+                                                </a>
+                                            </h4>
+
+                                            <div class="read-more-btn">
+                                                <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round" href="/post/{{$item->konten->konten_slug}}/{{$item->post_slug}}">
+                                                    <span class="icon-reverse-wrapper">
+                                                    <span class="btn-text">Selengkapnya</span>
+                                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Single Slide  -->
+                        @endforeach
+                    </div>
+
+                    <div class="rbt-swiper-arrow rbt-arrow-left">
+                        <div class="custom-overfolow">
+                            <i class="rbt-icon feather-arrow-left"></i>
+                            <i class="rbt-icon-top feather-arrow-left"></i>
+                        </div>
+                    </div>
+
+                    <div class="rbt-swiper-arrow rbt-arrow-right">
+                        <div class="custom-overfolow">
+                            <i class="rbt-icon feather-arrow-right"></i>
+                            <i class="rbt-icon-top feather-arrow-right"></i>
+                        </div>
+                    </div>
+                    <div class="rbt-swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="rbt-counterup-area rbt-section-gap">
     <div class="conter-style-2">
         <div class="container">
@@ -330,7 +411,7 @@
         </div>
         <div class="row g-5">
             @foreach ($ebook as $item)
-            <div class="col-lg-6 col-md-6 col-sm-12 col-12 sal-animate" data-sal-delay="200" data-sal="slide-up" data-sal-duration="800">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-6 sal-animate" data-sal-delay="200" data-sal="slide-up" data-sal-duration="800">
                 <div class="rbt-card variation-01 rbt-hover card-list-2">
                     <div class="rbt-card-img">
                         <a href="course-details.html">
@@ -450,88 +531,6 @@
     </div>
 </div>
 @endif
-
-
-<div class="rbt-rbt-blog-area rbt-section-gap bg-color-extra2">
-    <div class="container">
-        <div class="row g-5 align-items-center mb--30">
-            <div class="col-lg-6 col-md-6 col-12">
-                <div class="section-title">
-                    <span class="subtitle bg-pink-opacity">Article</span>
-                    <h2 class="title">Latest Article Post.</h2>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-12">
-                <div class="read-more-btn text-start text-md-end">
-                    <a class="rbt-btn btn-gradient hover-icon-reverse" href="#">
-                        <div class="icon-reverse-wrapper">
-                            <span class="btn-text">See All Articles</span>
-                            <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                            <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        @if ($artikel)
-        <div class="row row--15">
-            @foreach ($artikel as $key => $item)
-                @if ($key == 0)
-                <div class="col-lg-6 col-md-12 col-sm-12 col-12 mt--30" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
-                    <div class="rbt-card variation-02 height-330 rbt-hover">
-                        <div class="rbt-card-img">
-                            <a href="#">
-                                <img src="{{asset('images_thumbnail/'.$item->post_thumb)}}" alt="{{$item->post_title}}"> </a>
-                        </div>
-                        <div class="rbt-card-body">
-                            <h3 class="rbt-card-title"><a href="#">{{$item->post_title}}</a></h3>
-                            <p class="rbt-card-text">{!! substr(strip_tags($item->post_desc), 0, 100) !!}</p>
-                            <div class="rbt-card-bottom">
-                                <a class="transparent-button" href="/post/{{$item->konten->konten_slug}}/{{$item->post_slug}}">Learn More<i><svg width="17" height="12" xmlns="http://www.w3.org/2000/svg"><g stroke="#27374D" fill="none" fill-rule="evenodd"><path d="M10.614 0l5.629 5.629-5.63 5.629"/><path stroke-linecap="square" d="M.663 5.572h14.594"/></g></svg></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endif
-            @endforeach
-           
-            <div class="col-lg-6 col-md-12 col-sm-12 col-12 mt--30" data-sal-delay="200" data-sal="slide-up" data-sal-duration="800">
-                @foreach ($artikel as $key => $item)
-                    @if ($key !== 0)
-                        <div 
-                        @if ($key > 1)
-                            class="rbt-card card-list variation-02 rbt-hover mt--50"
-                        @else
-                            class="rbt-card card-list variation-02 rbt-hover"    
-                        @endif
-                        >
-                            <div class="rbt-card-img">
-                                <a href="/post/{{$item->konten->konten_slug}}/{{$item->post_slug}}">
-                                    <img src="{{asset('images_thumbnail/'.$item->post_thumb)}}" alt="{{$item->post_title}}"> </a>
-                            </div>
-                            <div class="rbt-card-body">
-                                <h5 class="rbt-card-title">
-                                    <a href="/post/{{$item->konten->konten_slug}}/{{$item->post_slug}}"">
-                                        {{substr($item->post_title,0,50)}}
-                                        @if (strlen($item->post_title) > 50)
-                                            ...
-                                        @endif
-                                    </a>
-                                </h5>
-                                <div class="rbt-card-bottom">
-                                    <a class="transparent-button" href="/post/{{$item->konten->konten_slug}}/{{$item->post_slug}}"">Read Article<i><svg width="17" height="12" xmlns="http://www.w3.org/2000/svg"><g stroke="#27374D" fill="none" fill-rule="evenodd"><path d="M10.614 0l5.629 5.629-5.63 5.629"/><path stroke-linecap="square" d="M.663 5.572h14.594"/></g></svg></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-                @endforeach
-            </div>
-        </div>
-        @endif
-        
-    </div>
-</div>
 
 @if ($profile)
 <div class="rbt-call-to-action-area rbt-section-gap bg-gradient-8">
