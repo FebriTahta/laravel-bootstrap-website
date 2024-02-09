@@ -304,7 +304,7 @@ class PostController extends Controller
                             
                             // Dapatkan tipe dan ukuran gambar
                             $imagePath = public_path('images_another') . '/' . $imageName;
-                            list($width, $height, $imageType) = getimagesize($imagePath);
+                            // list($width, $height, $imageType) = getimagesize($imagePath);
                     
                             // Simpan data gambar ke dalam array
                             $data_img[] = [
@@ -322,7 +322,8 @@ class PostController extends Controller
                 }
 
                 if ($request->file) {
-                    $size = $request->file->getSize();
+                    // $size = $request->file->getSize();
+                    $size = 0;
                     $file_name = time() . '_' .$request->file->getClientOriginalName();
                     $request->file->move(public_path('file_ebook'), $file_name);
 
