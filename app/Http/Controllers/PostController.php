@@ -231,7 +231,9 @@ class PostController extends Controller
             'images.*.mimes' => 'Field another image harus berupa gambar',
             'post_thumb.max' => 'Field  post thumbnail  harus kurang dari 2mb',
             'post_thumb.mimes' => 'Field  post thumbnail  harus berupa gambar',
-            'kategori_id.required' => 'Pilih minimal 1 kategori / maksimal 3 kategori'
+            'kategori_id.required' => 'Pilih minimal 1 kategori / maksimal 3 kategori',
+            'file.max' => 'Field file harus kurang dari 2mb',
+            'file.*.mimes' => 'Field File harus berupa file',
         ];
         $validator = Validator::make($request->all(), [
             'konten_id' => 'required',
@@ -240,7 +242,8 @@ class PostController extends Controller
             'post_desc' => 'required',
             'post_thumb' => 'mimes:jpeg,jpg,png|max:2000',
             'images.*' => 'mimes:jpeg,jpg,png|max:2000',
-            'kategori_id' => 'required'
+            'kategori_id' => 'required',
+            'file.*' => 'mimes:pdf,doc,docx,xls,csv,xlsx|max:2000'
         ], $messages);
 
         if ($validator->fails()) {
@@ -315,33 +318,31 @@ class PostController extends Controller
                 }
 
                 if ($request->file) {
-                    if ($request->file->isValid()) {
-                        $size = $request->file->getSize();
-                        $file_name = time() . '_' .$request->file->getClientOriginalName();
-                        $request->file->move(public_path('file_ebook'), $file_name);
+                    $size = $request->file->getSize();
+                    $file_name = time() . '_' .$request->file->getClientOriginalName();
+                    $request->file->move(public_path('file_ebook'), $file_name);
 
-                        if ($posting->file->count() > 0) {
-                            # edit code...
-                            $filepath = public_path('file_ebook/' . $posting->file[0]->file_name);
-                            if (file_exists($filepath)) {
-                                unlink($filepath);
-                            }
-                            File::where('id', $posting->file[0]->id)->update([
-                                'file_name' => $file_name,
-                                'file_size' => $size,
-                            ]);
-                        }else {
-                            # create code...
-                            $fileable_type = Post::class;
-                            $fileable_id = $posting->id;
-                            File::create([
-                                'file_name' => $file_name,
-                                'file_size' => $size,
-                                'fileable_type' => $fileable_type,
-                                'fileable_id' => $fileable_id
-                            ]);
-                        } 
-                    }
+                    if ($posting->file->count() > 0) {
+                        # edit code...
+                        $filepath = public_path('file_ebook/' . $posting->file[0]->file_name);
+                        if (file_exists($filepath)) {
+                            unlink($filepath);
+                        }
+                        File::where('id', $posting->file[0]->id)->update([
+                            'file_name' => $file_name,
+                            'file_size' => $size,
+                        ]);
+                    }else {
+                        # create code...
+                        $fileable_type = Post::class;
+                        $fileable_id = $posting->id;
+                        File::create([
+                            'file_name' => $file_name,
+                            'file_size' => $size,
+                            'fileable_type' => $fileable_type,
+                            'fileable_id' => $fileable_id
+                        ]);
+                    } 
                 }
                 
                 DB::commit();
