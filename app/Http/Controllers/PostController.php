@@ -102,7 +102,8 @@ class PostController extends Controller
 
                     foreach ($request->images as $key => $value) {
                         if ($value->isValid()) {
-                            $size = $value->getSize();
+                            // $size = $value->getSize();
+                            $size = 0;
                             $imageName = time() . '_' . $key . '.' . $value->extension();
                             $value->move(public_path('images_another'), $imageName);
                     
@@ -136,7 +137,8 @@ class PostController extends Controller
                 if ($request->konten_model == 4) {
                     if ($request->file) {
                         if ($request->file->isValid()) {
-                            $size = $request->file->getSize();
+                            // $size = $request->file->getSize();
+                            $size = 0;
                             $file_name = time() . '_' .$request->file->getClientOriginalName();
                             $request->file->move(public_path('file_ebook'), $file_name);
                             $fileable_type = Post::class;
@@ -152,7 +154,8 @@ class PostController extends Controller
                 }else {
                     if ($request->file) {
                         foreach ($request->file as $key => $value) {
-                            $size = $value->getSize();
+                            // $size = $value->getSize();
+                            $size = 0;
                             $file_name = time() . '_' . $key . '.' . $value->getClientOriginalName();
                             $value->move(public_path('file_ebook'), $file_name);
                     
@@ -289,7 +292,8 @@ class PostController extends Controller
                     # code...
                     foreach ($request->images as $key => $value) {
                         if ($value->isValid()) {
-                            $size = $value->getSize();
+                            // $size = $value->getSize();
+                            $size = 0;
                             $imageName = time() . '_' . $key . '.' . $value->extension();
                             $value->move(public_path('images_another'), $imageName);
                     
