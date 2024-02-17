@@ -67,7 +67,14 @@
                             <div class="col-sm-12 col-lg-4 col-md-4 col-12" style="margin-bottom: 10px">
                                 <a class="rbt-btn btn-gradient hover-icon-reverse btn-sm" style="max-width: 100%; width:100%" href="{{asset('file_ebook/'.$item->file_name)}}">
                                     <span class="icon-reverse-wrapper">
-                                        <span class="btn-text">{{substr($item->file_name,13)}}</span>
+                                        <span class="btn-text">
+                                            @if (strlen(substr($item->file_name,13)) > 20)
+                                                {{substr(substr($item->file_name,13),0,-20)}}
+                                            @else
+                                                {{substr($item->file_name,13))}}
+                                            @endif
+                                            
+                                        </span>
                                     <span class="btn-icon"><i class="fa fa-download"></i></span>
                                     <span class="btn-icon"><i class="fa fa-download"></i></span>
                                     </span>
