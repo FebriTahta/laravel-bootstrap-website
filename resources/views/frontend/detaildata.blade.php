@@ -22,10 +22,10 @@
         </div>
     </div>
 
-    <div class="rbt-blog-details-area rbt-section-gapBottom breadcrumb-style-max-width">
-        <div class="blog-content-wrapper rbt-article-content-wrapper">
-            <div class="content">
-                <div class="post-thumbnail mb--30 position-relative wp-block-image alignwide">
+    <div class="rbt-blog-details-area rbt-section-gapBottom breadcrumb-style-max-width" style="max-width:100%">
+        <div class="blog-content-wrapper rbt-article-content-wrapper" style="max-width:100%">
+            <div class="content" style="max-width:100%">
+                <div class="post-thumbnail mb--30 position-relative wp-block-image alignwide" style="max-width:100%">
                     <figure>
                         <img src="{{asset('images_thumbnail/'.$post->post_thumb)}}" alt="Blog Images" style="max-width: 100%">
                     </figure>
