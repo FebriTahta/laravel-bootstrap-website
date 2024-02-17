@@ -1,10 +1,19 @@
 @extends('layouts_fe.raw')
 
 @section('meta_tag')
-<meta property="og:title" content="{{$post->post_title}}">
-<meta property="og:site_name" content="SMK 1 Krian Sidoarjo">
-<meta property="og:description" content="{!!$post->post_desc!!}">
-<meta property="og:image" content="{{asset('images_thumbnail/'.$post->post_thumb)}}">
+    <meta property="og:title" content="{{$post->post_title}}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="{{asset('images_thumbnail/'.$post->post_thumb)}}" />
+    <meta property="og:description" content="{{substr($post->post_desc,0,250)}}" />
+    <meta property="og:url" content="http://smkkrian1.sch.id/post/{{$post->konten->slug}}/{{$post->slug}}" />
+    <meta name="theme-color" content="#FF0000">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property='og:image:width' content='1200' />
+    <meta property='og:image:height' content='627' />
+
+    <link href="{{ asset('/assets3/css/detail-page.css') }}" rel="stylesheet">
+    <link href="{{ asset('/assets3/css/blog.css')}}" rel="stylesheet">
 @endsection
 
 @section('content')
