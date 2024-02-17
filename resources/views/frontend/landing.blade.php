@@ -261,10 +261,10 @@
                                             </ul>
                                             <h4 class="rbt-card-title">
                                                 <a href="/post/{{$item->konten->konten_slug}}/{{$item->post_slug}}">
-                                                    @if (strlen($item->post_title) > 45)
-                                                        {{substr($item->post_title, 0,45)}} ...
+                                                    @if (strlen($item->post_title) > 40)
+                                                        {{substr($item->post_title, 0,40)}} ...
                                                         @else
-                                                        {{substr($item->post_title, 0,45)}}
+                                                        {{substr($item->post_title, 0,40)}}
                                                     @endif
                                                 </a>
                                             </h4>
