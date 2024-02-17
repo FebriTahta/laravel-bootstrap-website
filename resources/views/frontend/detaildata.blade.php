@@ -69,11 +69,10 @@
                                     <span class="icon-reverse-wrapper">
                                         <span class="btn-text">
                                             @if (strlen(substr($item->file_name,13)) > 20)
-                                                {{substr(substr($item->file_name,13),0,-20)}}
+                                                {{ substr($item->file_name,13, -20) }}
                                             @else
-                                                {{substr($item->file_name,13))}}
-                                            @endif
-                                            
+                                                {{ substr($item->file_name,13) }}
+                                            @endif      
                                         </span>
                                     <span class="btn-icon"><i class="fa fa-download"></i></span>
                                     <span class="btn-icon"><i class="fa fa-download"></i></span>
