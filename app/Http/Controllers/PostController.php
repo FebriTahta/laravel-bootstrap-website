@@ -356,36 +356,7 @@ class PostController extends Controller
                         }   
                         File::insert($data_file);
                     }
-                    
                 }
-
-                // if ($request->file) {
-                //     $size = $request->file->getSize();
-                //     $file_name = time() . '_' .$request->file->getClientOriginalName();
-                //     $request->file->move(public_path('file_ebook'), $file_name);
-
-                //     if ($posting->file->count() > 0) {
-                //         # edit code...
-                //         $filepath = public_path('file_ebook/' . $posting->file[0]->file_name);
-                //         if (file_exists($filepath)) {
-                //             unlink($filepath);
-                //         }
-                //         File::where('id', $posting->file[0]->id)->update([
-                //             'file_name' => $file_name,
-                //             'file_size' => $size,
-                //         ]);
-                //     }else {
-                //         # create code...
-                //         $fileable_type = Post::class;
-                //         $fileable_id = $posting->id;
-                //         File::create([
-                //             'file_name' => $file_name,
-                //             'file_size' => $size,
-                //             'fileable_type' => $fileable_type,
-                //             'fileable_id' => $fileable_id
-                //         ]);
-                //     } 
-                // }
                 
                 DB::commit();
                 return Response()->json([

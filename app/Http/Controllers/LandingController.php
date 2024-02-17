@@ -49,7 +49,9 @@ class LandingController extends Controller
             ->where('konten_slug','LIKE', '%artikel%');
         })->orderBy('id','desc')->limit(4)->get();
 
-        return view('frontend.landing',compact('hot_news','profile','prestasi','ebook','guru','artikel'));
+        $general = Post::orderBy('id','desc')->limit(10)->get();
+
+        return view('frontend.landing',compact('hot_news','profile','prestasi','ebook','guru','artikel','general'));
     }
 
     /**

@@ -12,6 +12,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\SocialmediaController;
 
 /*
@@ -115,4 +116,7 @@ Route::controller(PageController::class)->group(function(){
     Route::post('/import-migrate-backup','import')->name('import.backup');
 });
 
-
+Route::controller(AlumniController::class)->group(function(){
+    Route::post('/registrasi/alumni','store')->name('store_registrasi_alumni');
+    Route::get('/send-mail','index');
+});

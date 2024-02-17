@@ -239,7 +239,7 @@
                 <div class="swiper event-activation-1 rbt-arrow-between rbt-dot-bottom-center pb--60 icon-bg-primary">
 
                     <div class="swiper-wrapper">
-                        @foreach ($hot_news as $item)
+                        @foreach ($general as $item)
                             <!-- Start Single Slide  -->
                             <div class="swiper-slide">
                                 <div class="single-slide">
