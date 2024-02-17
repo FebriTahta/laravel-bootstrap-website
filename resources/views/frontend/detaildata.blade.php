@@ -27,11 +27,10 @@
             <div class="content">
                 <div class="post-thumbnail mb--30 position-relative wp-block-image alignwide">
                     <figure>
-                        <img src="{{asset('images_thumbnail/'.$post->post_thumb)}}" alt="Blog Images">
-                       
+                        <img src="{{asset('images_thumbnail/'.$post->post_thumb)}}" alt="Blog Images" style="max-width: 100%">
                     </figure>
                 </div>
-                <p>{!!$post->post_desc!!}</p>
+                <p style="max-width: 100%">{!!$post->post_desc!!}</p>
 
                 
                 @if ($post->image_count > 0)
