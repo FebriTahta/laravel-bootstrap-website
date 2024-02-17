@@ -78,7 +78,6 @@
                                     </span>
                                 </a>
                             </div>
-                        
                         @endforeach
                         </div>
                     </div>

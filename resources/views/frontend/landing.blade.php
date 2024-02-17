@@ -261,10 +261,10 @@
                                             </ul>
                                             <h4 class="rbt-card-title">
                                                 <a href="/post/{{$item->konten->konten_slug}}/{{$item->post_slug}}">
-                                                    @if (strlen($item->post_title) > 50)
-                                                        {{substr($item->post_title, 0,50)}} ...
+                                                    @if (strlen($item->post_title) > 45)
+                                                        {{substr($item->post_title, 0,45)}} ...
                                                         @else
-                                                        {{substr($item->post_title, 0,50)}}
+                                                        {{substr($item->post_title, 0,45)}}
                                                     @endif
                                                 </a>
                                             </h4>
@@ -272,9 +272,9 @@
                                             <div class="read-more-btn">
                                                 <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round" href="/post/{{$item->konten->konten_slug}}/{{$item->post_slug}}">
                                                     <span class="icon-reverse-wrapper">
-                                                    <span class="btn-text">Selengkapnya</span>
-                                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                                        <span class="btn-text">Selengkapnya</span>
+                                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                                     </span>
                                                 </a>
                                             </div>
