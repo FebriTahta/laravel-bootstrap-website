@@ -61,11 +61,10 @@
 
                 @if ($post->file_count > 0)
                     <div style="margin-top: 50px">
-                        
                         @foreach ($post->file as $item)
                         <div class="row">
                             <div class="col-sm-12 col-lg-4 col-md-4 col-12">
-                                <a class="rbt-btn btn-gradient hover-icon-reverse btn-sm" style="max-width: 100%" href="{{asset('file_ebook/'.$item->file_name)}}">
+                                <a class="rbt-btn btn-gradient hover-icon-reverse btn-sm" style="max-width: 100%; width:100%" href="{{asset('file_ebook/'.$item->file_name)}}">
                                     <span class="icon-reverse-wrapper">
                                         <span class="btn-text">{{substr($item->file_name,13)}}</span>
                                     <span class="btn-icon"><i class="fa fa-download"></i></span>
