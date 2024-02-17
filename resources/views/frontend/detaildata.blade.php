@@ -66,8 +66,8 @@
                                 <a class="rbt-btn btn-gradient hover-icon-reverse btn-sm" style="max-width: 100%; width:100%" href="{{asset('file_ebook/'.$item->file_name)}}">
                                     <span class="icon-reverse-wrapper">
                                         <span class="btn-text">
-                                            @if (strlen(substr($item->file_name,13)) > 20)
-                                                {{ substr($item->file_name,13, 20) }}
+                                            @if (strlen(substr($item->file_name,13)) > 22)
+                                                {{ substr($item->file_name,13, 22) }} ..
                                             @else
                                                 {{ substr($item->file_name,13) }}
                                             @endif      
