@@ -14,7 +14,7 @@
                     <span>{{Carbon\Carbon::parse($post->created_at)->format('l / d F Y')}}</span>
                 </li>
             </ul>
-            <h1 class="title text-capitalize" style="font-size: 35px">{{$post->post_title}}</h1>
+            <h1 class="title text-capitalize">{{$post->post_title}}</h1>
             @foreach ($post->kategori as $item)
                 <span class="badge badge-sm badge-info">{{$item->kategori_name}}</span>
             @endforeach
@@ -31,8 +31,6 @@
                     </figure>
                 </div>
                 <p style="max-width: 100%">{!!$post->post_desc!!}</p>
-
-                
                 @if ($post->image_count > 0)
                     @if ($post->image_count % 3 == 0)
                         <div class="row">
