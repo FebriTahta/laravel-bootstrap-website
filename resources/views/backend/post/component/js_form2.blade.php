@@ -5,7 +5,9 @@
     $(document).ready(function() {
         // do something here
         $('#summernote').summernote({
-            height:300
+            height:300,
+            airMode: true,
+            
         });
     });
     // Mendapatkan referensi elemen input dan elemen pratinjau
