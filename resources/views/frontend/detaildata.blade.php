@@ -5,7 +5,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:image" content="{{asset('images_thumbnail/'.$post->post_thumb)}}" />
     <meta property="og:description" content="{{substr($post->post_desc,0,250)}}" />
-    <meta property="og:url" content="http://smkkrian1.sch.id/post/{{$post->konten->slug}}/{{$post->slug}}" />
+    <meta property="og:url" content="http://smkkrian1.sch.id/post/{{$post->konten->konten_slug}}/{{$post->post_slug}}" />
     <meta name="theme-color" content="#FF0000">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="twitter:card" content="summary_large_image">
