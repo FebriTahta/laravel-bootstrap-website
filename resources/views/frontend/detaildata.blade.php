@@ -64,7 +64,7 @@
                         @foreach ($post->file as $item)
                         <a class="rbt-btn btn-gradient hover-icon-reverse btn-sm" href="{{asset('file_ebook/'.$item->file_name)}}">
                             <span class="icon-reverse-wrapper">
-                                <span class="btn-text">{{substr($item->file_name,11)}}</span>
+                                <span class="btn-text">{{substr($item->file_name,13)}}</span>
                             <span class="btn-icon"><i class="fa fa-download"></i></span>
                             <span class="btn-icon"><i class="fa fa-download"></i></span>
                             </span>
