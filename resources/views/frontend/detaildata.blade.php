@@ -1,5 +1,12 @@
 @extends('layouts_fe.raw')
 
+@section('meta_tag')
+<meta property="og:title" content="{{$post->post_title}}">
+<meta property="og:site_name" content="SMK 1 Krian Sidoarjo">
+<meta property="og:description" content="{!!$post->post_desc!!}">
+<meta property="og:image" content="{{asset('images_thumbnail/'.$post->post_thumb)}}">
+@endsection
+
 @section('content')
 @include('frontend.component.css')
 <div class="rbt-overlay-page-wrapper">
@@ -70,8 +77,7 @@
                                                 {{ substr($item->file_name,13, 22) }} ..
                                             @else
                                                 {{ substr($item->file_name,13) }}
-                                            @endif      
-                                            {{-- {{ substr($item->file_name,13) }} --}}
+                                            @endif
                                         </span>
                                     <span class="btn-icon"><i class="fa fa-download"></i></span>
                                     <span class="btn-icon"><i class="fa fa-download"></i></span>
