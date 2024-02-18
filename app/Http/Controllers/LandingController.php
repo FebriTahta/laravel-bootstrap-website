@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Profile;
 use App\Models\Post;
+use App\Models\Alumni;
 use Illuminate\Http\Request;
 
 class LandingController extends Controller
@@ -49,9 +50,20 @@ class LandingController extends Controller
             ->where('konten_slug','LIKE', '%artikel%');
         })->orderBy('id','desc')->limit(4)->get();
 
+        $alumni = Alumni::where('alumni_status', 1)->with(['ulasan'])
+        ->orderBy('id','desc')->limit(6)->get();
+
+        $alumniLanjutan = Alumni::where('alumni_status', 1)
+        ->with(['ulasan'])
+        ->orderBy('id', 'desc')
+        ->skip(6) // Melewati 6 data pertama
+        ->limit(6) // Ambil 6 data berikutnya
+        ->get();
+
         $general = Post::orderBy('id','desc')->limit(10)->get();
 
-        return view('frontend.landing',compact('hot_news','profile','prestasi','ebook','guru','artikel','general'));
+        return view('frontend.landing',compact('hot_news','profile','prestasi','ebook',
+        'guru','artikel','general','alumni','alumniLanjutan'));
     }
 
     /**

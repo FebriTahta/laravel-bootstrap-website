@@ -579,7 +579,7 @@
                     <h2 class="title">What My Learners <span class="theme-gradient">Say</span></h2>
                     <p class="description mt--20">Learning communicate to global world and build a bright future with our alumni.</p>
                     <div class="veiw-more-btn mt--20">
-                        <a class="rbt-btn btn-gradient rbt-marquee-btn marquee-text-y" href="#">
+                        <a class="rbt-btn btn-gradient rbt-marquee-btn marquee-text-y" href="/alumni">
                             <span data-text="See Alumni List">
                                 Alumni Kami
                             </span>
@@ -591,72 +591,206 @@
                 <div class="overflow-hidden">
                     <div class="scroll-animation-wrapper pt--50 pb--30">
                         <div class="scroll-animation scroll-right-left">
-
-                            @for ($i = 0; $i < 6; $i++)
+                            @foreach ($alumni as $item)
                                 <div class="single-column-20">
                                     <div class="rbt-testimonial-box">
                                         <div class="inner">
                                             <div class="clint-info-wrapper">
                                                 <div class="thumb">
-                                                    <img src="assets_fe/images/testimonial/client-01.png" alt="Clint Images">
+                                                    <img src="{{asset('alumni_image/'.$item->alumni_image)}}" style="max-width: 60px" alt="Clint Images">
                                                 </div>
                                                 <div class="client-info">
-                                                    <h5 class="title">Martha Maldonado</h5>
-                                                    <span>Executive Chairman <i>@ Google</i></span>
+                                                    <h5 class="title">{{$item->alumni_name}}</h5>
+                                                    @if ($item->alumni_jurusan == 'TITL')
+                                                        <span>Teknik Instalasi Tenaga Listrik <i>"{{$item->alumni_tahun_ajaran2}}"</i></span>
+                                                    @elseif($item->alumni_jurusan == 'RPL')
+                                                        <span>Rekayasa Perangkat Lunak <i>"{{$item->alumni_tahun_ajaran2}}"</i></span>
+                                                    @elseif($item->alumni_jurusan == 'WD')
+                                                        <span>Teknik Pengelasan <i>"{{$item->alumni_tahun_ajaran2}}"</i></span>
+                                                    @elseif($item->alumni_jurusan == 'TPM')
+                                                        <span>Teknik Permesinan <i>"{{$item->alumni_tahun_ajaran2}}"</i></span>
+                                                    @elseif($item->alumni_jurusan == 'TL')
+                                                        <span>Teknik Logistik <i>"{{$item->alumni_tahun_ajaran2}}"</i></span>
+                                                    @endif
                                                 </div>
                                             </div>
+                                            @if ($item->ulasan)
                                             <div class="description">
-                                                <p class="subtitle-3">After the launch, vulputate at sapien sit amet,
-                                                    auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus
-                                                    velit.</p>
+                                                <p class="subtitle-3">{{$item->ulasan->deskripsi_ulasan}}</p>
                                                 <div class="rating mt--20">
-                                                    <a href="#"><i class="fa fa-star"></i></a>
-                                                    <a href="#"><i class="fa fa-star"></i></a>
-                                                    <a href="#"><i class="fa fa-star"></i></a>
-                                                    <a href="#"><i class="fa fa-star"></i></a>
-                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                    @if ($item->ulasan->rating_ulasan == 5)
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                    @elseif($item->ulasan->rating_ulasan == 4)
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star" style="color: gray"></i></a>
+                                                    @elseif($item->ulasan->rating_ulasan == 3)
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star" style="color: gray"></i></a>
+                                                        <a href="#"><i class="fa fa-star" style="color: gray"></i></a>
+                                                    @elseif($item->ulasan->rating_ulasan == 2)
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star" style="color: gray"></i></a>
+                                                        <a href="#"><i class="fa fa-star" style="color: gray"></i></a>
+                                                        <a href="#"><i class="fa fa-star" style="color: gray"></i></a>
+                                                    @elseif($item->ulasan->rating_ulasan == 1)
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star" style="color: gray"></i></a>
+                                                        <a href="#"><i class="fa fa-star" style="color: gray"></i></a>
+                                                        <a href="#"><i class="fa fa-star" style="color: gray"></i></a>
+                                                        <a href="#"><i class="fa fa-star" style="color: gray"></i></a>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            @endif
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+
+                            @if ($alumni->count() < 6)
+                                @for ($i = 0; $i < (6 - $alumni->count()); $i++)
+                                    <div class="single-column-20">
+                                        <div class="rbt-testimonial-box">
+                                            <div class="inner">
+                                                <div class="clint-info-wrapper">
+                                                    <div class="thumb">
+                                                        <img src="assets_fe/images/testimonial/client-01.png" alt="Clint Images">
+                                                    </div>
+                                                    <div class="client-info">
+                                                        <h5 class="title">Martha Maldonado</h5>
+                                                        <span>Executive Chairman <i>@ Google</i></span>
+                                                    </div>
+                                                </div>
+                                                <div class="description">
+                                                    <p class="subtitle-3">University managemnet, vulputate at sapien sit amet,
+                                                        auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus
+                                                        velit.</p>
+                                                    <div class="rating mt--20">
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endfor
+                                @endfor
+                            @endif
                             
                         </div>
                     </div>
                     <div class="scroll-animation-wrapper pb--50">
                         <div class="scroll-animation scroll-left-right">
-
-                            
-                            @for ($i = 0; $i < 6; $i++)
+                            @foreach ($alumniLanjutan as $item)
                                 <div class="single-column-20">
                                     <div class="rbt-testimonial-box">
                                         <div class="inner">
                                             <div class="clint-info-wrapper">
                                                 <div class="thumb">
-                                                    <img src="assets_fe/images/testimonial/client-01.png" alt="Clint Images">
+                                                    <img src="{{asset('alumni_image/'.$item->alumni_image)}}" style="max-width: 60px" alt="Clint Images">
                                                 </div>
                                                 <div class="client-info">
-                                                    <h5 class="title">Martha Maldonado</h5>
-                                                    <span>Executive Chairman <i>@ Google</i></span>
+                                                    <h5 class="title">{{$item->alumni_name}}</h5>
+                                                    @if ($item->alumni_jurusan == 'TITL')
+                                                        <span>Teknik Instalasi Tenaga Listrik <i>"{{$item->alumni_tahun_ajaran2}}"</i></span>
+                                                    @elseif($item->alumni_jurusan == 'RPL')
+                                                        <span>Rekayasa Perangkat Lunak <i>"{{$item->alumni_tahun_ajaran2}}"</i></span>
+                                                    @elseif($item->alumni_jurusan == 'WD')
+                                                        <span>Teknik Pengelasan <i>"{{$item->alumni_tahun_ajaran2}}"</i></span>
+                                                    @elseif($item->alumni_jurusan == 'TPM')
+                                                        <span>Teknik Permesinan <i>"{{$item->alumni_tahun_ajaran2}}"</i></span>
+                                                    @elseif($item->alumni_jurusan == 'TL')
+                                                        <span>Teknik Logistik <i>"{{$item->alumni_tahun_ajaran2}}"</i></span>
+                                                    @endif
                                                 </div>
                                             </div>
+                                            @if ($item->ulasan)
                                             <div class="description">
-                                                <p class="subtitle-3">University managemnet, vulputate at sapien sit amet,
-                                                    auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus
-                                                    velit.</p>
+                                                <p class="subtitle-3">{{$item->ulasan->deskripsi_ulasan}}</p>
                                                 <div class="rating mt--20">
-                                                    <a href="#"><i class="fa fa-star"></i></a>
-                                                    <a href="#"><i class="fa fa-star"></i></a>
-                                                    <a href="#"><i class="fa fa-star"></i></a>
-                                                    <a href="#"><i class="fa fa-star"></i></a>
-                                                    <a href="#"><i class="fa fa-star"></i></a>
+                                                    @if ($item->ulasan->rating_ulasan == 5)
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                    @elseif($item->ulasan->rating_ulasan == 4)
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star" style="color: gray"></i></a>
+                                                    @elseif($item->ulasan->rating_ulasan == 3)
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star" style="color: gray"></i></a>
+                                                        <a href="#"><i class="fa fa-star" style="color: gray"></i></a>
+                                                    @elseif($item->ulasan->rating_ulasan == 2)
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star" style="color: gray"></i></a>
+                                                        <a href="#"><i class="fa fa-star" style="color: gray"></i></a>
+                                                        <a href="#"><i class="fa fa-star" style="color: gray"></i></a>
+                                                    @elseif($item->ulasan->rating_ulasan == 1)
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star" style="color: gray"></i></a>
+                                                        <a href="#"><i class="fa fa-star" style="color: gray"></i></a>
+                                                        <a href="#"><i class="fa fa-star" style="color: gray"></i></a>
+                                                        <a href="#"><i class="fa fa-star" style="color: gray"></i></a>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            @endif
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                            @if ($alumniLanjutan->count() < 6)
+                                @for ($i = 0; $i < (6 - $alumniLanjutan->count()); $i++)
+                                    <div class="single-column-20">
+                                        <div class="rbt-testimonial-box">
+                                            <div class="inner">
+                                                <div class="clint-info-wrapper">
+                                                    <div class="thumb">
+                                                        <img src="assets_fe/images/testimonial/client-01.png" alt="Clint Images">
+                                                    </div>
+                                                    <div class="client-info">
+                                                        <h5 class="title">Martha Maldonado</h5>
+                                                        <span>Executive Chairman <i>@ Google</i></span>
+                                                    </div>
+                                                </div>
+                                                <div class="description">
+                                                    <p class="subtitle-3">University managemnet, vulputate at sapien sit amet,
+                                                        auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus
+                                                        velit.</p>
+                                                    <div class="rating mt--20">
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                        <a href="#"><i class="fa fa-star"></i></a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endfor
+                                @endfor
+                            @endif
                         </div>
                     </div>
                 </div>
