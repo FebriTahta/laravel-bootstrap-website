@@ -33,6 +33,14 @@
                 @endif
             </li>
             @endforeach
+            <li class="has-dropdown has-menu-child-item">
+                <a href="javascript:void(0)">Alumni  <i class="feather-chevron-down"></i></a>
+                <ul class="submenu">
+                    <li><a href="{{route('alumni')}}">Daftar Alumni</a></li>
+                    <li><a href="{{route('registrasi.alumni')}}">Form Pendataan Alumni</a></li>
+                    <li><a href="{{route('ulasan')}}">Form Ulasan</a></li>
+                </ul>
+            </li>
         </ul>
     </nav>
 </div>

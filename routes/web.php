@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UlasanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MenuController;
@@ -108,7 +109,9 @@ Route::controller(PageController::class)->group(function(){
     Route::get('/post/{konten_slug}/{post_slug}','detaildata')->name('post.detaildata');
     Route::get('/search/post','global_search')->name('global_post.search');
     Route::get('/registrasi-alumni','registrasi_alumni')->name('registrasi.alumni');
-
+    Route::get('/ulasan','ulasan')->name('ulasan');
+    Route::get('/alumni','alumni')->name('alumni');
+    Route::get('/alumni/search','alumni_search')->name('alumni.search');
 
     // 
     Route::get('/migrate-backup','migrate_backup');
@@ -118,5 +121,8 @@ Route::controller(PageController::class)->group(function(){
 
 Route::controller(AlumniController::class)->group(function(){
     Route::post('/registrasi/alumni','store')->name('store_registrasi_alumni');
-    Route::get('/send-mail','index');
+});
+
+Route::controller(UlasanController::class)->group(function(){
+    Route::post('/submit-ulasan','store')->name('submit_ulasan');
 });

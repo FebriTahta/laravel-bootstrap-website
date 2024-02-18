@@ -5,6 +5,7 @@ use App\Models\Kategori;
 use App\Models\Konten;
 use App\Models\Profile;
 use App\Models\Jurusan;
+use App\Models\Alumni;
 use App\Models\Post;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\MigrateBackup;
@@ -86,9 +87,45 @@ class PageController extends Controller
 
     public function registrasi_alumni(Request $request)
     {
-        $profile = Profile::first();
-        $phasparse = $this->v4();
-        return view('frontend.registrasi_alumni',compact('profile','phasparse'));
+        return view('frontend.registrasi_alumni');
+    }
+
+    public function alumni_search(Request $request)
+    {
+        $search = $request->get('search');
+        $alumni = Alumni::with(['ulasan'])
+        ->where('alumni_status', 1)
+        ->where('alumni_name', 'LIKE' , '%'.$search.'%')
+        ->orWhere('alumni_keterangan', 'LIKE', '%'.$search.'%')
+        ->orWhere('alumni_kegiatan', 'LIKE', '%'.$search.'%')
+        ->orderBy('alumni_tahun_ajaran2', 'desc')->paginate(12);
+
+        $kategori = Alumni::select('alumni_kegiatan as kategori_name', DB::raw('COUNT(*) as total'))
+        ->groupBy('alumni_kegiatan')
+        ->get();
+
+        return view('frontend.alumni',compact('kategori','search','alumni'));
+    }
+
+    public function alumni()
+    {
+        $search = null;
+
+        $alumni = Alumni::with(['ulasan'])
+        ->where('alumni_status', 1)
+        ->orderBy('alumni_tahun_ajaran2', 'desc')->paginate(12);
+
+        $kategori = Alumni::select('alumni_kegiatan as kategori_name', DB::raw('COUNT(*) as total'))
+        ->groupBy('alumni_kegiatan')
+        ->get();
+        
+        // return $alumni;
+        return view('frontend.alumni',compact('kategori','search','alumni'));
+    }
+
+    public function ulasan()
+    {
+        return view('frontend.ulasan');
     }
 
     public static function v4() 

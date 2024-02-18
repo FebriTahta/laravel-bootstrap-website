@@ -17,9 +17,12 @@ return new class extends Migration
             $table->string('alumni_jurusan')->nullable();
             $table->integer('alumni_tahun_ajaran1')->nullable();
             $table->integer('alumni_tahun_ajaran2')->nullable();
-            $table->text('alumni_deskripsi')->nullable();
+            $table->string('alumni_email')->nullable();
+            $table->string('alumni_kegiatan')->nullable();
+            $table->text('alumni_keterangan')->nullable();
             $table->string('alumni_passpharse')->nullable();
             $table->string('alumni_image')->nullable();
+            $table->integer('alumni_status')->nullable();
             $table->timestamps();
 
             $table->index(['id','alumni_jurusan','alumni_passpharse']);   

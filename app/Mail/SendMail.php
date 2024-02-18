@@ -15,51 +15,23 @@ class SendMail extends Mailable
 
     public $subject;
     public $content;
+    public $emailData;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($subject, $content)
+    public function __construct($subject, $content, $emailData)
     {
         $this->subject = $subject;
         $this->content = $content;
+        $this->emailData = $emailData;
     }
-
-    /**
-     * Get the message envelope.
-     */
-    // public function envelope(): Envelope
-    // {
-    //     return new Envelope(
-    //         // subject: 'Send Mail',
-    //         subject: $this->subject,
-    //     );
-    // }
-
-    // /**
-    //  * Get the message content definition.
-    //  */
-    // public function content(): Content
-    // {
-    //     return new Content(
-    //         // view: 'view.name',
-    //         view: $this->content,
-    //     );
-    // }
-
-    // /**
-    //  * Get the attachments for the message.
-    //  *
-    //  * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-    //  */
-    // public function attachments(): array
-    // {
-    //     return [];
-    // }
 
     public function build()
     {
-        return $this->subject($this->subject)
-                    ->view($this->content);
+        return 
+        $this->subject($this->subject)
+        ->view($this->content)
+        ->with($this->emailData);
     }
 }
