@@ -97,6 +97,13 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin,super_admin']], function
         Route::get('/admin-setting','index');
         Route::post('/admin-setting-store','store');
     });
+
+    Route::controller(AlumniController::class)->group(function(){
+        Route::get('/admin-alumni','index');
+        Route::get('/admin-alumni-destroy/{id}','destroy');
+        Route::get('/admin-alumni-edit/{id}','edit');
+        Route::post('/admin-audit-ulasan-alumni','audit_ulasan_alumni')->name('admin.audit_ulasan');
+    });
 });
 // FE
 Route::controller(LandingController::class)->group(function(){

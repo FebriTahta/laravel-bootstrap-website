@@ -11,44 +11,47 @@
       'color' => 'success'
     ])
 
+<div class="container-fluid py-4">
   <div class="row mt-4">
 
-   @include('backend.component.message_block')
-
-   <div class="col-12">
-        @include('backend.component.button-add',['link'=>'/admin-konten-create','text'=>'ADD NEW KONTEN'])
-   </div>
-
+    @include('backend.component.message_block')
+ 
     <div class="col-12">
-      <div class="card mb-4">
-        <div class="card-header pb-0">
-          <h6>KONTEN TABLE</h6>
-        </div>
-        <div class="card-body px-0 pt-0 pb-2">
-          <div class="table-responsive p-0">
-            <table class="table align-items-center mb-0">
-              <thead>
-                <tr>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Konten</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Parent</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Dibuat</th>
-                  <th class="text-secondary text-center opacity-7">...</th>
-                </tr>
-              </thead>
-              <tbody id="konten_table"></tbody>
-            </table>
-           @include('layouts.null-data',['class'=>'null-data-konten'])
-          </div>
-        </div>
-        <div class="card-footer px-0 pt-2 pb-0 border-top">
-          <div class="pagination-konten" style="margin-left: 20px;">
-            {{--  --}}
-          </div>
-        </div>
-      </div>
+         @include('backend.component.button-add',['link'=>'/admin-konten-create','text'=>'ADD NEW KONTEN'])
     </div>
-  </div>
+ 
+     <div class="col-12">
+       <div class="card mb-4">
+         <div class="card-header pb-0">
+           <h6>KONTEN TABLE</h6>
+         </div>
+         <div class="card-body px-0 pt-0 pb-2">
+           <div class="table-responsive p-0">
+             <table class="table align-items-center mb-0">
+               <thead>
+                 <tr>
+                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Konten</th>
+                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Parent</th>
+                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Dibuat</th>
+                   <th class="text-secondary text-center opacity-7">...</th>
+                 </tr>
+               </thead>
+               <tbody id="konten_table"></tbody>
+             </table>
+            @include('layouts.null-data',['class'=>'null-data-konten'])
+           </div>
+         </div>
+         <div class="card-footer px-0 pt-2 pb-0 border-top">
+           <div class="pagination-konten" style="margin-left: 20px;">
+             {{--  --}}
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+</div>
+  
 @endsection
 
 
@@ -56,6 +59,14 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <script>
     $(document).ready(function () {
+      Swal.fire({
+        title: 'Loading...',
+        html: 'Sedang memproses permintaan.',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
       $.ajax({
           url: '/admin-konten',
           method: 'GET',
@@ -63,6 +74,7 @@
             tipe: 'konten'
           },
           success: function (response) {
+            Swal.close();
             $('#total-informasi-konten').html(response.data_konten.total + ' konten')
             if (response.data_konten.data.length !== 0) {
               $('.null-data-konten').addClass('d-none');
@@ -81,6 +93,14 @@
 
     function loadData(page)
     {
+      Swal.fire({
+        title: 'Loading...',
+        html: 'Sedang memproses permintaan.',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+      });
       $.ajax({
           url: '/admin-konten?page='+page,
           method: 'GET',
@@ -88,6 +108,7 @@
             tipe: 'konten'
           },
           success: function (response) {
+            Swal.close();
             $('#total-informasi-konten').html(response.data_konten.total + ' konten')
             if (response.data_konten.data.length !== 0) {
               $('.null-data-konten').addClass('d-none');
@@ -224,6 +245,14 @@
   }
 
   function reload_table() {
+    Swal.fire({
+        title: 'Loading...',
+        html: 'Sedang memproses permintaan.',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+      });
     $.ajax({
         url: '/admin-konten',
         method: 'GET',
@@ -231,6 +260,7 @@
           tipe: 'konten'
         },
         success: function (response) {
+          Swal.close();
           $('#total-informasi-konten').html(response.data_konten.total + ' konten')
           if (response.data_konten.data.length !== 0) {
             $('.null-data-konten').addClass('d-none');

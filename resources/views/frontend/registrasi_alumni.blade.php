@@ -257,7 +257,6 @@
                         icon: 'success',
                         confirmButtonText: 'OK'
                     });
-
                     $('#form-pendaftaran')[0].reset();
                     previewImage.src = "{{asset('thankyou.png')}}";
                 } else {

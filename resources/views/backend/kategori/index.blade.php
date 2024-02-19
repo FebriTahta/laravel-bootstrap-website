@@ -11,43 +11,46 @@
       'color' => 'success'
     ])
 
+<div class="container-fluid py-4">
   <div class="row mt-4">
 
-   @include('backend.component.message_block')
-
-   <div class="col-12">
-        @include('backend.component.button-add',['link'=>'/admin-kategori-create','text'=>'ADD NEW KATEGORI'])
-   </div>
-
+    @include('backend.component.message_block')
+ 
     <div class="col-12">
-      <div class="card mb-4">
-        <div class="card-header pb-0">
-          <h6>KATEGORI TABLE</h6>
-        </div>
-        <div class="card-body px-0 pt-0 pb-2">
-          <div class="table-responsive p-0">
-            <table class="table align-items-center mb-0">
-              <thead>
-                <tr>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kategori</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Dibuat</th>
-                  <th class="text-secondary text-center opacity-7">...</th>
-                </tr>
-              </thead>
-              <tbody id="kategori_table"></tbody>
-            </table>
-           @include('layouts.null-data',['class'=>'null-data-konten'])
-          </div>
-        </div>
-        <div class="card-footer px-0 pt-2 pb-0 border-top">
-          <div class="pagination-konten" style="margin-left: 20px;">
-            {{--  --}}
-          </div>
-        </div>
-      </div>
+         @include('backend.component.button-add',['link'=>'/admin-kategori-create','text'=>'ADD NEW KATEGORI'])
     </div>
-  </div>
+ 
+     <div class="col-12">
+       <div class="card mb-4">
+         <div class="card-header pb-0">
+           <h6>KATEGORI TABLE</h6>
+         </div>
+         <div class="card-body px-0 pt-0 pb-2">
+           <div class="table-responsive p-0">
+             <table class="table align-items-center mb-0">
+               <thead>
+                 <tr>
+                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kategori</th>
+                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Dibuat</th>
+                   <th class="text-secondary text-center opacity-7">...</th>
+                 </tr>
+               </thead>
+               <tbody id="kategori_table"></tbody>
+             </table>
+            @include('layouts.null-data',['class'=>'null-data-konten'])
+           </div>
+         </div>
+         <div class="card-footer px-0 pt-2 pb-0 border-top">
+           <div class="pagination-konten" style="margin-left: 20px;">
+             {{--  --}}
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+</div>
+  
 @endsection
 
 
@@ -55,6 +58,14 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <script>
     $(document).ready(function () {
+      Swal.fire({
+        title: 'Loading...',
+        html: 'Sedang memproses permintaan.',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+      });
       $.ajax({
           url: '/admin-kategori',
           method: 'GET',
@@ -62,6 +73,7 @@
             tipe: 'kategori'
           },
           success: function (response) {
+            Swal.close();
             $('#total-informasi-kategori').html(response.data_kategori.total + ' kategori')
             if (response.data_kategori.data.total !== 0) {
               $('.null-data-konten').addClass('d-none');
@@ -80,6 +92,14 @@
 
     function loadData(page)
     {
+      Swal.fire({
+        title: 'Loading...',
+        html: 'Sedang memproses permintaan.',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+      });
       $.ajax({
           url: '/admin-kategori?page='+page,
           method: 'GET',
@@ -87,6 +107,7 @@
             tipe: 'kategori'
           },
           success: function (response) {
+            Swal.close();
             $('#total-informasi-kategori').html(response.data_kategori.total + ' kategori')
             if (response.data_kategori.data.total !== 0) {
               $('.null-data-konten').addClass('d-none');
@@ -219,6 +240,14 @@
     }
 
   function reload_table() {
+    Swal.fire({
+      title: 'Loading...',
+      html: 'Sedang memproses permintaan.',
+      allowOutsideClick: false,
+      didOpen: () => {
+          Swal.showLoading();
+      }
+    });
     $.ajax({
         url: '/admin-kategori',
         method: 'GET',
@@ -226,6 +255,7 @@
           tipe: 'kategori'
         },
         success: function (response) {
+          Swal.close();
           $('#total-informasi-kategori').html(response.data_kategori.total + ' kategori')
           if (response.data_kategori.data.length !== 0) {
             $('.null-data-kategori').addClass('d-none');

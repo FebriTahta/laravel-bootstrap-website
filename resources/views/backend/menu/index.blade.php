@@ -19,75 +19,77 @@
     'color' => 'info'
   ])
 
+<div class="container-fluid py-4">
   <div class="row mt-4">
 
-   @include('backend.component.message_block')
-
-   <div class="col-12">
-    @include('backend.component.button-add',['link'=>'/admin-menu-create','text'=>'ADD NEW MENU'])
-    @include('backend.component.button-add',['link'=>'/admin-submenu-create','text'=>'ADD NEW SUBMENU'])
+    @include('backend.component.message_block')
+ 
+    <div class="col-12">
+     @include('backend.component.button-add',['link'=>'/admin-menu-create','text'=>'ADD NEW MENU'])
+     @include('backend.component.button-add',['link'=>'/admin-submenu-create','text'=>'ADD NEW SUBMENU'])
+    </div>
+ 
+     <div class="col-12">
+       <div class="card mb-4">
+         <div class="card-header pb-0">
+           <h6>MENU TABLE</h6>
+         </div>
+         <div class="card-body px-0 pt-0 pb-2">
+           <div class="table-responsive p-0">
+             <table class="table align-items-center mb-0">
+               <thead>
+                 <tr>
+                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Menu</th>
+                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Submenu</th>
+                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Dibuat</th>
+                   <th class="text-secondary text-center opacity-7">...</th>
+                 </tr>
+               </thead>
+               <tbody id="menu_table"></tbody>
+             </table>
+            @include('layouts.null-data',['class'=>'null-data-menu'])
+           </div>
+         </div>
+         <div class="card-footer px-0 pt-2 pb-0 border-top">
+           <div class="pagination-menu" style="margin-left: 20px;">
+             {{--  --}}
+           </div>
+         </div>
+       </div>
+     </div>
    </div>
-
-    <div class="col-12">
-      <div class="card mb-4">
-        <div class="card-header pb-0">
-          <h6>MENU TABLE</h6>
-        </div>
-        <div class="card-body px-0 pt-0 pb-2">
-          <div class="table-responsive p-0">
-            <table class="table align-items-center mb-0">
-              <thead>
-                <tr>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Menu</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Submenu</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Dibuat</th>
-                  <th class="text-secondary text-center opacity-7">...</th>
-                </tr>
-              </thead>
-              <tbody id="menu_table"></tbody>
-            </table>
-           @include('layouts.null-data',['class'=>'null-data-menu'])
-          </div>
-        </div>
-        <div class="card-footer px-0 pt-2 pb-0 border-top">
-          <div class="pagination-menu" style="margin-left: 20px;">
-            {{--  --}}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <div class="card mb-4">
-        <div class="card-header pb-0">
-          <h6>SUB-MENU TABLE</h6>
-        </div>
-        <div class="card-body px-0 pt-0 pb-2">
-          <div class="table-responsive p-0">
-            <table class="table align-items-center justify-content-center mb-0">
-              <thead>
-                <tr>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Submenu</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">From Menu</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">...</th>
-                </tr>
-              </thead>
-              <tbody id="submenu_table"></tbody>
-            </table>
-            @include('layouts.null-data',['class'=>'null-data-submenu'])
-          </div>
-        </div>
-        <div class="card-footer px-0 pt-2 pb-0 border-top">
-          <div class="pagination-submenu" style="margin-left: 20px;">
-            {{--  --}}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+   <div class="row">
+     <div class="col-12">
+       <div class="card mb-4">
+         <div class="card-header pb-0">
+           <h6>SUB-MENU TABLE</h6>
+         </div>
+         <div class="card-body px-0 pt-0 pb-2">
+           <div class="table-responsive p-0">
+             <table class="table align-items-center justify-content-center mb-0">
+               <thead>
+                 <tr>
+                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Submenu</th>
+                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">From Menu</th>
+                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
+                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7">...</th>
+                 </tr>
+               </thead>
+               <tbody id="submenu_table"></tbody>
+             </table>
+             @include('layouts.null-data',['class'=>'null-data-submenu'])
+           </div>
+         </div>
+         <div class="card-footer px-0 pt-2 pb-0 border-top">
+           <div class="pagination-submenu" style="margin-left: 20px;">
+             {{--  --}}
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+</div>
 @endsection
 
 
@@ -96,6 +98,14 @@
 <script>
 
   $(document).ready(function () {
+    Swal.fire({
+        title: 'Loading...',
+        html: 'Sedang memproses permintaan.',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
     $.ajax({
         url: '/admin-menus',
         method: 'GET',
@@ -103,6 +113,7 @@
           tipe: 'menu'
         },
         success: function (data) {
+          Swal.close();
           $('#total-informasi-menu').html(data.data_menu.total + ' menu')
           if (data.data_menu.data.length !== 0) {
             $('.null-data-menu').addClass('d-none');
@@ -306,6 +317,14 @@ function pagination_submenu(currentPage, lastPage) {
 
 function loadData(page)
 {
+  Swal.fire({
+    title: 'Loading...',
+    html: 'Sedang memproses permintaan.',
+    allowOutsideClick: false,
+    didOpen: () => {
+        Swal.showLoading();
+    }
+  });
   $.ajax({
       url: '/admin-menus?page='+page,
       method: 'GET',
@@ -313,6 +332,7 @@ function loadData(page)
         tipe: 'menu'
       },
       success: function (data) {
+        Swal.close();
         console.log(data);
         load_menu(data.data_menu.data)
         pagination_menu(data.data_menu.current_page,data.data_menu.last_page)
@@ -325,6 +345,14 @@ function loadData(page)
 
 function loadData2(page)
 {
+  Swal.fire({
+    title: 'Loading...',
+    html: 'Sedang memproses permintaan.',
+    allowOutsideClick: false,
+    didOpen: () => {
+        Swal.showLoading();
+    }
+  });
   $.ajax({
       url: '/admin-submenus?page='+page,
       method: 'GET',
@@ -332,6 +360,7 @@ function loadData2(page)
         tipe: 'submenu'
       },
       success: function (data) {
+        Swal.close();
         console.log(data);
         load_submenu(data.data_submenu.data)
         pagination_submenu(data.data_submenu.current_page,data.data_submenu.last_page)
@@ -419,6 +448,14 @@ function deleteData2(id) {
 }
 
 function reload_table() {
+  Swal.fire({
+    title: 'Loading...',
+    html: 'Sedang memproses permintaan.',
+    allowOutsideClick: false,
+    didOpen: () => {
+        Swal.showLoading();
+    }
+  });
   $.ajax({
       url: '/admin-menus',
       method: 'GET',
@@ -426,6 +463,7 @@ function reload_table() {
         tipe: 'menu'
       },
       success: function (data) {
+        Swal.close();
         $('#total-informasi-menu').html(data.data_menu.total + ' menu')
         if (data.data_menu.data.length !== 0) {
           $('.null-data-menu').addClass('d-none');

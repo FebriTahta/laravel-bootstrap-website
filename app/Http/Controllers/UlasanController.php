@@ -31,10 +31,10 @@ class UlasanController extends Controller
     public function store(Request $request)
     {
         $messages = [
-            'deskripsi_ulasan.max' => 'Deskripsi ulasan tidak boleh melebihi 150 karakter.', // Pesan validasi kustom
+            'deskripsi_ulasan.max' => 'Deskripsi ulasan tidak boleh melebihi 120 karakter.', // Pesan validasi kustom
         ];
         $validatedData = Validator::make($request->all(), [
-            'deskripsi_ulasan' => 'required|max:150',
+            'deskripsi_ulasan' => 'required|max:120',
             'stars' => 'required|integer',
         ], $messages);
 
