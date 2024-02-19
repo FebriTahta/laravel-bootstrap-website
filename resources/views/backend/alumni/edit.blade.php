@@ -224,7 +224,7 @@
         }
     })
 
-        $('#form-audit_ulasan').submit(function (e) {
+    $('#form-audit_ulasan').submit(function (e) {
         e.preventDefault(); // Menghentikan pengiriman formulir default
         
         // Menampilkan modal loading saat pengguna menekan tombol submit

@@ -25,9 +25,29 @@ class PostController extends Controller
                 'message' => 'load posting data',
                 'data_posting' => $data
             ]);
+        }elseif($request->ajax() && $request->tipe == '1'){
+            $data = Post::orderBy('id','desc')
+            ->where('post_title', 'LIKE', '%'.$request->data.'%')
+            ->orWhere('post_desc', 'LIKE', '%'.$request->data.'%')
+            ->with(['kategori','konten'])->paginate(5);
+            return response()->json([
+                'status' => 200,
+                'message' => 'load posting data',
+                'data_posting' => $data
+            ]);
+        }elseif($request->ajax() && $request->tipe == '2'){
+            $data = Post::orderBy('id','desc')
+            ->where('konten_id', $request->data)->with(['kategori','konten'])->paginate(5);
+            return response()->json([
+                'status' => 200,
+                'message' => 'load posting data',
+                'data_posting' => $data
+            ]);
         }
+
+        
         $title  = 'POSTING';
-        $konten = Konten::where('konten_status', 1)->orderBy('id','desc')->get(); 
+        $konten = Konten::where('konten_status', 1)->whereHas('post')->orderBy('id','asc')->get(); 
         return view('backend.post.index',compact('title','konten'));
     }
 

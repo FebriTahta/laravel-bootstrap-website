@@ -11,53 +11,79 @@
       'color' => 'success'
     ])
 
+<div class="container-fluid py-4">
   <div class="row mt-4">
 
-   @include('backend.component.message_block')
-
-   <div class="col-12">
-        @include('backend.component.button-add',['text'=>'ADD NEW POSTING','onclick'=>'newPost()'])
-   </div>
-
+    @include('backend.component.message_block')
+ 
     <div class="col-12">
-      <div class="card mb-4">
-        <div class="card-header pb-0">
-          <h6>POSTING TABLE</h6>
-        </div>
-        <div class="card-body px-0 pt-0 pb-2">
-          <div class="table-responsive p-0">
-            <table class="table align-items-center mb-0">
-              <thead>
-                <tr>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">post</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Parent</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Dibuat</th>
-                  <th class="text-secondary text-center opacity-7">...</th>
-                </tr>
-              </thead>
-              <tbody id="post_table"></tbody>
-              <tfoot>
-                <tr>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"></th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
-                  <th class="text-secondary text-center opacity-7"></th>
-                </tr>
-              </tfoot>
-            </table>
-           @include('layouts.null-data',['class'=>'null-data-post'])
-          </div>
-        </div>
-        <div class="card-footer px-0 pt-2 pb-0 border-top">
-          <div class="pagination-post" style="margin-left: 20px;">
-            {{--  --}}
-          </div>
-        </div>
-      </div>
+         @include('backend.component.button-add',['text'=>'ADD NEW POSTING','onclick'=>'newPost()'])
     </div>
-  </div>
+ 
+     <div class="col-12">
+       <div class="card mb-4">
+         <div class="card-header pb-0">
+          <form id="form-search_filter">
+            <div class="row">
+              <div class="col-md-6">
+                <h6>POSTING TABLE</h6>
+              </div>
+              <div class="col-md-2 mb-2">
+                <select class="form-control" id="search_filter" style="float: right; width: 100%">
+                  <option value="1">Searching Data...</option>
+                  <option value="2">Filtering  Data...</option>
+                </select>
+              </div>
+              <div class="col-md-2 col-8">
+                <input type="text" placeholder="Search..." name="search" style="width: 100%" id="search" class="form-control">
+                <select name="filter" class="form-control" id="filter">
+                  @foreach ($konten as $item)
+                      <option value="{{$item->id}}">{{$item->konten_name}}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="col-md-2 col-4">
+                <button class="btn btn-md btn-primary" id="search_filter_btn" style="width: 100%"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </form>
+         </div>
+         <div class="card-body px-0 pt-0 pb-2">
+           <div class="table-responsive p-0">
+             <table class="table align-items-center mb-0">
+               <thead>
+                 <tr>
+                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">post</th>
+                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Parent</th>
+                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Dibuat</th>
+                   <th class="text-secondary text-center opacity-7">...</th>
+                 </tr>
+               </thead>
+               <tbody id="post_table"></tbody>
+               <tfoot>
+                 <tr>
+                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"></th>
+                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+                   <th class="text-secondary text-center opacity-7"></th>
+                 </tr>
+               </tfoot>
+             </table>
+            @include('layouts.null-data',['class'=>'null-data-post'])
+           </div>
+         </div>
+         <div class="card-footer px-0 pt-2 pb-0 border-top">
+           <div class="pagination-post" style="margin-left: 20px;">
+             {{--  --}}
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+</div>
+  
 
   <div class="modal fade" id="newPostModal" tabindex="-1" role="dialog" aria-labelledby="newPostModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -84,7 +110,45 @@
 @section('script')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
+
+  var tipes = null;
+  var datas = null;
+  $('#search_filter').on('change',function (e) {
+    e.preventDefault();
+    if (this.value == 1) {
+      $('#search').show();
+      $('#filter').hide();
+      tipes = this.value;
+      datas = $('#search').val();
+    }else{
+      $('#search').hide();
+      $('#filter').show();
+      tipes = this.value;
+      datas = $('#filter').val();
+    }
+  })
+
+  $('#filter').on('change', function (e) {
+    e.preventDefault();
+    datas = this.value;
+  })
+
+  $('#search').on('change', function (e) {
+    e.preventDefault();
+    datas = this.value;
+  })
+
   $(document).ready(function () {
+    $('#seach').show();
+    $('#filter').hide();
+    Swal.fire({
+        title: 'Loading...',
+        html: 'Sedang memproses permintaan.',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
     $.ajax({
         url: '/admin-post',
         method: 'GET',
@@ -92,6 +156,7 @@
           tipe: 'posting'
         },
         success: function (response) {
+          Swal.close();
           $('#total-informasi-posting').html(response.data_posting.total + ' posting')
           if (response.data_posting.data.length !== 0) {
             // console.log('wooo');
@@ -124,6 +189,40 @@
     // Menambahkan atribut href ke elemen
     myLink.href = baseUrl + '/admin-post-create/' +encryptBase64(konten_id);
   })
+
+  function search_filter(tipes, datas) {
+    Swal.fire({
+      title: 'Loading...',
+      html: 'Sedang memproses permintaan.',
+      allowOutsideClick: false,
+      didOpen: () => {
+          Swal.showLoading();
+      }
+    });
+    $.ajax({
+        url: '/admin-post',
+        method: 'GET',
+        data: {
+          tipe: tipes,
+          data: datas
+        },
+        success: function (response) {
+          Swal.close();
+          $('#total-informasi-posting').html(response.data_posting.total + ' posting')
+            if (response.data_posting.data.length !== 0) {
+            
+              $('.null-data-post').addClass('d-none');
+              load_post(response.data_posting.data)
+              pagination_post(1,response.data_posting.last_page)
+            }else{
+              $('#post_table').addClass('d-none');
+            }
+        },
+        error: function (error) {
+            console.error('Error fetching data:', error);
+        }
+    });
+  }
 
 
   function load_post(data) {
@@ -218,6 +317,14 @@
 
 function loadData(page)
 {
+  Swal.fire({
+        title: 'Loading...',
+        html: 'Sedang memproses permintaan.',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
   $.ajax({
       url: '/admin-post?page='+page,
       method: 'GET',
@@ -225,6 +332,7 @@ function loadData(page)
         tipe: 'posting'
       },
       success: function (response) {
+        Swal.close();
           $('#total-informasi-posting').html(response.data_posting.total + ' posting')
           if (response.data_posting.data.length !== 0) {
             console.log('wooo');
@@ -276,6 +384,14 @@ function deleteData(id) {
 }
 
 function reload_table() {
+  Swal.fire({
+        title: 'Loading...',
+        html: 'Sedang memproses permintaan.',
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        }
+    });
   $.ajax({
       url: '/admin-post',
       method: 'GET',
@@ -283,6 +399,7 @@ function reload_table() {
         tipe: 'posting'
       },
       success: function (response) {
+        Swal.close();
         $('#total-informasi-posting').html(response.data_posting.total + ' posting')
           if (response.data_posting.data.length !== 0) {
            
@@ -298,6 +415,11 @@ function reload_table() {
       }
   });
 }
+
+$('#form-search_filter').submit(function (e) {
+    e.preventDefault(); // Menghentikan pengiriman formulir default
+    search_filter(tipes, datas)
+});
 
 function encryptBase64(value) {
     return btoa(value); // Menggunakan btoa() untuk melakukan enkripsi Base64
