@@ -141,6 +141,7 @@
   $(document).ready(function () {
     $('#seach').show();
     $('#filter').hide();
+    tipes = 1;
     Swal.fire({
         title: 'Loading...',
         html: 'Sedang memproses permintaan.',
