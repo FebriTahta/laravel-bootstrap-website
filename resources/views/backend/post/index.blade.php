@@ -118,6 +118,7 @@
     if (this.value == 1) {
       $('#search').show();
       $('#filter').hide();
+      $('#filter').val(null); // Mengatur nilai input kembali kosong
       tipes = this.value;
       datas = $('#search').val();
     }else{
@@ -125,16 +126,19 @@
       $('#filter').show();
       tipes = this.value;
       datas = $('#filter').val();
+      $('#search').val(null); // Mengatur nilai input kembali kosong
     }
   })
 
   $('#filter').on('change', function (e) {
     e.preventDefault();
+    datas = null;
     datas = this.value;
   })
 
   $('#search').on('change', function (e) {
     e.preventDefault();
+    datas = null;
     datas = this.value;
   })
 
@@ -318,6 +322,18 @@
 
 function loadData(page)
 {
+  var parameter = null;
+  if (datas !== null) {
+    parameter = {
+      tipe: tipes,
+      data: datas
+    }
+  }else{
+    parameter = {
+      tipe: 'posting'
+    }
+  }
+
   Swal.fire({
         title: 'Loading...',
         html: 'Sedang memproses permintaan.',
@@ -329,9 +345,7 @@ function loadData(page)
   $.ajax({
       url: '/admin-post?page='+page,
       method: 'GET',
-      data:{
-        tipe: 'posting'
-      },
+      data:parameter,
       success: function (response) {
         Swal.close();
           $('#total-informasi-posting').html(response.data_posting.total + ' posting')
@@ -350,6 +364,8 @@ function loadData(page)
         }
   });
 }
+
+
 
 function deletepostConfirmation(id) {
     Swal.fire({

@@ -33,7 +33,9 @@ class PostController extends Controller
             return response()->json([
                 'status' => 200,
                 'message' => 'load posting data',
-                'data_posting' => $data
+                'data_posting' => $data,
+                'parameter_tipe' => $request->tipe,
+                'parameter_data' => $request->data
             ]);
         }elseif($request->ajax() && $request->tipe == '2'){
             $data = Post::orderBy('id','desc')
@@ -41,7 +43,9 @@ class PostController extends Controller
             return response()->json([
                 'status' => 200,
                 'message' => 'load posting data',
-                'data_posting' => $data
+                'data_posting' => $data,
+                'parameter_tipe' => $request->tipe,
+                'parameter_data' => $request->data
             ]);
         }
 
