@@ -4,6 +4,16 @@
 
 <!-- Mirrored from rainbowit.net/html/histudy/01-main-demo.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Sep 2023 16:40:25 GMT -->
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DS5GSJ410V"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-DS5GSJ410V');
+    </script>
+
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>{{$profile->profile_name ?? null}}</title>
@@ -429,14 +439,12 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-12">
-                        <p class="rbt-link-hover text-center text-lg-start">Copyright © 2023 <a href="https://themeforest.net/user/rbt-themes">Rainbow-Themes.</a> All Rights Reserved</p>
+                        <p class="rbt-link-hover text-center text-lg-start">Copyright © {{date('Y')}} All Rights Reserved</p>
                     </div>
                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-12">
                         <ul class="copyright-link rbt-link-hover justify-content-center justify-content-lg-end mt_sm--10 mt_md--10">
-                            <li><a href="#">Terms of service</a></li>
-                            <li><a href="privacy-policy.html">Privacy policy</a></li>
-                            <li><a href="subscription.html">Subscription</a></li>
-                            <li><a href="login.html">Login & Register</a></li>
+                           
+                            <li><a href="/login">Login & Register</a></li>
                         </ul>
                     </div>
                 </div>
