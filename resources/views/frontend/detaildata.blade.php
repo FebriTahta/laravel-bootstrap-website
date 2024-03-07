@@ -1,5 +1,9 @@
 @extends('layouts_fe.raw')
 
+@section('page_title')
+    <title style="text-transform: capitalize">{{$post->post_title}}</title>
+@endsection
+
 @section('meta_tag')
     <meta property="og:title" content="{{$post->post_title}}" />
     <meta property="og:type" content="website" />

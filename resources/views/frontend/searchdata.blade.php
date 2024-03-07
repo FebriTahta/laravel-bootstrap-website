@@ -1,5 +1,9 @@
 @extends('layouts_fe.raw')
 
+@section('page_title')
+    <title style="text-transform: capitalize">Pencarian Data {{$search ?? 'Default'}}</title>
+@endsection
+
 @section('content')
 
 @include('frontend.component.css')

@@ -1,5 +1,9 @@
 @extends('layouts_fe.raw')
 
+@section('page_title')
+    <title style="text-transform: capitalize">Daftar {{$data->konten_name}}</title>
+@endsection
+
 @section('content')
 
 @include('frontend.component.css')

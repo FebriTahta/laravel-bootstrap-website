@@ -1,5 +1,9 @@
 @extends('layouts_fe.raw')
 
+@section('page_title')
+    <title style="text-transform: capitalize">Registrasi Alumni</title>
+@endsection
+
 @section('css')
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>

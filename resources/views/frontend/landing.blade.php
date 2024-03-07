@@ -1,5 +1,9 @@
 @extends('layouts_fe.raw')
 
+@section('page_title')
+    <title style="text-transform: capitalize">Home Page SMK 1 Krian</title>
+@endsection
+
 @section('content')
 
 @if ($profile)
