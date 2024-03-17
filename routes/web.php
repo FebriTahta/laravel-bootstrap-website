@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\UlasanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
@@ -132,4 +133,8 @@ Route::controller(AlumniController::class)->group(function(){
 
 Route::controller(UlasanController::class)->group(function(){
     Route::post('/submit-ulasan','store')->name('submit_ulasan');
+});
+
+Route::controller(SitemapController::class)->group(function(){
+    Route::get('sitemap.xml','index')->name('sitemap');
 });
