@@ -19,13 +19,28 @@ class PageController extends Controller
     {
         $search = null;
         $data = Konten::where('konten_slug', $konten_slug)->withCount('post')->first();
-        $post = Post::where('konten_id', $data->id)
+        
+        if ($data->konten_model == 1) {
+            # code...
+
+            $post = Post::where('konten_id', $data->id)
+            ->with(['kategori'])->first();
+            $kategori = Kategori::whereHas('post', function ($q) use ($data) {
+                $q->where('konten_id', $data->id);
+            })->withCount('post')->get();
+            return view('frontend.datalist',compact('data','post','kategori','search'));
+
+        }else{
+            # code...
+            $post = Post::where('konten_id', $data->id)
                 ->with(['kategori'])->orderBy('id','desc')
                 ->paginate(12);
-        $kategori = Kategori::whereHas('post', function ($q) use ($data) {
-            $q->where('konten_id', $data->id);
-        })->withCount('post')->get();
-        return view('frontend.datalist',compact('data','post','kategori','search'));
+            $kategori = Kategori::whereHas('post', function ($q) use ($data) {
+                $q->where('konten_id', $data->id);
+            })->withCount('post')->get();
+            return view('frontend.datalist',compact('data','post','kategori','search'));
+        }
+        
     }
 
     public function search(Request $request, $konten_slug)
