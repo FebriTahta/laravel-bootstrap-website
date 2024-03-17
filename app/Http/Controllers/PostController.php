@@ -51,7 +51,7 @@ class PostController extends Controller
 
         
         $title  = 'POSTING';
-        $konten = Konten::where('konten_status', 1)->whereHas('post')->orderBy('id','asc')->get(); 
+        $konten = Konten::where('konten_status', 1)->orderBy('id','asc')->get(); 
         return view('backend.post.index',compact('title','konten'));
     }
 
