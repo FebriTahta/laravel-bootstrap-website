@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dashboard;
+use App\Models\Kategori;
+use App\Models\Post;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -13,7 +16,10 @@ class DashboardController extends Controller
     public function index()
     {
         $title = 'Dashboard';
-        return view('backend.dashboard.index', compact('title'));
+        $total_post_aktif = Post::where('post_status',1)->orderBy('id','desc')->count();
+        $total_kategori_aktif = Kategori::where('kategori_status','1')->with('post')->orderBy('id','desc')->get();
+        $profile = Profile::with('image')->first();
+        return view('backend.dashboard.index', compact('title','total_post_aktif','total_kategori_aktif','profile'));
     }
 
     /**
