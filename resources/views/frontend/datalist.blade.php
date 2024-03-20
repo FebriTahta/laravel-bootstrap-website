@@ -4,10 +4,6 @@
     <title style="text-transform: capitalize">Daftar {{$data->konten_name}}</title>
 @endsection
 
-@section('content')
-
-@include('frontend.component.css')
-
 @if ($data->konten_model == 1)
     @section('meta_tag')
     <meta property="og:title" content="{{$post->post_title}}" />
@@ -24,6 +20,13 @@
     <link href="{{ asset('/assets3/css/detail-page.css') }}" rel="stylesheet">
     <link href="{{ asset('/assets3/css/blog.css')}}" rel="stylesheet">
     @endsection
+@endif
+
+@section('content')
+
+@include('frontend.component.css')
+
+@if ($data->konten_model == 1)
     <div class="rbt-overlay-page-wrapper">
         <div class="breadcrumb-image-container breadcrumb-style-max-width">
             <div class="breadcrumb-image-wrapper">
