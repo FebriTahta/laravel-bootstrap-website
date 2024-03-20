@@ -5,7 +5,6 @@
 <!-- Mirrored from rainbowit.net/html/histudy/01-main-demo.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Sep 2023 16:40:25 GMT -->
 <head>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DS5GSJ410V"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
