@@ -5,9 +5,8 @@
     @foreach ($post as $key => $post)
     <url>
         <loc>{{url('/')}}/post/{{$post->konten_slug}}</loc>
-        <lastmod>{{$post->created_at}}</lastmod>
-        <changefreq>{{$post->updated_at}}</changefreq>
-        <priority>{{$key+1}}</priority>
+        <lastmod>{{\Carbon\Carbon::parse($post->created_at)->format('Y-m-d')}}</lastmod>
+        <changefreq>daily</changefreq>
     </url>
     @endforeach
 </urlset>
