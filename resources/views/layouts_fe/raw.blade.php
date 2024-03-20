@@ -16,8 +16,10 @@
 
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="google-site-verification" content="sTb7zvPjIzT8RvINab4o7FvJUlZxdTg7VvsIrC50fZA" />
+
     @yield('page_title')
-    <meta name="robots" content="noindex, follow" />
+    {{-- <meta name="robots" content="noindex, follow" /> --}}
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     @yield('meta_tag')
     
