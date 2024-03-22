@@ -1,7 +1,7 @@
 @extends('layouts_fe.raw')
 
 @section('page_title')
-    <title style="text-transform: capitalize">Daftar {{$data->konten_name}}</title>
+    <title style="text-transform: uppercase">Daftar {{$data->konten_name}}</title>
 @endsection
 
 @if ($data->konten_model == 1)

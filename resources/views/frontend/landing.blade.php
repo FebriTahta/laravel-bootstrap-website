@@ -1,7 +1,7 @@
 @extends('layouts_fe.raw')
 
 @section('page_title')
-    <title style="text-transform: capitalize">Home Page SMK 1 Krian</title>
+    <title style="text-transform: capitalize">SMK KRIAN 1 SIDOARJO</title>
 @endsection
 
 @section('content')
