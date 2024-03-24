@@ -82,9 +82,8 @@ class LoginController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'status' => '400',
-                'message' => 'Maaf periksa kembali username dan password Anda',
-                'errors' => $validator->errors()->all()
+                'status'=>400,
+                'message'=>'OOppss',
             ]);
         }
 
@@ -104,20 +103,19 @@ class LoginController extends Controller
                     'link' => '/admin-dashboard'
                 ]);
             } else {
-                // Handle user not authorized to access
                 return response()->json([
-                    'status' => '403',
-                    'message' => 'Anda tidak diizinkan untuk mengakses halaman ini'
-                ], 403);
+                    'status' => 400,
+                    'message' => 'Maaf hanya admin yang diperbolehkan masuk'
+                ]);
             }
         } else {
-            // Handle invalid credentials
             return response()->json([
-                'status' => '403',
-                'message' => 'Kombinasi username dan password tidak valid'
-            ], 403);
+                'status' => 400,
+                'message' => 'Maaf, kombinasi nama pengguna dan kata sandi tidak valid.'
+            ]);
         }
     }
+
 
 
 }

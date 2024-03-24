@@ -258,6 +258,7 @@
                 $('#btnadd').val('Process...');
             },
             success: function(response) {
+              console.log('a');
                 if (response.status == 200) {
                     $("#formadd")[0].reset();
                     $('#btnadd').val('Sign In');
