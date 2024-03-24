@@ -104,16 +104,18 @@ class LoginController extends Controller
                     'link' => '/admin-dashboard'
                 ]);
             } else {
+                // Handle user not authorized to access
                 return response()->json([
-                    'status' => '400',
-                    'message' => 'Maaf hanya admin yang diperbolehkan masuk'
-                ]);
+                    'status' => '403',
+                    'message' => 'Anda tidak diizinkan untuk mengakses halaman ini'
+                ], 403);
             }
         } else {
+            // Handle invalid credentials
             return response()->json([
-                'status' => '400',
-                'message' => 'Maaf periksa kembali username dan password Anda'
-            ]);
+                'status' => '403',
+                'message' => 'Kombinasi username dan password tidak valid'
+            ], 403);
         }
     }
 
