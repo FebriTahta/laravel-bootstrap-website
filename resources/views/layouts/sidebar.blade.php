@@ -62,6 +62,17 @@
           <span class="nav-link-text ms-1">Alumni</span>
         </a>
       </li>
+      <li class="nav-item mt-3">
+        <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Credentials</h6>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="/admin-users">
+          <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="fa fa-user text-primary text-sm opacity-10"></i>
+          </div>
+          <span class="nav-link-text ms-1">Users</span>
+        </a>
+      </li>
     </ul>
   </div>
   <div class="sidenav-footer mx-3 ">

@@ -4,6 +4,7 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\UlasanController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MenuController;
@@ -36,6 +37,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['middleware' => ['auth', 'CheckRole:admin,super_admin']], function () {
     Route::get('/admin-dashboard', [DashboardController::class,'index'])->name('admin-dashboard');
+
+    Route::controller(UserController::class)->group(function(){
+        Route::get('/admin-users','index')->name('admin-users');
+        Route::post('/admin-users-update','update');
+    }); 
 
     Route::controller(MenuController::class)->group(function(){
         Route::get('/admin-menus', 'index')->name('admin-menus');
