@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
+use Validator;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -39,42 +40,83 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    // public function login(Request $request)
+    // {
+    //     $input = $request->all();
+
+    //     $this->validate($request, [
+    //         'name' => 'required',
+    //         'password' => 'required',
+    //     ]);
+
+    //     $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
+    //     if (auth()->attempt(array($fieldType => $input['name'], 'password' => $input['password']))) {
+    //         if (auth()->user()->role == 'admin' || auth()->user()->role == 'super_admin') {
+    //             # code...
+    //             return response()->json([
+    //                 'status'=>'200',
+    //                 'message'=>'Login success! Welcome back',
+    //                 'link'=>'/admin-dashboard'
+    //             ]);
+    //         }else {
+    //             # code...
+    //             return response()->json([
+    //                 'status'=>'400',
+    //                 'message'=>'Maaf hanya admin yang diperbolehkan masuk'
+    //             ]);
+    //         }
+    //     } else {
+    //         return response()->json([
+    //             'status'=>'400',
+    //             'message'=>'Maaf periksa kembali username anda'
+    //         ]);
+    //     }
+    // }
+
     public function login(Request $request)
     {
-        // return 'a';
-        // $u = User::find(1);
-        // $u->password = Hash::make('admin');
-        // $u->save();
-        // return $u;
-        $input = $request->all();
-
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'password' => 'required',
         ]);
 
-        $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
-        if (auth()->attempt(array($fieldType => $input['name'], 'password' => $input['password']))) {
-            if (auth()->user()->role == 'admin' || auth()->user()->role == 'super_admin') {
-                # code...
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => '400',
+                'message' => 'Maaf periksa kembali username dan password Anda',
+                'errors' => $validator->errors()->all()
+            ]);
+        }
+
+        $fieldType = filter_var($request->name, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
+
+        $credentials = [
+            $fieldType => $request->name,
+            'password' => $request->password
+        ];
+
+        if (auth()->attempt($credentials)) {
+            $user = auth()->user();
+            if ($user->role == 'admin' || $user->role == 'super_admin') {
                 return response()->json([
-                    'status'=>'200',
-                    'message'=>'Login success! Welcome back',
-                    'link'=>'/admin-dashboard'
+                    'status' => '200',
+                    'message' => 'Login success! Welcome back',
+                    'link' => '/admin-dashboard'
                 ]);
-            }else {
-                # code...
+            } else {
                 return response()->json([
-                    'status'=>'400',
-                    'message'=>'Maaf hanya admin yang diperbolehkan masuk'
+                    'status' => '400',
+                    'message' => 'Maaf hanya admin yang diperbolehkan masuk'
                 ]);
             }
         } else {
             return response()->json([
-                'status'=>'400',
-                'message'=>'Maaf periksa kembali username anda'
+                'status' => '400',
+                'message' => 'Maaf periksa kembali username dan password Anda'
             ]);
         }
     }
+
+
 }
 
