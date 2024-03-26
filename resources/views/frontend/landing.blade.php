@@ -2,6 +2,20 @@
 
 @section('page_title')
     <title style="text-transform: capitalize">SMK KRIAN 1 SIDOARJO</title>
+    <style>
+        /* Style untuk tombol scroll */
+        #scrollToJurusan {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            cursor: pointer;
+        }
+        
+        .indicator-icon {
+            cursor: pointer;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -63,7 +77,7 @@
                         <div class="slider-btn">
                             <a class="rbt-btn btn-gradient hover-icon-reverse" href="{{$profile->profile_link1 ?? '#'}}">
                                 <span class="icon-reverse-wrapper">
-                                    <span class="btn-text">Baca Selengkapnya</span>
+                                    <span class="btn-text">Selengkapnya</span>
                                 <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                 <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                 </span>
@@ -136,7 +150,7 @@
                     <h3 class="title">
                         {{$profile->profile_herosubtitle ?? 'Hadir dengan daftar jurusan bergengsi. <span class="heading-opacity">Serta pengajar yang profesional & berkompeten di bidangnya.</span>'}}
                     </h3>
-                    <div class="indicator-icon ">
+                    <div class="indicator-icon" onclick="scrollToJurusan()">
                         <img class="edu_bounce_loop" src="{{asset('assets_fe/images/icons/arrow-down.png')}}" alt="arrow down icon">
                     </div>
                     <p class="description has-medium-font-size mt--20">{{$profile->profile_herodesc ?? 'Kami hadir untuk mendidik putra dan putri bangsa menjadi generasi terbaik yang siap untuk bersaing dengan dunia nyata'}}
@@ -265,10 +279,15 @@
                                             </ul>
                                             <h4 class="rbt-card-title">
                                                 <a href="/post/{{$item->konten->konten_slug}}/{{$item->post_slug}}">
-                                                    @if (strlen($item->post_title) > 40)
-                                                        {{substr($item->post_title, 0,40)}} ...
+                                                    @if (strlen($item->post_title) > 35)
+                                                        {{substr($item->post_title, 0,35)}} ...
                                                         @else
-                                                        {{substr($item->post_title, 0,40)}}
+                                                        {{substr($item->post_title, 0,35)}}
+                                                        @if (strlen($item->post_title) < 20)
+                                                            <br><br>
+                                                            @else
+                                                            <br>
+                                                        @endif
                                                     @endif
                                                 </a>
                                             </h4>
@@ -574,6 +593,36 @@
 </div>
 @endif
 
+<div class="home-demo-area rbt-section-gap bg-gradient-6 splash-masonary-wrapper-activation" id="jurusanElement">
+    <div class="wrapper plr--120 plr_lg--30 plr_md--30 plr_sm--30 plr_mobile--15">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="demo-presentation-mesonry splash-mesonry-list grid-metro3">
+                    <div class="resizer"></div>
+                    @foreach ($jurusan as $item)
+                    <div class="maso-item marketplace career instructor">
+                        <div class="single-demo">
+                            <a class="single-demo-link" href="/post/{{$item->konten->konten_slug}}/{{$item->post_slug}}">
+                                <div class="thumbnail">
+                                    <img src="{{asset('images_thumbnail/'.$item->post_thumb)}}" alt="{{$item->post_title}}">
+                                    <div class="mobile-view">
+                                        <div class="inner">
+                                            <img src="{{asset('images_thumbnail/'.$item->post_thumb)}}" alt="{{$item->post_title}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h3 class="title">{{$item->post_title}}<span class="label-new">Jurusan</span></h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="rbt-testimonial-area bg-color-white ptb--100 overflow-hidden">
     <div class="container-fluid">
@@ -806,7 +855,12 @@
 
 
 @section('script')
+
 <script>
-//    
-</script>
+    // Fungsi untuk melakukan scroll ke elemen tertentu
+    function scrollToJurusan() {
+      var targetElement = document.getElementById('jurusanElement');
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
 @endsection

@@ -1,3 +1,11 @@
+<style>
+    .list-gambar {
+        width: 100%; /* Lebar yang diinginkan */
+        height: 220px; /* Tinggi yang diinginkan */
+        object-fit: cover; /* Proporsi aspek tetap, menutupi seluruh area */
+    }
+</style>
+
 <div class="rbt-section-overlayping-top rbt-section-gapBottom" style="padding-top: 30px">
     <div class="container">
         <div class="row">
@@ -7,8 +15,8 @@
                     <div class="course-grid-3">
                         <div class="rbt-card variation-01 rbt-hover">
                             <div class="rbt-card-img">
-                                <a href="{{ route('post.detaildata', ['konten_slug' => $konten->konten_slug, 'post_slug' => $item->post_slug]) }}">
-                                    <img src="{{asset('images_thumbnail/'.$item->post_thumb)}}" alt="{{$item->id}}">
+                                <a href="{{ route('post.detaildata', ['konten_slug' => $konten->konten_slug, 'post_slug' => $item->post_slug]) }}" >
+                                    <img src="{{asset('images_thumbnail/'.$item->post_thumb)}}" alt="{{$item->id}}" class="list-gambar">
                                 </a>
                             </div>
                             <div class="rbt-card-body">
@@ -18,8 +26,8 @@
                                 
                                 <h4 class="rbt-card-title">
                                     <a href="{{ route('post.detaildata', ['konten_slug' => $konten->konten_slug, 'post_slug' => $item->post_slug]) }}">
-                                        {{substr($item->post_title, 0, 45)}}
-                                        @if (strlen($item->post_title) > 45)
+                                        {{substr($item->post_title, 0, 35)}}
+                                        @if (strlen($item->post_title) > 35)
                                             ...
                                         @endif
                                     </a>
