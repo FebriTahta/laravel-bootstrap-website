@@ -26,7 +26,7 @@
         </div>
         <div class="rbt-swiper-arrow rbt-arrow-right">
             <div class="custom-overfolow">
-                <i class="rbt-icon feather-arrow-right"></i>
+                <i class="rbt-icon feather-arrow-right"></i> 
                 <i class="rbt-icon-top feather-arrow-right"></i>
             </div>
         </div>

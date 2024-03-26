@@ -16,7 +16,7 @@ class LandingController extends Controller
         // berita
         $hot_news = Post::where('konten_id', function ($q) {
             $q->select('id')
-              ->from('kontens')
+              ->from('kontens') 
               ->where('konten_slug', 'LIKE', '%berita%');
         })->orderBy('id','desc')->limit(3)->get();
 
