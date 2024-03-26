@@ -88,18 +88,8 @@
                             <div class="rbt-header-content justify-content-start justify-content-lg-end">
                                 
 
-                                <div class="rbt-separator d-none d-xl-block">
-                                    <div class="rbt-header-top-news">
-                                        <div class="inner">
-                                            <div class="content">
-                                                <a href="https://pembayaran.smkkrian1.sch.id/student-sign" target="_blank"><span class="news-text"> Pembayaran Siswa &nbsp; &nbsp; &nbsp; &nbsp; </span></a>
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <div class="rbt-separator d-none d-xl-block"></div>
                                 <div class="header-info d-none d-xl-block">
-                                   
                                     <ul class="social-share-transparent">
                                         <li>
                                             @auth
@@ -409,13 +399,8 @@
 
             <div class="mobile-menu-bottom">
                 <div class="social-share-wrapper">
-                    <span class="rbt-short-title d-block">Andministrasi</span>
-                    <ul class="mainmenu">
-                        <li class="position-static">
-                            <a href="https://pembayaran.smkkrian1.sch.id/student-sign" target="_blank">Pembayaran Siswa</a>
-                        </li>
-                    </ul>
-                    {{-- <ul class="social-icon social-default transparent-with-border justify-content-start mt--20">
+                    <span class="rbt-short-title d-block">Find With Us</span>
+                    <ul class="social-icon social-default transparent-with-border justify-content-start mt--20">
                         <li><a href="https://www.facebook.com/">
                                 <i class="feather-facebook"></i>
                             </a>
@@ -432,7 +417,7 @@
                                 <i class="feather-linkedin"></i>
                             </a>
                         </li>
-                    </ul> --}}
+                    </ul>
                 </div>
             </div>
         </div>

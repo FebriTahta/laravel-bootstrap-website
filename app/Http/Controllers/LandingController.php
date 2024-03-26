@@ -20,9 +20,7 @@ class LandingController extends Controller
               ->where('konten_slug', 'LIKE', '%berita%');
         })->orderBy('id','desc')->limit(3)->get();
 
-        $profile = Profile::with(['image' => function($q) {
-            $q->orderBy('id','desc');
-        }])->first();
+        $profile = Profile::with('image')->first();
 
         // prestasi
         $prestasi = Post::where('konten_id', function($q) {
@@ -52,12 +50,6 @@ class LandingController extends Controller
             ->where('konten_slug','LIKE', '%artikel%');
         })->orderBy('id','desc')->limit(4)->get();
 
-        $jurusan = Post::where('konten_id', function($q){
-            $q->select('id')
-            ->from('kontens')
-            ->where('konten_slug','jurusan');
-        })->get();
-
         $alumni = Alumni::where('alumni_status', 1)->with(['ulasan'])
         ->orderBy('id','desc')->limit(6)->get();
 
@@ -71,7 +63,7 @@ class LandingController extends Controller
         $general = Post::orderBy('id','desc')->limit(10)->get();
 
         return view('frontend.landing',compact('hot_news','profile','prestasi','ebook',
-        'guru','artikel','general','alumni','alumniLanjutan','jurusan'));
+        'guru','artikel','general','alumni','alumniLanjutan'));
     }
 
     /**
