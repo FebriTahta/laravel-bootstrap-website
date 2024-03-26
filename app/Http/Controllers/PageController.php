@@ -50,8 +50,10 @@ class PageController extends Controller
         $data = Konten::where('konten_slug', $konten_slug)->withCount('post')->first();
         $post = Post::where('konten_id', $data->id)
             ->where(function ($query) use ($search) {
-                $query->where('post_title', 'like', '%' . $search . '%')
-                    ->orWhere('post_desc', 'like', '%' . $search . '%');
+                $query->where(function ($query) use ($search) {
+                    $query->where('post_title', 'like', '%' . $search . '%')
+                          ->orWhere('post_desc', 'like', '%' . $search . '%');
+                });
             })
             ->with(['kategori'])->orderBy('id','desc')
             ->paginate(12);

@@ -1,3 +1,10 @@
+<style>
+    .gambar-list {
+      width: 100%; /* Atur lebar yang diinginkan */
+      height: 220px; /* Atur tinggi yang diinginkan */
+      object-fit: cover; /* Jaga aspek rasio gambar */
+    }
+  </style>
 <div class="rbt-section-overlayping-top rbt-section-gapBottom" style="padding-top: 30px">
     <div class="container" style="min-height: 500px">
         <div class="row">
@@ -19,7 +26,7 @@
                         <div class="rbt-card variation-01 rbt-hover">
                             <div class="rbt-card-img">
                                 <a href="{{ route('post.detaildata', ['konten_slug' => $item->konten->konten_slug, 'post_slug' => $item->post_slug]) }}">
-                                    <img src="{{asset('images_thumbnail/'.$item->post_thumb)}}" alt="{{$item->id}}">
+                                    <img class="gambar-list" src="{{asset('images_thumbnail/'.$item->post_thumb)}}" alt="{{$item->id}}">
                                 </a>
                             </div>
                             <div class="rbt-card-body">

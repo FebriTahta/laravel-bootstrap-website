@@ -2,6 +2,11 @@
 
 @section('page_title')
     <title style="text-transform: capitalize">SMK KRIAN 1 SIDOARJO</title>
+    <style>
+        .edu_bounce_loop {
+            cursor: pointer;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -137,7 +142,7 @@
                         {{$profile->profile_herosubtitle ?? 'Hadir dengan daftar jurusan bergengsi. <span class="heading-opacity">Serta pengajar yang profesional & berkompeten di bidangnya.</span>'}}
                     </h3>
                     <div class="indicator-icon ">
-                        <img class="edu_bounce_loop" src="{{asset('assets_fe/images/icons/arrow-down.png')}}" alt="arrow down icon">
+                        <img class="edu_bounce_loop" onclick="scrollToJurusan()" src="{{asset('assets_fe/images/icons/arrow-down.png')}}" alt="arrow down icon">
                     </div>
                     <p class="description has-medium-font-size mt--20">{{$profile->profile_herodesc ?? 'Kami hadir untuk mendidik putra dan putri bangsa menjadi generasi terbaik yang siap untuk bersaing dengan dunia nyata'}}
                     </p>
@@ -265,10 +270,15 @@
                                             </ul>
                                             <h4 class="rbt-card-title">
                                                 <a href="/post/{{$item->konten->konten_slug}}/{{$item->post_slug}}">
-                                                    @if (strlen($item->post_title) > 40)
-                                                        {{substr($item->post_title, 0,40)}} ...
+                                                    @if (strlen($item->post_title) > 35)
+                                                        {{substr($item->post_title, 0,35)}} ...
                                                         @else
-                                                        {{substr($item->post_title, 0,40)}}
+                                                        {{substr($item->post_title, 0,35)}}
+                                                            @if (strlen($item->post_title) > 20)
+                                                                <br>
+                                                            @else
+                                                                <br><br>
+                                                            @endif
                                                     @endif
                                                 </a>
                                             </h4>
@@ -574,6 +584,38 @@
 </div>
 @endif
 
+<div class="home-demo-area rbt-section-gap bg-gradient-6 splash-masonary-wrapper-activation" id="jurusanElement">
+    <div class="wrapper plr--120 plr_lg--30 plr_md--30 plr_sm--30 plr_mobile--15">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="demo-presentation-mesonry splash-mesonry-list grid-metro3" style="position: relative; height: 4861.78px;">
+                    <div class="resizer" style="position: absolute; left: 0%; top: 0px;"></div>
+                    @foreach ($jurusan as $item)
+                        <!-- Start Single Demo  -->
+                        <div class="maso-item marketplace career instructor" style="position: absolute; left: 0%; top: 0px;">
+                            <div class="single-demo">
+                                <a class="single-demo-link" href="01-main-demo.html">
+                                    <div class="thumbnail">
+                                        <img src="{{asset('images_thumbnail/'.$item->post_thumb)}}" alt="Jurusan Images">
+                                        <div class="mobile-view">
+                                            <div class="inner">
+                                                <img src="{{asset('images_thumbnail/'.$item->post_thumb)}}" alt="Jurusan Images">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="content" style="margin-top: 20px">
+                                        <h3 class="title"><span class="label-new">{{$item->post_title}}</span></h3>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- End Single Demo  -->
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="rbt-testimonial-area bg-color-white ptb--100 overflow-hidden">
     <div class="container-fluid">
@@ -807,6 +849,9 @@
 
 @section('script')
 <script>
-//    
+    function scrollToJurusan() {
+        var targetElement = document.getElementById('jurusanElement');
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+    }
 </script>
 @endsection
