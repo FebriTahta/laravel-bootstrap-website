@@ -594,7 +594,7 @@
                         <!-- Start Single Demo  -->
                         <div class="maso-item marketplace career instructor" style="position: absolute; left: 0%; top: 0px;">
                             <div class="single-demo">
-                                <a class="single-demo-link" href="01-main-demo.html">
+                                <a class="single-demo-link" href="/post/{{$item->konten->konten_slug}}/{{$item->post_slug}}">
                                     <div class="thumbnail">
                                         <img src="{{asset('images_thumbnail/'.$item->post_thumb)}}" alt="Jurusan Images">
                                         <div class="mobile-view">
