@@ -335,7 +335,7 @@
                         <button class="close-button rbt-round-btn"><i class="feather-x"></i></button>
                     </div>
                 </div>
-                <p class="description">Di sini, bukan hanya sekedar pendidikan, tapi juga pembentukan karakter dan keterampilan yang akan membimbingmu menuju kesuksesan. Bersama SMK Krian 1</p>
+                <p class="description">Pembentukan karakter dan keterampilan yang akan membimbingmu menuju kesuksesan. Bersama SMK Krian 1</p>
                 <ul class="navbar-top-left rbt-information-list justify-content-start">
                     @if ($profile)
                         @if ($profile->profile_email)
