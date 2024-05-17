@@ -86,7 +86,7 @@
                             
                         </div>
                         <div class="row row--0">
-                            <div class="col-lg-6 col-md-6 col-12">
+                            {{-- <div class="col-lg-6 col-md-6 col-12">
                                 <div class="pricing-left">
                                     <div class="pricing-offer">
                                         <div class="single-list">
@@ -106,8 +106,8 @@
                                     </div>
                                     <div class="pricing-badge"><span>Preview</span></div>
                                 </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-12">
+                            </div> --}}
+                            <div class="col-lg-12 col-md-12 col-12">
                                 <div class="pricing-right position-relative">
                                     <div class="pricing-offer">
                                         <div class="single-list">
@@ -115,6 +115,14 @@
                                                 <div class="form-group">
                                                     <label for="nama" class="placeholder">Nama lengkap</label>
                                                     <input type="text" class="form-control" id="nama" name="alumni_name" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="alumni_telp" class="placeholder">Nomor Telephone (Hp)</label>
+                                                    <input type="number" class="form-control" id="alumni_telp" name="alumni_telp" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="alumni_alamat" class="placeholder">Alamat Tempat Tinggal</label>
+                                                    <textarea name="alumni_alamat" class="form-control" id="alumni_alamat" cols="30" rows="5"></textarea>
                                                 </div>
                                                 <div class="row">
                                                     <div class="form-group col-6">
@@ -174,9 +182,27 @@
                                                     </div>
                                                 </div>
 
-                                                <label class="placeholder" style="width: 100%">Foto (Max 2mb)</label>
+                                                <label class="placeholder" style="width: 100%">Foto Alumni (Max 2mb)</label>
                                                 <div class="form-group">
                                                     <input type="file" class="form-control" accept="image/*" name="alumni_image" id="alumni_image" placeholder="Pilih file gambar...">
+                                                    <br>
+                                                    <div class="card-body" style="max-width: 150px">
+                                                        <div class="frame">
+                                                            <img src="{{asset('thankyou.png')}}" alt="Gambar" id="previewImage"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <label class="placeholder" style="width: 100%">Sertifikat Keterampilan Yang dimiliki Alumni</label>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-9">
+                                                            <input type="file" class="form-control" accept="image/*" name="alumni_image" id="alumni_image" placeholder="Pilih file gambar...">
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <button class="rbt-btn btn-sm btn-gradient w-100"><i class="fa fa-plus"></i></button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <button class="rbt-btn btn-gradient w-100" id="daftar">Submit Form</button>
                                             </form>

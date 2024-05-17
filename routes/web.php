@@ -29,9 +29,6 @@ use App\Http\Controllers\SocialmediaController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('layouts_fe.raw');
-// });
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -70,6 +67,8 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin,super_admin']], function
         Route::get('/admin-konten-destroy/{id}','destroy');
     });
 
+
+
     Route::controller(KategoriController::class)->group(function(){
         Route::get('/admin-kategori','index')->name('admin-kategori');
         Route::get('/admin-kategori-create','create');
@@ -89,7 +88,12 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin,super_admin']], function
     });
 
     Route::controller(SocialmediaController::class)->group(function(){
-        Route::post('/admin-sosmed-store','sstore');
+        Route::get('/admin-socialmedia','index')->name('admin-socialmedia');
+        Route::get('/admin-socialmedia-create','create');
+        Route::post('/admin-socialmedia-store','store');
+        Route::get('/admin-socialmedia-edit/{id}','edit');
+        Route::post('/admin-socialmedia-update/{id}','update');
+        Route::get('/admin-socialmedia-destroy/{id}','destroy');
     });
 
     Route::controller(ImageController::class)->group(function(){
