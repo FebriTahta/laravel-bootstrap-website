@@ -5,6 +5,7 @@
 <!-- Mirrored from rainbowit.net/html/histudy/01-main-demo.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Sep 2023 16:40:25 GMT -->
 <head>
     <!-- Google tag (gtag.js) -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -12,7 +13,7 @@
 
         gtag('config', 'G-DS5GSJ410V');
     </script>
-
+    
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="google-site-verification" content="sTb7zvPjIzT8RvINab4o7FvJUlZxdTg7VvsIrC50fZA" />
@@ -20,6 +21,7 @@
     @yield('page_title')
     {{-- <meta name="robots" content="noindex, follow" /> --}}
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
     @yield('meta_tag')
     
     <!-- Favicon -->
@@ -44,11 +46,31 @@
     <link rel="stylesheet" href="{{asset('assets_fe/css/plugins/plyr.css')}}">
     <link rel="stylesheet" href="{{asset('assets_fe/css/style.css')}}">
     @yield('css')
-    
+    <style>
+        @media (min-width: 550px) {
+            .mobiles {
+                display: none;
+            }
+            .desktops {
+                display: block;
+            }
+        }
+
+        @media (max-width: 551px) {
+            .mobiles {
+                display: block;
+            }
+            .desktops {
+                display: none;
+            }
+        }
+    </style>
 </head>
 
 <body class="rbt-header-sticky">
-
+    @php
+        $sosmed = \App\Models\Socialmedia::all();
+    @endphp
     <!-- Start Header Area -->
     <header class="rbt-header rbt-header-10">
         <div class="rbt-sticky-placeholder"></div>
@@ -76,8 +98,31 @@
                                     <div class="rbt-header-top-news">
                                         <div class="inner">
                                             <div class="content">
-                                                <span class="rbt-badge variation-02 bg-color-primary color-white radius-round">Hi</span>
-                                                <span class="news-text"><img src="{{asset('assets_fe/images/icons/hand-emojji.svg')}}" alt="Hand Emojji Images"> Welcome to {{$profile->profile_name ?? 'my website.'}}</span>
+                                                <div class="desktops">
+                                                    <span class="rbt-badge variation-02 bg-color-primary color-white radius-round">Hi</span>
+                                                    <span class="news-text"><img src="{{asset('assets_fe/images/icons/hand-emojji.svg')}}" alt="Hand Emojji Images"> Welcome to {{$profile->profile_name ?? 'my website.'}}</span>
+                                                    
+                                                </div>
+                                                <div class="mobiles">
+                                                    <span class="rbt-badge variation-02 bg-color-primary color-white radius-round">Hi</span>
+                                                    <span class="news-text"><img src="{{asset('assets_fe/images/icons/hand-emojji.svg')}}" alt="Hand Emojji Images"> Tekan + untuk melihat daftar sosial media</span>
+                                                    @foreach ($sosmed as $item)
+                                                        <span class="news-text" style="margin-right: 10px">
+                                                            "<a class="news-text" href="{{$item->socialmedia_source}}" target="_blank">
+                                                                @if ($item->socialmedia_name == 'tiktok')
+                                                                    <img src="{{ asset('assets/icon-tiktok.png') }}" style="width:15px">
+                                                                @elseif($item->socialmedia_name == 'discord')
+                                                                    <img src="{{ asset('assets/icon-discord.png') }}" style="width:15px">
+                                                                @elseif($item->socialmedia_name == 'threads')
+                                                                    <img src="{{ asset('assets/icon-thread.png') }}" style="width:15px">
+                                                                @else
+                                                                    <i class="{{$item->socialmedia_icon}} text-white"></i>
+                                                                @endif
+                                                                {{$item->socialmedia_name}}
+                                                            </a>"</span>
+                                                    @endforeach
+                                                </div>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -414,22 +459,6 @@
                         <li class="position-static">
                             <a href="https://pembayaran.smkkrian1.sch.id/student-sign" target="_blank">Pembayaran Siswa</a>
                         </li>
-                        {{-- <li><a href="https://www.facebook.com/">
-                                <i class="feather-facebook"></i>
-                            </a>
-                        </li>
-                        <li><a href="https://www.twitter.com/">
-                                <i class="feather-twitter"></i>
-                            </a>
-                        </li>
-                        <li><a href="https://www.instagram.com/">
-                                <i class="feather-instagram"></i>
-                            </a>
-                        </li>
-                        <li><a href="https://www.linkdin.com/">
-                                <i class="feather-linkedin"></i>
-                            </a>
-                        </li> --}}
                     </ul>
                 </div>
             </div>
@@ -457,7 +486,25 @@
                     </div>
                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-12">
                         <ul class="copyright-link rbt-link-hover justify-content-center justify-content-lg-end mt_sm--10 mt_md--10">
-                            {{-- <li><a href="/login">Login & Register</a></li> --}}
+                           
+
+                            @foreach ($sosmed as $item)
+                                <li>
+                                    <a href="{{$item->socialmedia_source}}" target="_blank">
+                                        @if ($item->socialmedia_name == 'tiktok')
+                                            <img src="{{ asset('assets/icon-tiktok.png') }}" style="width:15px">
+                                        @elseif($item->socialmedia_name == 'discord')
+                                            <img src="{{ asset('assets/icon-discord.png') }}" style="width:15px">
+                                        @elseif($item->socialmedia_name == 'threads')
+                                            <img src="{{ asset('assets/icon-thread.png') }}" style="width:15px">
+                                        @else
+                                            <i class="{{$item->socialmedia_icon}}"></i>
+                                        @endif
+                                        {{$item->socialmedia_name}}
+                                    </a>
+                                </li>
+                            @endforeach
+                            
                         </ul>
                     </div>
                 </div>

@@ -52,7 +52,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="/admin-alumni">
+        <a class="nav-link " href="/admin-socialmedia">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
             <i class="fa fa-facebook text-primary text-sm opacity-10"></i>
           </div>
