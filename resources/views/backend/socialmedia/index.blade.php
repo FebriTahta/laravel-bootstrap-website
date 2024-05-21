@@ -160,6 +160,14 @@
                     <p class="text-xs font-weight-bold mb-0 text-capitalize">${item.socialmedia_source}</p>
                     <p class="text-xs text-secondary mb-0">${item.socialmedia_icon}</p>
                 </td>
+                <td class="text-center">
+                  <a href="/admin-socialmedia-edit/${encryptBase64(item.id)}" style="margin-right:5px" class="btn btn-xs btn-info font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                    <i class="fa fa-pencil"></i>
+                  </a>
+                  <a href="javascript:;" onclick="deletesocialmediaConfirmation(${item.id})" style="margin-right:5px" class="btn btn-xs btn-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                    <i class="fa fa-trash"></i>
+                  </a>
+                </td>
             </tr>`;
 
             socialmedia_table.append(row);

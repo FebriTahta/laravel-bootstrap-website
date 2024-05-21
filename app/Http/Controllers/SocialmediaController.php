@@ -110,24 +110,66 @@ class SocialmediaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Socialmedia $socialmedia)
+    public function edit(Socialmedia $socialmedia, $id)
     {
-        //
+        $id = base64_decode($id);
+        $title = "SOCIAL MEDIA";
+        $socialmedia = Socialmedia::where('id', $id)->first();
+
+        $socialmedia_list = Socialmedia::get();
+        // Mengambil nama-nama dari socialmedia_list
+        $list_names = $socialmedia_list->pluck('socialmedia_name');
+        // Mengambil nama-nama dari socialmedia_ready yang tidak ada di list_names
+        $sosmed = collect($this->socialmedia_ready)->reject(function ($item) use ($list_names) {
+            return $list_names->contains($item['name']);
+        });
+        // Menambahkan socialmedia_name dari $socialmedia ke sosmed jika belum ada
+        $sosmed->prepend(['name'=>$socialmedia->socialmedia_name,'icon'=>$socialmedia->socialmedia_icon]);
+        return view('backend.socialmedia.edit',compact('title','sosmed','socialmedia'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Socialmedia $socialmedia)
+    public function update(Request $request, Socialmedia $socialmedia, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'socialmedia_name'    => 'required',
+            'socialmedia_source'  => 'required|starts_with:https://',
+        ],[
+            'socialmedia_source.starts_with' => 'The :attribute must start with https://',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('error', $validator->errors()->first())->with('input', $request->all());
+        }else {
+            $socialmedia_name = $request->socialmedia_name;
+            $socialmedia_icon = null;
+            foreach ($this->socialmedia_ready as $socialmedia) {
+                if ($socialmedia['name'] === $socialmedia_name) {
+                    $socialmedia_icon = $socialmedia['icon'];
+                    break; // Keluar dari loop jika ditemukan
+                }
+            }
+            $socialmedia = Socialmedia::where('id', $id)->update([
+                'socialmedia_icon' => $socialmedia_icon,
+                'socialmedia_source' => $request->socialmedia_source,
+                'socialmedia_name' => $request->socialmedia_name
+            ]);
+
+            return redirect()->to('/admin-socialmedia')->with('success','social media '.$request->socialmedia_name.' has been Updated');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Socialmedia $socialmedia)
+    public function destroy(Socialmedia $socialmedia, $id)
     {
-        //
+        Socialmedia::where('id',$id)->delete();
+        return Response()->json([
+            'status'  => 200,
+            'message' => 'Socialmedia has been deleted'
+        ]);
     }
 }
