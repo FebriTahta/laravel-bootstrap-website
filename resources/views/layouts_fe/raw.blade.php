@@ -84,9 +84,21 @@
                                 <!-- Start Header Information List  -->
                                 <div class="header-info">
                                     <ul class="rbt-information-list">
-                                        <li>
-                                            <a href="#"><i class="feather-phone"></i>Kontak : {{$profile->profile_contactnumber ?? '+1-202-555-0174'}}</a>
-                                        </li>
+                                        @foreach ($sosmed as $item)
+                                <li>
+                                    <a href="{{$item->socialmedia_source}}" target="_blank">
+                                        @if ($item->socialmedia_name == 'tiktok')
+                                            <img src="{{ asset('assets/icon-tiktok.png') }}" style="width:15px">
+                                        @elseif($item->socialmedia_name == 'discord')
+                                            <img src="{{ asset('assets/icon-discord.png') }}" style="width:15px">
+                                        @elseif($item->socialmedia_name == 'threads')
+                                            <img src="{{ asset('assets/icon-thread.png') }}" style="width:15px">
+                                        @else
+                                            <i class="{{$item->socialmedia_icon}}"></i>
+                                        @endif
+                                    </a>
+                                </li>
+                            @endforeach
                                     </ul>
                                 </div>
                                 <!-- End Header Information List  -->
@@ -209,11 +221,18 @@
                             <li class="account-access rbt-user-wrapper d-none d-xl-block">
                                 {{-- <a href="https://pembayaran.smkkrian1.sch.id" target="_blank">PPDB</a> --}}
                                 {{-- <a href="{{route('login')}}"><i class="feather-lock"></i>Login</a> --}}
-                                <a class="rbt-btn btn-gradient hover-icon-reverse" style="margin-right: -50px" target="_blank" href="https://pembayaran.smkkrian1.sch.id">
+                                <a class="button btn btn-sm btn-primary" style="margin-right: 20px; border-radius: 5px" target="_blank" href="https://pembayaran.smkkrian1.sch.id">
                                     <span class="icon-reverse-wrapper">
-                                        <span class="btn-text">Pendaftaran</span>
-                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                        <span class="btn-text text-white">Pendaftaran</span>
+                                        {{-- <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span> --}}
+                                    </span>
+                                </a>
+                                <a class="button btn btn-sm btn-primary" style="margin-right: -50px; border-radius: 5px" target="_blank" href="https://lms.smkkrian1.sch.id">
+                                    <span class="icon-reverse-wrapper">
+                                        <span class="btn-text text-white">LMS</span>
+                                        {{-- <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span> --}}
                                     </span>
                                 </a>
                             </li>
