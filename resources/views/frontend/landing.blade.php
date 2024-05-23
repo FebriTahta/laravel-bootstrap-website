@@ -596,7 +596,7 @@
                             <div class="single-demo">
                                 <a class="single-demo-link" href="/post/{{$item->konten->konten_slug}}/{{$item->post_slug}}">
                                     <div class="thumbnail">
-                                        <img src="{{asset('images_thumbnail/'.$item->post_thumb)}}" alt="Jurusan Images">
+                                        <img src="{{asset('images_thumbnail/'.$item->post_thumb)}}" style="height: 200px" alt="Jurusan Images">
                                         <div class="mobile-view">
                                             <div class="inner">
                                                 <img src="{{asset('images_thumbnail/'.$item->post_thumb)}}" alt="Jurusan Images">
