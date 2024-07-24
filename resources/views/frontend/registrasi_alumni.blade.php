@@ -86,27 +86,6 @@
                             
                         </div>
                         <div class="row row--0">
-                            {{-- <div class="col-lg-6 col-md-6 col-12">
-                                <div class="pricing-left">
-                                    <div class="pricing-offer">
-                                        <div class="single-list">
-                                            <div class="card-body">
-                                                <div class="card-body">
-                                                    <div class="frame">
-                                                        <img src="{{asset('thankyou.png')}}" alt="Gambar" id="previewImage"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card-footer" style="margin-top: 50px">
-                                                <small class="subtitle" style="font-size: 12px; color: red">
-                                                    pastikan menggunakan email yang valid.<br>verifikasi dikirim melalui email untuk mengisi ulasan
-                                                </small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="pricing-badge"><span>Preview</span></div>
-                                </div>
-                            </div> --}}
                             <div class="col-lg-12 col-md-12 col-12">
                                 <div class="pricing-right position-relative">
                                     <div class="pricing-offer">
@@ -193,7 +172,7 @@
                                                     </div>
                                                 </div>
 
-                                                <label class="placeholder" style="width: 100%">Sertifikat Keterampilan Yang dimiliki Alumni</label>
+                                                {{-- <label class="placeholder" style="width: 100%">Sertifikat Keterampilan Yang dimiliki Alumni</label>
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-9">
@@ -203,7 +182,7 @@
                                                             <button class="rbt-btn btn-sm btn-gradient w-100"><i class="fa fa-plus"></i></button>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                                 <button class="rbt-btn btn-gradient w-100" id="daftar">Submit Form</button>
                                             </form>
                                         </div>
