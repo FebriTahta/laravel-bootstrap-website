@@ -260,7 +260,7 @@ function loadData(page)
             // console.log('wooo');
             $('.null-data-post').addClass('d-none');
             load_post(response.data_posting.data)
-            pagination_post(1,response.data_posting.last_page)
+            pagination_post(page,response.data_posting.last_page)
             console.log(response);
           }else{
             $('#post_table').addClass('d-none');
