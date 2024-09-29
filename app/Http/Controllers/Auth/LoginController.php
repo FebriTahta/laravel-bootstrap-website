@@ -40,82 +40,54 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    // public function login(Request $request)
-    // {
-    //     $input = $request->all();
-
-    //     $this->validate($request, [
-    //         'name' => 'required',
-    //         'password' => 'required',
-    //     ]);
-
-    //     $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
-    //     if (auth()->attempt(array($fieldType => $input['name'], 'password' => $input['password']))) {
-    //         if (auth()->user()->role == 'admin' || auth()->user()->role == 'super_admin') {
-    //             # code...
-    //             return response()->json([
-    //                 'status'=>'200',
-    //                 'message'=>'Login success! Welcome back',
-    //                 'link'=>'/admin-dashboard'
-    //             ]);
-    //         }else {
-    //             # code...
-    //             return response()->json([
-    //                 'status'=>'400',
-    //                 'message'=>'Maaf hanya admin yang diperbolehkan masuk'
-    //             ]);
-    //         }
-    //     } else {
-    //         return response()->json([
-    //             'status'=>'400',
-    //             'message'=>'Maaf periksa kembali username anda'
-    //         ]);
-    //     }
-    // }
-
     public function login(Request $request)
     {
+        // Validasi input
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'regex:/^[a-zA-Z0-9_]+$/'],
-            'password' => ['required', 'string'],
+            'password' => ['required', 'string', 'min:8'], // Tambahkan minimal panjang password
         ]);
 
         if ($validator->fails()) {
             return response()->json([
-                'status'=>400,
-                'message'=>'OOppss',
+                'status' => 400,
+                'message' => 'Anda tidak memiliki akses',
             ]);
         }
 
+        // Cek apakah input adalah email atau nama pengguna
         $fieldType = filter_var($request->name, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
 
+        // Siapkan kredensial
         $credentials = [
             $fieldType => $request->name,
             'password' => $request->password
         ];
 
+        // Coba autentikasi user
         if (auth()->attempt($credentials)) {
             $user = auth()->user();
+            
+            // Batasi akses berdasarkan role
             if ($user->role == 'admin' || $user->role == 'super_admin') {
                 return response()->json([
-                    'status' => '200',
+                    'status' => 200,
                     'message' => 'Login success! Welcome back',
                     'link' => '/admin-dashboard'
                 ]);
             } else {
                 return response()->json([
-                    'status' => 400,
-                    'message' => 'Maaf hanya admin yang diperbolehkan masuk'
+                    'status' => 403, // Ubah ke 403 Forbidden
+                    'message' => 'Maaf, hanya admin yang diperbolehkan masuk'
                 ]);
             }
         } else {
             return response()->json([
-                'status' => 400,
+                'status' => 401, // Ubah ke 401 Unauthorized
                 'message' => 'Maaf, kombinasi nama pengguna dan kata sandi tidak valid.'
             ]);
         }
     }
-
 
 
 }

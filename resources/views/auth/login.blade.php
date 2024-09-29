@@ -284,11 +284,6 @@
                         type: "error",
                         timer: 2000
                     });
-                    // $('#errList').html("");
-                    // $('#errList').addClass('alert alert-danger');
-                    // $.each(response.errors, function(key, err_values) {
-                    //     $('#errList').append('<div>' + err_values + '</div>');
-                    // });
                 }
             },
             error: function(data) {
