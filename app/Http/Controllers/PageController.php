@@ -19,7 +19,9 @@ class PageController extends Controller
     {
         $search = null;
         $data = Konten::where('konten_slug', $konten_slug)->withCount('post')->first();
-        
+        if (!$data) {
+            abort(404); // Kembalikan halaman 404 jika posting tidak ditemukan
+        }
         if ($data->konten_model == 1) {
             # code...
 
