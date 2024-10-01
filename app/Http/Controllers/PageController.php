@@ -76,6 +76,10 @@ class PageController extends Controller
         $konten = Konten::where('konten_slug', $konten_slug)->first();
         $post = Post::where('post_slug', $post_slug)->with(['kategori','image','file'])
         ->withCount(['image','file'])->first();
+        if (!$post || !$konten) {
+            abort(404); // Kembalikan halaman 404 jika posting tidak ditemukan
+        }
+        
         $next = Post::where('id', '<', $post->id)
         ->whereHas('konten', function($q) use ($konten_slug){
             $q->where('konten_slug', $konten_slug);
