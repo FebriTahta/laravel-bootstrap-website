@@ -246,9 +246,80 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="swiper event-activation-1 rbt-arrow-between rbt-dot-bottom-center pb--60 icon-bg-primary">
-
                     <div class="swiper-wrapper">
                         @foreach ($general as $item)
+                            <!-- Start Single Slide  -->
+                            <div class="swiper-slide">
+                                <div class="single-slide">
+                                    <div class="rbt-card event-grid-card variation-01 rbt-hover">
+                                        <div class="rbt-card-img">
+                                            <a href="/post/{{$item->konten->konten_slug}}/{{$item->post_slug}}">
+                                                <img src="{{asset('images_thumbnail/'.$item->post_thumb)}}" style="min-height: 220px; max-height:220px" alt="Card image">
+                                                <div class="rbt-badge-3 bg-white">
+                                                    <span>{{\Carbon\Carbon::parse($item->created_at)->format('d M')}}</span>
+                                                    <span>{{\Carbon\Carbon::parse($item->created_at)->format('Y')}}</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="rbt-card-body">
+                                            <ul class="rbt-meta">
+                                                <li><i class="feather-map-pin"></i>Smk Krian</li>
+                                                <li><i class="feather-clock"></i>{{\Carbon\Carbon::parse($item->created_at)->format('H:i:s')}}</li>
+                                                <li><i class="feather-eye"></i>{{$item->post_view}} Dibaca</li>
+                                            </ul>
+                                            <h4 class="rbt-card-title">
+                                                <a href="/post/{{$item->konten->konten_slug}}/{{$item->post_slug}}">
+                                                    @if (strlen($item->post_title) > 35)
+                                                        {{substr($item->post_title, 0,35)}} ...
+                                                        @else
+                                                        {{substr($item->post_title, 0,35)}}
+                                                            @if (strlen($item->post_title) > 20)
+                                                                <br>
+                                                            @else
+                                                                <br><br>
+                                                            @endif
+                                                    @endif
+                                                </a>
+                                            </h4>
+
+                                            <div class="read-more-btn">
+                                                <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round" href="/post/{{$item->konten->konten_slug}}/{{$item->post_slug}}">
+                                                    <span class="icon-reverse-wrapper">
+                                                        <span class="btn-text">Selengkapnya</span>
+                                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Single Slide  -->
+                        @endforeach
+                    </div>
+
+                    <div class="rbt-swiper-arrow rbt-arrow-left">
+                        <div class="custom-overfolow">
+                            <i class="rbt-icon feather-arrow-left"></i>
+                            <i class="rbt-icon-top feather-arrow-left"></i>
+                        </div>
+                    </div>
+
+                    <div class="rbt-swiper-arrow rbt-arrow-right">
+                        <div class="custom-overfolow">
+                            <i class="rbt-icon feather-arrow-right"></i>
+                            <i class="rbt-icon-top feather-arrow-right"></i>
+                        </div>
+                    </div>
+                    <div class="rbt-swiper-pagination"></div>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="swiper event-activation-1 rbt-arrow-between rbt-dot-bottom-center pb--60 icon-bg-primary">
+                    <div class="swiper-wrapper">
+                        @foreach ($general2 as $item)
                             <!-- Start Single Slide  -->
                             <div class="swiper-slide">
                                 <div class="single-slide">

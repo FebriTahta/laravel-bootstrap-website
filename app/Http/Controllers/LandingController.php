@@ -70,8 +70,11 @@ class LandingController extends Controller
 
         $general = Post::orderBy('id','desc')->limit(10)->get();
 
+        $general2 = Post::where('id', '<', $general->last()->id)
+        ->orderBy('id','desc')->limit(10)->get();
+
         return view('frontend.landing',compact('hot_news','profile','prestasi','ebook',
-        'guru','artikel','general','alumni','alumniLanjutan','jurusan'));
+        'guru','artikel','general','alumni','alumniLanjutan','jurusan','general2'));
     }
 
     /**

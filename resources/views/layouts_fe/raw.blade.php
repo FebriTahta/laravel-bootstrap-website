@@ -217,25 +217,25 @@
                                 <a class="search-trigger-active rbt-round-btn" href="#">
                                     <i class="feather-search"></i>
                                 </a>
-                            </li>
-                            <li class="account-access rbt-user-wrapper d-none d-xl-block">
-                                {{-- <a href="https://pembayaran.smkkrian1.sch.id" target="_blank">PPDB</a> --}}
-                                {{-- <a href="{{route('login')}}"><i class="feather-lock"></i>Login</a> --}}
-                                <a class="button btn btn-sm btn-primary" style="margin-right: 20px; border-radius: 5px" target="_blank" href="https://pembayaran.smkkrian1.sch.id">
+                        </ul>
+                            <div class="slider-btn" style="margin-right: 10px">
+                                <a class="rbt-btn btn-gradient hover-icon-reverse" target="_blank" href="https://pembayaran.smkkrian1.sch.id/student-sign">
                                     <span class="icon-reverse-wrapper">
-                                        <span class="btn-text text-white">Pendaftaran</span>
-                                        {{-- <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span> --}}
+                                        <span class="btn-text">PEMBAYARAN</span>
+                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                     </span>
                                 </a>
-                                <a class="button btn btn-sm btn-primary" style="margin-right: -50px; border-radius: 5px" target="_blank" href="https://lms.smkkrian1.sch.id">
+                            </div>
+                            <di class="slider-btn">
+                                <a class="rbt-btn btn-gradient hover-icon-reverse" href="https://lms.smkkrian1.sch.id" target="_blank">
                                     <span class="icon-reverse-wrapper">
-                                        <span class="btn-text text-white">LMS</span>
-                                        {{-- <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span> --}}
+                                        <span class="btn-text">LMS</span>
+                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                     </span>
                                 </a>
-                            </li>
+                            </div>
                         </ul>
 
                        
