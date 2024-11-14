@@ -44,7 +44,7 @@ class LoginController extends Controller
     {
         // Validasi input
         $validator = Validator::make($request->all(), [
-            'email' => ['required', 'string', 'regex:/^[a-zA-Z0-9_]+$/'],
+            'name' => ['required', 'string', 'regex:/^[a-zA-Z0-9_]+$/'],
             'password' => ['required', 'string', 'min:8'], // Tambahkan minimal panjang password
         ]);
 
@@ -55,15 +55,11 @@ class LoginController extends Controller
             ]);
         }
 
-        // Cek apakah input adalah email atau nama pengguna
-        $fieldType = filter_var($request->email, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-
         // Siapkan kredensial
         $credentials = [
-            $fieldType => $request->email,
+            'name' => $request->name,
             'password' => $request->password
         ];
-
         // Coba autentikasi user
         if (auth()->attempt($credentials)) {
             $user = auth()->user();
