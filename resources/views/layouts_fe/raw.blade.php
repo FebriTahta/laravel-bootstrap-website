@@ -218,7 +218,8 @@
                                     <i class="feather-search"></i>
                                 </a>
                         </ul>
-                            <div class="slider-btn" style="margin-right: 10px">
+                        
+                            <div class="slider-btn d-none d-sm-block" style="margin-right: 10px">
                                 <a class="rbt-btn btn-gradient hover-icon-reverse" target="_blank" href="https://pembayaran.smkkrian1.sch.id/student-sign">
                                     <span class="icon-reverse-wrapper">
                                         <span class="btn-text">PEMBAYARAN</span>
@@ -227,7 +228,7 @@
                                     </span>
                                 </a>
                             </div>
-                            <di class="slider-btn">
+                            <div class="slider-btn d-none d-sm-block">
                                 <a class="rbt-btn btn-gradient hover-icon-reverse" href="https://lms.smkkrian1.sch.id" target="_blank">
                                     <span class="icon-reverse-wrapper">
                                         <span class="btn-text">LMS</span>
@@ -477,6 +478,11 @@
                     <ul class="mainmenu">
                         <li class="position-static">
                             <a href="https://pembayaran.smkkrian1.sch.id/student-sign" target="_blank">Pembayaran Siswa</a>
+                        </li>
+                    </ul>
+                    <ul class="mainmenu">
+                        <li class="position-static">
+                            <a href="https://lms.smkkrian1.sch.id/student-sign" target="_blank">LMS</a>
                         </li>
                     </ul>
                 </div>
