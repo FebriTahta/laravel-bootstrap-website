@@ -76,11 +76,11 @@
                         </div>
                     </div>
                     <div class="shape-wrapper" id="scene">
-                        @if ($profile && !empty($profile->profile_heroimage))
+                        {{-- @if ($profile && !empty($profile->profile_heroimage)) --}}
                                 <img src="{{asset('images_profile/'.$profile->profile_heroimage)}}" alt="Hero Image">
-                            @else
+                            {{-- @else
                                 <img src="assets_fe/kepsek-removebg-preview.png" alt="Hero Image">
-                        @endif
+                        @endif --}}
 
                         <div class="hero-bg-shape-1 layer" data-depth="0.4">
                             <img src="{{asset('assets_fe/images/shape/shape-01.png')}}" alt="Hero Image Background Shape">
