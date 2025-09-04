@@ -13,7 +13,7 @@
 
         gtag('config', 'G-DS5GSJ410V');
     </script>
-    
+
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="google-site-verification" content="sTb7zvPjIzT8RvINab4o7FvJUlZxdTg7VvsIrC50fZA" />
@@ -21,12 +21,12 @@
     @yield('page_title')
     {{-- <meta name="robots" content="noindex, follow" /> --}}
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+
     @yield('meta_tag')
-    
+
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('LOGO.png')}}">
-    
+
     <!-- CSS
 	============================================ -->
     <link rel="stylesheet" href="{{asset('assets_fe/css/vendor/bootstrap.min.css')}}">
@@ -113,7 +113,7 @@
                                                 <div class="desktops">
                                                     <span class="rbt-badge variation-02 bg-color-primary color-white radius-round">Hi</span>
                                                     <span class="news-text"><img src="{{asset('assets_fe/images/icons/hand-emojji.svg')}}" alt="Hand Emojji Images"> Welcome to {{$profile->profile_name ?? 'my website.'}}</span>
-                                                    
+
                                                 </div>
                                                 <div class="mobiles">
                                                     <span class="rbt-badge variation-02 bg-color-primary color-white radius-round">Hi</span>
@@ -134,7 +134,7 @@
                                                             </a>"</span>
                                                     @endforeach
                                                 </div>
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -143,7 +143,7 @@
                         </div>
                         <div class="rbt-header-sec-col rbt-header-right mt_md--10 mt_sm--10">
                             <div class="rbt-header-content justify-content-start justify-content-lg-end">
-                                
+
 
                                 <div class="rbt-separator d-none d-xl-block">
                                     <div class="rbt-header-top-news">
@@ -175,7 +175,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                                 
+
                             </div>
                         </div>
                     </div>
@@ -195,11 +195,11 @@
                         <div class="header-info">
                             <div class="logo">
                                 <a href="/">
-                                    <img 
+                                    <img
                                     @if ($profile)
-                                    src="{{asset('images_profile/'.$profile->profile_logo)}}"    
+                                    src="{{asset('images_profile/'.$profile->profile_logo)}}"
                                     @else
-                                    src="{{asset('assets_fe/images/logo/logo.png')}}" 
+                                    src="{{asset('assets_fe/images/logo/logo.png')}}"
                                     @endif
                                     alt="Education Logo Images">
                                 </a>
@@ -218,7 +218,7 @@
                                     <i class="feather-search"></i>
                                 </a>
                         </ul>
-                        
+
                             <div class="slider-btn d-none d-sm-block" style="margin-right: 10px">
                                 <a class="rbt-btn btn-gradient hover-icon-reverse" target="_blank" href="https://pembayaran.smkkrian1.sch.id/student-sign">
                                     <span class="icon-reverse-wrapper">
@@ -239,7 +239,7 @@
                             </div>
                         </ul>
 
-                       
+
 
                         <!-- Start Mobile-Menu-Bar -->
                         <div class="mobile-menu-bar d-block d-xl-none">
@@ -263,7 +263,7 @@
                                 <input type="text" name="search" placeholder="What are you looking for?">
                                 <div class="submit-btn">
                                     <a class="rbt-btn btn-gradient btn-md" type="submit" href="javascript:void(0);">Search</a>
-                                  
+
                                 </div>
                             </form>
                         </div>
@@ -387,11 +387,11 @@
                 <div class="content">
                     <div class="logo">
                         <a href="/">
-                            <img 
+                            <img
                             @if ($profile)
-                                src="{{asset('images_profile/'.$profile->profile_logo)}}"  
+                                src="{{asset('images_profile/'.$profile->profile_logo)}}"
                                 @else
-                                src="{{asset('assets_fe/images/logo/logo.png')}}"  
+                                src="{{asset('assets_fe/images/logo/logo.png')}}"
                             @endif
                             alt="Education Logo Images">
                         </a>
@@ -409,7 +409,7 @@
                             </li>
                         @endif
                     @endif
-                   
+
                     <li>
                         <a href="#"><i class="feather-phone"></i>{{$profile->profile_contactnumber ?? '-'}}</a>
                     </li>
@@ -422,7 +422,7 @@
                         <a href="/">Home <i class="feather-chevron-down"></i></a>
                     </li>
                     @foreach ($menus as $key => $menu)
-                    <li 
+                    <li
                         @if ($menu->submenu_count > 0)
                             class="with-megamenu has-menu-child-item text-capitalize position-static"
                         @else
@@ -431,12 +431,12 @@
                         >
                         <a
                         @if ($menu->konten)
-                            href="/post/{{$menu->konten->konten_slug}}" 
+                            href="/post/{{$menu->konten->konten_slug}}"
                         @else
-                            href="#"     
-                        @endif 
+                            href="#"
+                        @endif
                         >{{$menu->menu_name}} <i class="feather-chevron-down"></i></a>
-                       
+
                         @if ($menu->submenu_count > 0)
                         <div class="rbt-megamenu grid-item-4">
                             <div class="wrapper">
@@ -450,7 +450,7 @@
                                                         href="/post/{{$item->konten->konten_slug}}"
                                                     @else
                                                         href="#"
-                                                    @endif 
+                                                    @endif
                                                     class="text-capitalize">{{$item->submenu_name}}</a></li>
                                             @endforeach
                                         </ul>
@@ -495,7 +495,7 @@
     <main class="rbt-main-wrapper">
         <!-- Start Banner Area -->
         @yield('content')
-        
+
         <!-- End Footer aera -->
         <div class="rbt-separator-mid">
             <div class="container">
@@ -511,7 +511,7 @@
                     </div>
                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-12">
                         <ul class="copyright-link rbt-link-hover justify-content-center justify-content-lg-end mt_sm--10 mt_md--10">
-                           
+
 
                             @foreach ($sosmed as $item)
                                 <li>
@@ -529,7 +529,7 @@
                                     </a>
                                 </li>
                             @endforeach
-                            
+
                         </ul>
                     </div>
                 </div>
@@ -578,7 +578,7 @@
     <script src="{{asset('assets_fe/js/vendor/plyr.js')}}"></script>
     <!-- Main JS -->
     <script src="{{asset('assets_fe/js/main.js')}}"></script>
-    
+
     @yield('script')
 </body>
 

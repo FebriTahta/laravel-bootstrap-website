@@ -20,7 +20,7 @@
                 <div class="rbt-banner-area rbt-banner-6">
                     <img src="{{ asset('images_another/'.$item->image_name) }}" alt="Fallback Image" style="width: 100%;">
                 </div>
-            </div>            
+            </div>
             @endforeach
         </div>
         <div class="rbt-swiper-arrow rbt-arrow-left">
@@ -31,7 +31,7 @@
         </div>
         <div class="rbt-swiper-arrow rbt-arrow-right">
             <div class="custom-overfolow">
-                <i class="rbt-icon feather-arrow-right"></i> 
+                <i class="rbt-icon feather-arrow-right"></i>
                 <i class="rbt-icon-top feather-arrow-right"></i>
             </div>
         </div>
@@ -76,7 +76,12 @@
                         </div>
                     </div>
                     <div class="shape-wrapper" id="scene">
-                        <img src="assets_fe/kepsek-removebg-preview.png" alt="Hero Image">
+                        @if ($profile && !empty($profile->profile_heroimage))
+                                <img src="{{asset('images_profile/'.$profile->profile_heroimage)}}" alt="Hero Image">
+                            @else
+                                <img src="assets_fe/kepsek-removebg-preview.png" alt="Hero Image">
+                        @endif
+
                         <div class="hero-bg-shape-1 layer" data-depth="0.4">
                             <img src="{{asset('assets_fe/images/shape/shape-01.png')}}" alt="Hero Image Background Shape">
                         </div>
@@ -105,14 +110,14 @@
                                             </ul>
                                             <h4 class="rbt-card-title"><a href="/post/{{$item->konten->konten_slug}}/{{$item->post_slug}}" class="text-capitalize">{{substr($item->post_title,0,45)}}
                                                 @if (strlen($item->post_title) > 45)
-                                                ...        
+                                                ...
                                                 @endif
                                             </a>
                                             </h4>
                                             <p class="rbt-card-text">
-                                                {!! substr(strip_tags($item->post_desc), 0, 60) !!} 
+                                                {!! substr(strip_tags($item->post_desc), 0, 60) !!}
                                                 @if (strlen($item->post_desc) > 60)
-                                                ...        
+                                                ...
                                                 @endif
                                             </p>
                                             <div class="rbt-card-bottom">
@@ -222,7 +227,7 @@
                                 </a>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -513,16 +518,16 @@
                         </h4>
                         <ul class="rbt-meta">
                             @if (count($item->file) > 0)
-                                <li><i class="feather-download"></i>{{$item->file[0]->file_download ?? '0'}} diunduh</li>    
+                                <li><i class="feather-download"></i>{{$item->file[0]->file_download ?? '0'}} diunduh</li>
                             @endif
-                            
+
                         </ul>
                         <p class="rbt-card-text">{!! substr(strip_tags($item->post_desc), 0, 100) !!}</p>
                         <div class="rbt-card-bottom">
                             <a class="rbt-btn-link" href="{{asset('file_ebook/'.$item->file[0]->file_name)}}">
                                 Unduh <i class="feather-arrow-down"></i>
                             </a>
-                          
+
                         </div>
                     </div>
                 </div>
@@ -561,13 +566,13 @@
         <div class="row g-5">
             <div class="col-lg-7"  data-sal-delay="200" data-sal="slide-right" data-sal-duration="800">
                 <div class="rbt-team-tab-content tab-content" id="myTabContent">
-                    
+
                     @foreach ($guru as $key => $item)
                     <div @if ($key+1 == 1)
                     class="tab-pane fade active show"
                     @else
                     class="tab-pane fade"
-                    @endif 
+                    @endif
                     id="team-tab{{$key+1}}" role="tabpane{{$key+1}}" aria-labelledby="team-tab{{$key+1}}-tab">
                         <div class="inner">
                             <div class="rbt-team-thumbnail">
@@ -579,17 +584,17 @@
                                 <div class="author-info">
                                     <h4 class="title text-capitalize">{{$item->post_title}}</h4>
                                 </div>
-                                <p> 
+                                <p>
                                     {!! $item->post_desc !!}
                                 </p>
                             </div>
                         </div>
                     </div>
                     @endforeach
-                    
 
-                   
-                    
+
+
+
 
                     <div class="top-circle-shape"></div>
                 </div>
@@ -632,8 +637,8 @@
                 <div class="col-xxl-6 col-xl-6 col-lg-6">
                     <div class="inner-content text-start">
                         <p class="color-white">
-                            Anda bisa membantu kami dengan mendaftarkan diri anda, 
-                            serta anda juga bisa melakukan ulasan atas segala kinerja maupun kegiatan kami sehingga 
+                            Anda bisa membantu kami dengan mendaftarkan diri anda,
+                            serta anda juga bisa melakukan ulasan atas segala kinerja maupun kegiatan kami sehingga
                             kami mampu untuk terus berkembang semakin baik
                         </p>
                     </div>
@@ -769,7 +774,7 @@
                                                 </div>
                                             </div>
                                             @endif
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -806,7 +811,7 @@
                                     </div>
                                 @endfor
                             @endif
-                            
+
                         </div>
                     </div>
                     <div class="scroll-animation-wrapper pb--50">
@@ -872,7 +877,7 @@
                                                 </div>
                                             </div>
                                             @endif
-                                            
+
                                         </div>
                                     </div>
                                 </div>
