@@ -5,7 +5,7 @@
             <p class="mb-0">{{$title}}</p>
             </div>
         </div>
-     
+
         @if ($action == 'create')
         <form id="form_store" method="POST" enctype="multipart/form-data">@csrf
             <div class="card-body">
@@ -50,7 +50,7 @@
                     </div>
 
                     {{-- multi image --}}
-                    @if ($konten->konten_model == 2 || $konten->konten_model == 5) 
+                    @if ($konten->konten_model == 2 || $konten->konten_model == 5)
                         <div class="col-md-6">
                             <label>Another Image <span class="text-danger">Max : 2MB (boleh kosong) </span> </label>
                             <div class="row">
@@ -64,7 +64,7 @@
                             <div class="row images_wrapp"></div>
                         </div>
                     @endif
-                    
+
                     {{-- multi file --}}
                     @if ($konten->konten_model == 4)
                         <div class="col-md-12">
@@ -133,11 +133,11 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-12"> 
+                        <div class="col-md-12">
                             <label>Pilih Jenis Kategori <span class="text-danger">Max : 3</span></label>
                             <br>
                             @foreach ($kategori as $item)
-                                <input type="checkbox" name="kategori_id[]" value="{{$item->id}}" {{ in_array($item->id, $selectedCategories) ? 'checked' : '' }}> 
+                                <input type="checkbox" name="kategori_id[]" value="{{$item->id}}" {{ in_array($item->id, $selectedCategories) ? 'checked' : '' }}>
                                 <label style="margin-right:10px">{{$item->kategori_name}}</label>
                             @endforeach
                         </div>
@@ -168,13 +168,13 @@
 
                         @if ($konten->konten_model == 4)
                             <div class="col-md-12">
-                                <label>Source File Tersimpan : 
+                                <label>Source File Tersimpan :
                                     @if (count($data->file) > 0)
-                                        <span class="text-primary">{{substr($data->file[0]->file_name,11)}}</span>        
+                                        <span class="text-primary">{{substr($data->file[0]->file_name,11)}}</span>
                                     @else
                                         <span class="text-danger">Kosong...</span>
                                     @endif
-                                    
+
                                 </label>
                                 <div class="row">
                                     <div class="col-md-6" style="margin-bottom: 5px">
@@ -198,7 +198,7 @@
                             </div>
                         </div>
                         @endif
-                    
+
                     </div>
                 </div>
                 <div class="card-footer" style="padding-bottom:130px">
@@ -224,7 +224,7 @@
                     </div>
                 </div>
             @endif
-       
+
             @if ($konten->konten_model !== 4)
             <div class="card-body border-top">
                 <div class="row">

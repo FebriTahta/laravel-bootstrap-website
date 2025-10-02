@@ -9,25 +9,27 @@
             tabsize: 2,
             height: 120,
             toolbar: [
-            ['style', ['style']],
-            ['font', ['bold', 'underline', 'clear']],
-            ['color', ['color']],
-            ['para', ['ul', 'ol', 'paragraph']],
-            ['table', ['table']],
-            ['insert', ['link', 'picture', 'video']],
-            ['view', ['fullscreen', 'codeview', 'help']]
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']], // list & paragraph
+                ['para2', ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull']], // tambahan align
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']]
             ]
         });
+
     });
     // Mendapatkan referensi elemen input dan elemen pratinjau
     var imageInput = document.getElementById('post_thumb');
     var imagePreview = document.getElementById('imagePreview');
-    
+
     // Menambahkan event listener untuk mendeteksi perubahan pada input file
     $('#post_thumb').on('change',function () {
          // Mendapatkan file yang dipilih
          var selectedFile = imageInput.files[0];
-    
+
         // Mengecek apakah file yang dipilih adalah gambar
         if (selectedFile && selectedFile.type.startsWith('image/')) {
             // Membuat objek URL untuk pratinjau gambar
@@ -68,7 +70,7 @@
     //Once add button is clicked
     $(addButton).click(function(){
         //Check maximum number of input fields
-        if(x < maxField){ 
+        if(x < maxField){
             x++; //Increment field counter
             $(wrapper).append(fieldHTML); //Add field html
         }
@@ -76,7 +78,7 @@
 
     $(addButtonFile).click(function(){
         //Check maximum number of input fields
-        if(x < maxField){ 
+        if(x < maxField){
             x++; //Increment field counter
             $(wrapperFile).append(fieldHTMLFile); //Add field html
         }
@@ -120,7 +122,7 @@
                             var baseUrl = window.location.origin;
                             window.location.href = baseUrl+'/admin-post';
                         }
-                    });   
+                    });
                 }else{
                     Swal.fire({
                         title: 'Error!',
@@ -148,7 +150,7 @@
     // edit script
     $('.remove-image').on('click', function() {
         var key = $(this).data('key');
-        
+
         Swal.fire({
             title: 'Konfirmasi',
             text: 'Apakah Anda yakin ingin menghapus gambar ini?',
@@ -183,7 +185,7 @@
                         }
                     },
                     error: function(error) {
-                        
+
                         Swal.fire({
                             title: 'Error!',
                             text: 'Failed to deleting the image',
@@ -198,7 +200,7 @@
 
     $('.remove-file').on('click', function() {
         var key = $(this).data('key');
-        
+
         Swal.fire({
             title: 'Konfirmasi',
             text: 'Apakah Anda yakin ingin menghapus file ini?',
@@ -233,7 +235,7 @@
                         }
                     },
                     error: function(error) {
-                        
+
                         Swal.fire({
                             title: 'Error!',
                             text: 'Failed to deleting the file',
@@ -271,7 +273,7 @@
                             var baseUrl = window.location.origin;
                             window.location.href = baseUrl+'/admin-post';
                         }
-                    });   
+                    });
                 }else{
                     Swal.fire({
                         title: 'Error!',
