@@ -49,9 +49,9 @@ class PostController extends Controller
             ]);
         }
 
-        
+
         $title  = 'POSTING';
-        $konten = Konten::where('konten_status', 1)->orderBy('id','asc')->get(); 
+        $konten = Konten::where('konten_status', 1)->orderBy('id','asc')->get();
         return view('backend.post.index',compact('title','konten'));
     }
 
@@ -87,7 +87,7 @@ class PostController extends Controller
             'kategori_id.required' => 'Pilih minimal 1 kategori / maksimal 3 kategori',
             'file.max' => 'Field file harus kurang dari 2mb',
             'file.*.mimes' => 'Field File harus berupa file',
-            
+
         ];
         $validator = Validator::make($request->all(), [
             'konten_id' => 'required',
@@ -129,16 +129,16 @@ class PostController extends Controller
                             $size = $value->getSize();
                             $imageName = time() . '_' . $key . '.' . $value->extension();
                             $value->move(public_path('images_another'), $imageName);
-                    
+
                             if ($value->getError()) {
                                 // Tampilkan pesan kesalahan
                                 dd($value->getErrorMessage());
                             }
-                            
+
                             // Dapatkan tipe dan ukuran gambar
                             $imagePath = public_path('images_another') . '/' . $imageName;
                             list($width, $height, $imageType) = getimagesize($imagePath);
-                    
+
                             // Simpan data gambar ke dalam array
                             $data_img[] = [
                                 'image_name' => $imageName,
@@ -149,12 +149,12 @@ class PostController extends Controller
                                 'imageable_id' => $posting->id
                             ];
                         }
-                    }                
+                    }
 
                     Image::insert($data_img);
                 }
 
-               
+
 
 
                 if ($request->konten_model == 4) {
@@ -179,12 +179,12 @@ class PostController extends Controller
                             $size = $value->getSize();
                             $file_name = time() . '_' . $key . '.' . $value->getClientOriginalName();
                             $value->move(public_path('file_ebook'), $file_name);
-                    
+
                             if ($value->getError()) {
                                 // Tampilkan pesan kesalahan
                                 dd($value->getErrorMessage());
                             }
-                            
+
                             $fileable_type = Post::class;
                             $fileable_id = $posting->id;
                             $data_file[] = [
@@ -193,12 +193,12 @@ class PostController extends Controller
                                 'fileable_type' => $fileable_type,
                                 'fileable_id' => $fileable_id
                             ];
-                        }   
+                        }
                         File::insert($data_file);
                     }
-                    
+
                 }
-                
+
                 DB::commit();
                 return Response()->json([
                     'status'  => 200,
@@ -275,7 +275,7 @@ class PostController extends Controller
         } else {
             DB::beginTransaction();
             try {
-                
+
                 $posting = Post::where('id', $id)->first();
 
                 if ($request->post_thumb) {
@@ -298,7 +298,7 @@ class PostController extends Controller
                     # update without image thumbnail replacing code...
                     $posting->update([
                         'konten_id' => $request->konten_id,
-                        'post_title' => strtolower($request->post_title),
+                        'post_title' => $request->post_title,
                         'post_slug' => Str::slug($request->post_title),
                         'post_status' => $request->post_status,
                         'post_desc' => $request->post_desc,
@@ -316,16 +316,16 @@ class PostController extends Controller
                             $size = $value->getSize();
                             $imageName = time() . '_' . $key . '.' . $value->extension();
                             $value->move(public_path('images_another'), $imageName);
-                    
+
                             if ($value->getError()) {
                                 // Tampilkan pesan kesalahan
                                 dd($value->getErrorMessage());
                             }
-                            
+
                             // Dapatkan tipe dan ukuran gambar
                             $imagePath = public_path('images_another') . '/' . $imageName;
                             list($width, $height, $imageType) = getimagesize($imagePath);
-                    
+
                             // Simpan data gambar ke dalam array
                             $data_img[] = [
                                 'image_name' => $imageName,
@@ -336,8 +336,8 @@ class PostController extends Controller
                                 'imageable_id' => $posting->id
                             ];
                         }
-                    }                
-    
+                    }
+
                     Image::insert($data_img);
                 }
 
@@ -363,12 +363,12 @@ class PostController extends Controller
                             $size = $value->getSize();
                             $file_name = time() . '_' . $key . '.' . $value->getClientOriginalName();
                             $value->move(public_path('file_ebook'), $file_name);
-                    
+
                             if ($value->getError()) {
                                 // Tampilkan pesan kesalahan
                                 dd($value->getErrorMessage());
                             }
-                            
+
                             $fileable_type = Post::class;
                             $fileable_id = $posting->id;
                             $data_file[] = [
@@ -377,11 +377,11 @@ class PostController extends Controller
                                 'fileable_type' => $fileable_type,
                                 'fileable_id' => $fileable_id
                             ];
-                        }   
+                        }
                         File::insert($data_file);
                     }
                 }
-                
+
                 DB::commit();
                 return Response()->json([
                     'status'  => 200,
