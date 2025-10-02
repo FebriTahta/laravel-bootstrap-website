@@ -9,17 +9,15 @@
             tabsize: 2,
             height: 120,
             toolbar: [
-                ['style', ['style']],
-                ['font', ['bold', 'underline', 'clear']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']], // list & paragraph
-                ['para2', ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull']], // tambahan align
-                ['table', ['table']],
-                ['insert', ['link', 'picture', 'video']],
-                ['view', ['fullscreen', 'codeview', 'help']]
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']]
             ]
         });
-
     });
     // Mendapatkan referensi elemen input dan elemen pratinjau
     var imageInput = document.getElementById('post_thumb');
