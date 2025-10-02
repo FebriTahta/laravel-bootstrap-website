@@ -249,7 +249,7 @@
               <img src="{{asset("images_thumbnail/")}}/${thumbnail}" class="avatar avatar-sm me-3" alt="post_image">
             </div>
             <div class="d-flex flex-column justify-content-center">
-              <h6 class="mb-0 text-sm text-capitalize">${item.post_title.substring(0, 50)}..</h6>
+              <h6 class="mb-0 text-sm">${item.post_title.substring(0, 50)}..</h6>
               <p class="text-xs text-secondary mb-0">post</p>
             </div>
           </div>
