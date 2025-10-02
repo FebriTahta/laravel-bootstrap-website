@@ -1,7 +1,7 @@
 @extends('layouts_fe.raw')
 
 @section('page_title')
-    <title style="text-transform: uppercase">{{$post->post_title}}</title>
+    <title>{{$post->post_title}}</title>
 @endsection
 
 @section('meta_tag')
@@ -34,7 +34,7 @@
                     <span>{{Carbon\Carbon::parse($post->created_at)->format('l / d F Y')}}</span>
                 </li>
             </ul>
-            <h1 class="title">{{$post->post_title}}</h1>
+            <h1>{{$post->post_title}}</h1>
             @foreach ($post->kategori as $item)
                 <span class="badge badge-sm badge-info">{{$item->kategori_name}}</span>
             @endforeach
