@@ -15,11 +15,11 @@
   <div class="row mt-4">
 
     @include('backend.component.message_block')
- 
+
     <div class="col-12">
          @include('backend.component.button-add',['text'=>'ADD NEW POSTING','onclick'=>'newPost()'])
     </div>
- 
+
      <div class="col-12">
        <div class="card mb-4">
          <div class="card-header pb-0">
@@ -83,17 +83,17 @@
      </div>
    </div>
 </div>
-  
+
 
   <div class="modal fade" id="newPostModal" tabindex="-1" role="dialog" aria-labelledby="newPostModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-body">
           <label for="konten_id">PILIH JENIS KONTEN</label>
-          <select name="konten_id" class="form-control text-capitalize" id="konten_id">
+          <select name="konten_id" class="form-control" id="konten_id">
             <option value="">...</option>
             @foreach ($konten as $item)
-              <option value="{{$item->id}}">{{$item->konten_name}}</option>                
+              <option value="{{$item->id}}">{{$item->konten_name}}</option>
             @endforeach
           </select>
         </div>
@@ -215,7 +215,7 @@
           Swal.close();
           $('#total-informasi-posting').html(response.data_posting.total + ' posting')
             if (response.data_posting.data.length !== 0) {
-            
+
               $('.null-data-post').addClass('d-none');
               load_post(response.data_posting.data)
               pagination_post(1,response.data_posting.last_page)
@@ -297,9 +297,9 @@
     // Tampilkan tombol dari startPage hingga endPage
     for (let i = startPage; i <= endPage; i++) {
       if (i == currentPage) {
-        row += `<button class="btn btn-xs btn-success" style="margin-right:5px" onclick="loadData(${i})">${i}</button>`; 
+        row += `<button class="btn btn-xs btn-success" style="margin-right:5px" onclick="loadData(${i})">${i}</button>`;
       }else{
-        row += `<button class="btn btn-xs btn-primary" style="margin-right:5px" onclick="loadData(${i})">${i}</button>`; 
+        row += `<button class="btn btn-xs btn-primary" style="margin-right:5px" onclick="loadData(${i})">${i}</button>`;
       }
     }
 
@@ -419,7 +419,7 @@ function reload_table() {
         Swal.close();
         $('#total-informasi-posting').html(response.data_posting.total + ' posting')
           if (response.data_posting.data.length !== 0) {
-           
+
             $('.null-data-post').addClass('d-none');
             load_post(response.data_posting.data)
             pagination_post(1,response.data_posting.last_page)

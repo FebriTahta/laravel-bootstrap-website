@@ -108,7 +108,7 @@
                                             <ul class="rbt-meta">
                                                 <li><i class="feather-users"></i>{{$item->post_view}} Dibaca</li>
                                             </ul>
-                                            <h4 class="rbt-card-title"><a href="/post/{{$item->konten->konten_slug}}/{{$item->post_slug}}" class="text-capitalize">{{substr($item->post_title,0,45)}}
+                                            <h4 class="rbt-card-title"><a href="/post/{{$item->konten->konten_slug}}/{{$item->post_slug}}">{{substr($item->post_title,0,45)}}
                                                 @if (strlen($item->post_title) > 45)
                                                 ...
                                                 @endif

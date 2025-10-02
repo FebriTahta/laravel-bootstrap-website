@@ -34,11 +34,11 @@
                     <span>{{Carbon\Carbon::parse($post->created_at)->format('l / d F Y')}}</span>
                 </li>
             </ul>
-            <h1 class="title text-capitalize">{{$post->post_title}}</h1>
+            <h1 class="title">{{$post->post_title}}</h1>
             @foreach ($post->kategori as $item)
                 <span class="badge badge-sm badge-info">{{$item->kategori_name}}</span>
             @endforeach
-            
+
         </div>
     </div>
 
@@ -81,7 +81,7 @@
                     <div style="margin-top: 50px">
                         <div class="row">
                         @foreach ($post->file as $item)
-                        
+
                             <div class="col-sm-12 col-lg-4 col-md-4 col-12" style="margin-bottom: 10px">
                                 <a class="rbt-btn btn-gradient hover-icon-reverse btn-sm" style="max-width: 100%; width:100%" href="{{asset('file_ebook/'.$item->file_name)}}">
                                     <span class="icon-reverse-wrapper">
